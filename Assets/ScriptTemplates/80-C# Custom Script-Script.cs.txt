@@ -6,7 +6,12 @@ public class #SCRIPTNAME# : MonoBehaviour
 
     //[Header("References")]
 
-    //[Header("RSE")]
-    //[Header("RSO")]
+    //[Space(10)]
+    // RSO
+    // RSF
+    // RSP
+
+    //[Header("Input")]
+    //[Header("Output")]
 }
 #ROOTNAMESPACEEND#
