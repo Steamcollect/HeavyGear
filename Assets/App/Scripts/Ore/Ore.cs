@@ -1,31 +1,50 @@
+using JetBrains.Annotations;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+
 public class Ore : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] private float value;
-
     [Header("References")]
     [SerializeField] private SSO_OreData oreData;
+    [SerializeField] private OreVisual oreVisual;
 
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
+    public float value;
+    public int index;
 
-    //[Header("Input")]
-    //[Header("Output")]
-
-    public float Value
+    private float Value
     {
-        get { return value; }
-        set { this.value = value; CheckVisual(); }
+        get
+        {
+            return this.value;
+        }
+        set
+        {
+            this.value = value;
+            UpdateOre();
+        }
     }
 
-    private void CheckVisual()
+    private void Start()
     {
-        for(int i = 0; i < oreData.oreData.Count; i++)
-        {
+        UpdateOre();
+    }
 
+    public void MultiplyValue(float value)
+    {
+        Value = Value * value;
+        UpdateOre();
+    }
+
+    private void UpdateOre()
+    {
+        for(int i = index; i < oreData.oreData.Count; i++)
+        {
+            if(value > oreData.oreData[i].baseValue)
+            {
+                index = i;
+            }
         }
+
+        oreVisual.UpdateVisual(oreData.oreData[index].visual);
     }
 }
