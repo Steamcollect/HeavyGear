@@ -1,0 +1,12 @@
+using UnityEngine;
+    #ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    //[Header("Settings")]
+
+    //[Header("References")]
+
+    //[Header("RSE")]
+    //[Header("RSO")]
+}
+#ROOTNAMESPACEEND#
