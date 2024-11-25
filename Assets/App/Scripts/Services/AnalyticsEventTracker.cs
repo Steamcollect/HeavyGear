@@ -1,15 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-public class AnalyticsEventTracker : MonoBehaviour
+using Sirenix.OdinInspector;
+using UnityEngine.Analytics;
+
+public abstract class AnalyticsEventTracker : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Title("Settings")]
+    [SerializeField] private string eventName;
 
-    //[Header("References")]
+    public void OnDataTrackedChanged(string nameData,object data)
+    {
+        var analyticsResult = Analytics.CustomEvent(eventName, new Dictionary<string, object>
+        {
+            { nameData, data }
+        });
+        print(analyticsResult);
+    }
 
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
+    public void OnDataTrackedChanged(List<Tuple<string, object>> dataList)
+    {
+        var analyticsResult = Analytics.CustomEvent(eventName, dataList.ToDictionary(o=> o.Item1, o=> o.Item2 as object));
+        print(analyticsResult);
+    }
+    
 }

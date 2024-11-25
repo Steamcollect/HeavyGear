@@ -1,6 +1,4 @@
-using JetBrains.Annotations;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Ore : MonoBehaviour
 {
