@@ -1,14 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using BT.ScriptablesObject;
 using JetBrains.Annotations;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine.Analytics;
-using Object = System.Object;
 
 public abstract class AnalyticsEventTracker<T> : MonoBehaviour
  {
