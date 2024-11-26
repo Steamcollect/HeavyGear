@@ -7,17 +7,33 @@ using UnityEngine;
 [Serializable]
 public class OreData
 {
+    [PreviewField(64, Alignment = ObjectFieldAlignment.Center)]
+    [TableColumnWidth(64, Resizable = false)]
+    public Sprite visual;
+
+    public OreStatsData stats;
+
+    public OreParticleData particle;
+
+    public override string ToString()
+    {
+        return stats.name;
+    }
+}
+
+[Serializable]
+public class OreStatsData
+{
     public string name;
 
     public float baseValue;
 
     public int index;
+}
 
-    [PreviewField]
-    public Sprite visual;
-
-    public override string ToString()
-    {
-        return name;
-    }
+[Serializable]
+public class OreParticleData
+{
+    public ParticleSystem particleSystem;
+    public Color particleColor;
 }

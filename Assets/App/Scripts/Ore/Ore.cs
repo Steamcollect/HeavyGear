@@ -3,23 +3,21 @@ using Sirenix.OdinInspector.Editor;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow;
 
 public class Ore : MonoBehaviour
 {
-    [BoxGroup("Settings")]
+    [Title("Settings")]
     [SerializeField] private float currentOreValue;
 
-    [BoxGroup("Settings")]
-    [ValueDropdown("GetOreType")]
+    [ValueDropdown("GetOreType",HideChildProperties = true)]
     [SerializeField] private OreData oreType;
 
-    [BoxGroup("References")]
+    [Title("References")]
     [Required][SerializeField] private SSO_OreData oreData;
-    [BoxGroup("References")]
+
     [SerializeField] private OreVisual oreVisual;
-    [BoxGroup("References")]
     [SerializeField] private OreAnimation oreAnimation;
-    [BoxGroup("References")]
     [SerializeField] private OreEffects oreEffects;
 
     private IEnumerable<ValueDropdownItem<OreData>> GetOreType()
@@ -31,16 +29,13 @@ public class Ore : MonoBehaviour
 
         foreach(var ore in oreData.oreData)
         {
-            yield return new ValueDropdownItem<OreData>(ore.name, ore);
+            yield return new ValueDropdownItem<OreData>(ore.stats.name, ore);
         }
     }
 
     public float CurrentOreValue
     {
-        get
-        {
-            return currentOreValue;
-        }
+        get => currentOreValue;
         set
         {
             currentOreValue = value;
@@ -54,22 +49,22 @@ public class Ore : MonoBehaviour
         set => oreType = value;
     }
 
+    private void Initialize()
+    {
+        currentOreValue = oreType.stats.baseValue;
+        UpdateOre();
+    }
+
     private void Start()
     {
         Initialize();
     }
 
-    private void Initialize()
-    {
-        currentOreValue = oreType.baseValue;
-        UpdateOre();
-    }
-
     private void UpdateOre()
     {
-       for(int i = oreType.index; i < oreData.oreData.Count; i++)
+       for(int i = oreType.stats.index; i < oreData.oreData.Count; i++)
         {
-            if (currentOreValue >= oreData.oreData[i].baseValue)
+            if (currentOreValue >= oreData.oreData[i].stats.baseValue)
             {
                 oreType = oreData.oreData[i];
                 UpdateOreVisual();

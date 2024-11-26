@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class OreVisual : MonoBehaviour
 {
-    [Header("References")]
+    [Title("References")]
     [SerializeField] private SpriteRenderer visualSprite;
     [SerializeField] private TextMeshProUGUI valueText;
 

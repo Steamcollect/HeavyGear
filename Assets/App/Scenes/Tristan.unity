@@ -157,7 +157,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!114 &98884672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,12 +340,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentOreValue: 0
   oreType:
-    name: Dirt
-    baseValue: 1
-    index: 0
     visual: {fileID: 21300000, guid: 8ca9346cfef96b446a7a5087fa2192e3, type: 3}
+    stats:
+      name: Dirt
+      baseValue: 1
+      index: 0
+    particle:
+      particleSystem: {fileID: 0}
+      particleColor: {r: 0, g: 0, b: 0, a: 0}
   oreData: {fileID: 11400000, guid: d74e27d05c64f924ba3623e9a56bc695, type: 2}
   oreVisual: {fileID: 1252143266}
+  oreAnimation: {fileID: 0}
+  oreEffects: {fileID: 0}
 --- !u!114 &1252143266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualSprite: {fileID: 1951136350}
+  valueText: {fileID: 0}
 --- !u!1 &1269405879
 GameObject:
   m_ObjectHideFlags: 0
