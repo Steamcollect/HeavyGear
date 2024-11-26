@@ -1,48 +1,87 @@
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Ore : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private SSO_OreData oreData;
+    [BoxGroup("Settings")]
+    [SerializeField] private float currentOreValue;
+
+    [BoxGroup("Settings")]
+    [ValueDropdown("GetOreType")]
+    [SerializeField] private OreData oreType;
+
+    [BoxGroup("References")]
+    [Required][SerializeField] private SSO_OreData oreData;
+    [BoxGroup("References")]
     [SerializeField] private OreVisual oreVisual;
+    [BoxGroup("References")]
+    [SerializeField] private OreAnimation oreAnimation;
+    [BoxGroup("References")]
+    [SerializeField] private OreEffects oreEffects;
 
-    public float value;
-    public int index;
+    private IEnumerable<ValueDropdownItem<OreData>> GetOreType()
+    {
+        if(oreData == null || oreData.oreData == null)
+        {
+            yield break;
+        }
 
-    private float Value
+        foreach(var ore in oreData.oreData)
+        {
+            yield return new ValueDropdownItem<OreData>(ore.name, ore);
+        }
+    }
+
+    public float CurrentOreValue
     {
         get
         {
-            return this.value;
+            return currentOreValue;
         }
         set
         {
-            this.value = value;
+            currentOreValue = value;
             UpdateOre();
         }
     }
 
-    private void Start()
+    public OreData OreType
     {
-        UpdateOre();
+        get => oreType;
+        set => oreType = value;
     }
 
-    public void MultiplyValue(float value)
+    private void Start()
     {
-        Value = Value * value;
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        currentOreValue = oreType.baseValue;
         UpdateOre();
     }
 
     private void UpdateOre()
     {
-        for(int i = index; i < oreData.oreData.Count; i++)
+       for(int i = oreType.index; i < oreData.oreData.Count; i++)
         {
-            if(value > oreData.oreData[i].baseValue)
+            if (currentOreValue >= oreData.oreData[i].baseValue)
             {
-                index = i;
+                oreType = oreData.oreData[i];
+                UpdateOreVisual();
             }
         }
+    }
 
-        oreVisual.UpdateVisual(oreData.oreData[index].visual);
+    private void UpdateOreVisual()
+    {
+        if(oreVisual != null) oreVisual.UpdateVisual(oreType.visual);
+
+        //Play Animation
+        //Play Particle
     }
 }
