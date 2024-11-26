@@ -16,6 +16,22 @@ public static class Utils
         }
         return elems.ElementAt(new System.Random().Next(0, elems.Count()));
     }
+
+    /// <summary>
+    /// Return all the position in IEnumarable of transform
+    /// </summary>
+    /// <param name="elems"></param>
+    /// <returns></returns>
+    public static IEnumerable<Vector3> GetAllPosition(this IEnumerable<Transform> elems)
+    {
+        List<Vector3> positions = new List<Vector3>();
+        foreach (Transform t in elems)
+        {
+            positions.Add(t.position);
+        }
+
+        return positions;
+    }
     #endregion
 
     #region COROUTINE
