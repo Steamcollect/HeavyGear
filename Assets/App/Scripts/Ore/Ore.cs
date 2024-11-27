@@ -1,3 +1,4 @@
+using BigFloatNumerics;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ public class Ore : MonoBehaviour
 {
     [Title("Settings")]
     [SerializeField] private float currentOreValue;
+    private BiggerFloat test = new(3.0e10);
+    public BigNumber test2 = new(3.245f,3);
 
     [ValueDropdown("GetOreType",HideChildProperties = true)]
     [SerializeField] private OreData oreType;
@@ -22,10 +25,7 @@ public class Ore : MonoBehaviour
 
     private IEnumerable<ValueDropdownItem<OreData>> GetOreType()
     {
-        if(oreData == null || oreData.oreData == null)
-        {
-            yield break;
-        }
+        if(oreData == null) yield break;
 
         foreach(var ore in oreData.oreData)
         {
@@ -57,14 +57,22 @@ public class Ore : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(test.ToString());
+        Debug.Log(test2.ToString());
         Initialize();
+    }
+
+    public void MultiplyValue(float value)
+    {
+        test2.Multiply(test2);
+        Debug.Log(test2.ToString());
     }
 
     private void UpdateOre()
     {
-       for(int i = oreType.stats.index; i < oreData.oreData.Count; i++)
+        for(int i = oreType.stats.index; i < oreData.oreData.Count; i++)
         {
-            if (currentOreValue >= oreData.oreData[i].stats.baseValue)
+            if (currentOreValue >= oreData.oreData[i].stats.baseValue && oreType != oreData.oreData[i])
             {
                 oreType = oreData.oreData[i];
                 UpdateOreVisual();
