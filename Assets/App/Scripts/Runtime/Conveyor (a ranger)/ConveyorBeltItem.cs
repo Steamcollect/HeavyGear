@@ -9,4 +9,9 @@ public class ConveyorBeltItem
     [HideInInspector] public int startPoint = -1;
 
     [HideInInspector] public float pathDistance;
+
+    public ConveyorBeltItem(Transform item)
+    {
+        this.item = item;
+    }
 }

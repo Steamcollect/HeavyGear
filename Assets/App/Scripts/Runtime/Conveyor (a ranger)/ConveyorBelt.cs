@@ -9,11 +9,11 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] float itemSpacing;
 
     [Header("References")]
-    [SerializeField] Transform[] conveyorPathPoints;
+    [SerializeField] Transform[] pathPoints;
 
-    [SerializeField] List<ConveyorBeltItem> items = new List<ConveyorBeltItem>();
+    [SerializeField] Transform[] debugItems;
 
-    LineRenderer path;
+    List<ConveyorBeltItem> items = new List<ConveyorBeltItem>();
 
     //[Space(10)]
     // RSO
@@ -23,9 +23,9 @@ public class ConveyorBelt : MonoBehaviour
     //[Header("Input")]
     //[Header("Output")]
 
-    private void Awake()
+    private void Start()
     {
-        InitializePath();
+        foreach (var item in debugItems) AddItem(item);
     }
 
     private void FixedUpdate()
@@ -40,11 +40,11 @@ public class ConveyorBelt : MonoBehaviour
             // If item reach the line
             if (items[i].currentLerp >= 1)
             {
-                if (items[i].startPoint < path.positionCount - 2)
+                if (items[i].startPoint < pathPoints.Length - 2)
                 {
                     items[i].currentLerp = 0;
                     items[i].startPoint++;
-                    items[i].pathDistance = Vector3.Distance(path.GetPosition(items[i].startPoint), path.GetPosition(items[i].startPoint + 1));
+                    items[i].pathDistance = Vector3.Distance(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position);
                 }
             }
 
@@ -55,27 +55,26 @@ public class ConveyorBelt : MonoBehaviour
             }
 
             // Move current item along the current line
-            items[i].item.position = Vector3.Lerp(path.GetPosition(items[i].startPoint), path.GetPosition(items[i].startPoint + 1), items[i].currentLerp);
+            items[i].item.position = Vector3.Lerp(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position, items[i].currentLerp);
             items[i].currentLerp += (moveSpeed * Time.deltaTime) / items[i].pathDistance;
         }
     }
 
-    void InitializePath()
+    void AddItem(Transform item)
     {
-        GameObject GO = new GameObject("linePath");
-        GO.transform.SetParent(transform);
-        path = GO.AddComponent<LineRenderer>();
-        path.positionCount = conveyorPathPoints.Length;
-
-        path.SetPositions(conveyorPathPoints.GetAllPosition().ToArray());
+        items.Add(new ConveyorBeltItem(item));
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        for (int i = 0; i < conveyorPathPoints.Length - 1; i++)
+
+        if(pathPoints.Length > 0)
         {
-            Gizmos.DrawLine(conveyorPathPoints[i].position, conveyorPathPoints[i + 1].position);
-        }
+            for (int i = 0; i < pathPoints.Length - 1; i++)
+            {
+                Gizmos.DrawLine(pathPoints[i].position, pathPoints[i + 1].position);
+            }
+        }        
     }
 }
