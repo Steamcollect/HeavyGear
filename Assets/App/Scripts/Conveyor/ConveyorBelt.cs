@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ConveyorBelt : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] Transform[] debugItems;
 
     List<ConveyorBeltItem> items = new List<ConveyorBeltItem>();
+
+    public Action onObjectTouchTheEnd;
 
     //[Space(10)]
     // RSO
@@ -46,6 +49,11 @@ public class ConveyorBelt : MonoBehaviour
                     items[i].startPoint++;
                     items[i].pathDistance = Vector3.Distance(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position);
                 }
+                else
+                {
+                    items[i].isAtTheEnd = true;
+                    onObjectTouchTheEnd.Invoke();
+                }
             }
 
             // Check if current item to close frome the front item
@@ -60,9 +68,27 @@ public class ConveyorBelt : MonoBehaviour
         }
     }
 
-    void AddItem(Transform item)
+    public void AddItem(Transform item)
     {
         items.Add(new ConveyorBeltItem(item));
+    }
+
+    public void RemoveItem(ConveyorBeltItem item)
+    {
+        Destroy(item.item.gameObject);
+        items.Remove(item);
+    }
+
+    public ConveyorBeltItem GetFirstItem()
+    {
+        if(items.Count > 0)
+        {
+            return items[0];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private void OnDrawGizmos()
