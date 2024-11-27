@@ -20,8 +20,18 @@ public class BigNumber
         "Qn",
         "Sx",
         "Sp",
-        "O",
-        "N",
+        "Oc",
+        "No",
+        "De",
+        "Ud",
+        "Dd",
+        "Tdd",
+        "Qdd",
+        "Qnd",
+        "Sxd",
+        "Spd",
+        "Ocd",
+        "Nvd",
     };
 
     public BigNumber Arrange()
@@ -42,7 +52,7 @@ public class BigNumber
         return this;
     }
 
-    #region constructors
+    #region Constructors
     public BigNumber(string value)
     {
         BigNumber bf = Parse(value);
@@ -66,18 +76,20 @@ public class BigNumber
     public override string ToString()
     {
         string digit = "";
+        float value = m;
         if (n % 3 == 0) digit = indexToMagnitude[n / 3];
         else if (n % 3 == 1)
         {
-            m *= 10;
-            digit = indexToMagnitude[n / 3 - 1];
+            Debug.Log("dqd");
+            value *= 10;
+            digit = n / 3 - 1 >= 0 ? indexToMagnitude[n / 3] : indexToMagnitude[0];
         }
         else if (n % 3 == 2)
         {
-            m *= 100;
-            digit = indexToMagnitude[n / 3 - 1];
+            value *= 100;
+            digit = n / 3 - 1 >= 0 ? indexToMagnitude[n / 3] : indexToMagnitude[0];
         }
-        return $"{m:F2}{digit}";
+        return $"{value:F2}{digit}";
     }
 
     public static BigNumber Parse(string value)
@@ -98,7 +110,7 @@ public class BigNumber
     }
     #endregion
 
-    #region basic arithmetic
+    #region Basic Arithmetic
     public BigNumber Multiply(BigNumber other)
     {
         this.m *= other.m;
