@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_Seller
   m_EditorClassIdentifier: 
   speed: 0
-  cooldown: 1
+  cooldown: 3
   power: 0
   level: 0
   rarity: 0
