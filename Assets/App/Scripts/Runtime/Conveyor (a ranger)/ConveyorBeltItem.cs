@@ -9,6 +9,7 @@ public class ConveyorBeltItem
     [HideInInspector] public int startPoint = -1;
 
     [HideInInspector] public float pathDistance;
+    [HideInInspector] public bool isAtTheEnd = false;
 
     public ConveyorBeltItem(Transform item)
     {

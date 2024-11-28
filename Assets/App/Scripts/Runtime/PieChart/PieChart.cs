@@ -1,27 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PieChart : VisualElement
 {
-    float m_Radius = 100.0f;
-    float m_Value = 40.0f;
+    private float raduis = 100.0f;
+    private List<float> value = new (){100f};
 
-    public float radius
+    public float Radius
     {
-        get => m_Radius;
+        get => raduis;
         set
         {
-            m_Radius = value;
+            raduis = value;
         }
     }
 
-    public float diameter => m_Radius * 2.0f;
+    public float Diameter => raduis * 2.0f;
 
-    public float value {
-        get { return m_Value; }
-        set { m_Value = value; MarkDirtyRepaint(); }
+    public List<float> Value {
+        get => value;
+        set { this.value = value; MarkDirtyRepaint(); }
     }
 
     public PieChart()
@@ -35,28 +37,19 @@ public class PieChart : VisualElement
         painter.strokeColor = Color.white;
         painter.fillColor = Color.white;
 
-        var percentage = m_Value;
-
-        var percentages = new float[] {
-            percentage, 100 - percentage
-        };
-        var colors = new Color32[] {
-            new Color32(182,235,122,255),
-            new Color32(251,120,19,255)
-        };
+        var percentages = value;
+        
         float angle = 0.0f;
         float anglePct = 0.0f;
-        int k = 0;
-        foreach (var pct in percentages)
+        for (var index = 0; index < percentages.Count; index++)
         {
-            anglePct += 360.0f * (pct / 100);
-
-            painter.fillColor = colors[k++];
+            var pct = percentages[index];
+            anglePct += 360.0f * (100/pct);
+            painter.fillColor = Random.ColorHSV(0f, 1f, 1f, 1f, 1f, 1f);
             painter.BeginPath();
-            painter.MoveTo(new Vector2(m_Radius, m_Radius));
-            painter.Arc(new Vector2(m_Radius, m_Radius), m_Radius, angle, anglePct);
+            painter.MoveTo(new Vector2(raduis, raduis));
+            painter.Arc(new Vector2(raduis, raduis), raduis, angle, anglePct);
             painter.Fill();
-
             angle = anglePct;
         }
     }
