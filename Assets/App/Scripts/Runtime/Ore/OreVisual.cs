@@ -10,7 +10,6 @@ public class OreVisual : MonoBehaviour
 {
     [Title("References")]
     [SerializeField] private SpriteRenderer visualSprite;
-    [SerializeField] private TextMeshProUGUI valueText;
 
     public void UpdateVisual(Sprite visual)
     {

@@ -32,7 +32,7 @@ public class OreStatsData
 
     public int index;
 
-    public BiggerFloat baseValue => new BiggerFloat(defaultValue);
+    public BigNumber baseValue => new BigNumber(defaultValue);
 }
 
 [Serializable]
