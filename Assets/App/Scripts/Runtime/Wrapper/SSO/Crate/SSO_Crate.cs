@@ -81,5 +81,5 @@ public class SSO_Crate : ScriptableObject
 public class ContentCrate
 {
     [AssetsOnly][Required] public SSO_ContentCrateData data;
-    [MinValue(0.001f)] public float weight = 0.001f;
+    [PropertyRange(0.001f,999f)] public float weight = 1f;
 }
