@@ -9,21 +9,24 @@ using static UnityEditor.Searcher.SearcherWindow;
 
 public class Ore : MonoBehaviour
 {
-    [Title("Settings")]
-    [SerializeField] private float currentOreValue;
-    private BiggerFloat test = new(3.0e10);
-    private BigNumber test2 = new(1,0);
-    public TextMeshProUGUI text;
+    [TitleGroup("Current Ore Value")]
+    [ReadOnly] public string currentValue;
 
+    [Title("Settings")]
     [ValueDropdown("GetOreType",HideChildProperties = true)]
     [SerializeField] private OreData oreType;
 
     [Title("References")]
-    [Required][SerializeField] private SSO_OreData oreData;
-
+    [Required]
+    [SerializeField] private SSO_OreData oreData;
+    [Space(10)]
+    [SerializeField] private TextMeshProUGUI text;
+    [Space(10)]
     [SerializeField] private OreVisual oreVisual;
     [SerializeField] private OreAnimation oreAnimation;
     [SerializeField] private OreEffects oreEffects;
+
+    private BiggerFloat currentOreValue = new BiggerFloat(1e0);
 
     private IEnumerable<ValueDropdownItem<OreData>> GetOreType()
     {
@@ -35,11 +38,12 @@ public class Ore : MonoBehaviour
         }
     }
 
-    public float CurrentOreValue
+    public BiggerFloat CurrentOreValue
     {
         get => currentOreValue;
         set
         {
+            currentValue = value.ToString();
             currentOreValue = value;
             UpdateOre();
         }
@@ -53,27 +57,26 @@ public class Ore : MonoBehaviour
 
     private void Initialize()
     {
-        currentOreValue = oreType.stats.baseValue;
+        CurrentOreValue = oreType.stats.baseValue;
         UpdateOre();
     }
 
     private void Start()
     {
-        Debug.Log(test2.ToString());
         Initialize();
     }
 
     public void MultiplyValue(float value)
     {
-        test2.Multiply(new BigNumber(value,0));
-        text.text = test2.ToString();
-        Debug.Log(test2.m + " And " + test2.n);
+        CurrentOreValue = currentOreValue.Multiply(new BiggerFloat(value,0));
+        text.text = CurrentOreValue.ToString();
     }
 
     private void UpdateOre()
     {
         for(int i = oreType.stats.index; i < oreData.oreData.Count; i++)
         {
+            Debug.Log("qdq");
             if (currentOreValue >= oreData.oreData[i].stats.baseValue && oreType != oreData.oreData[i])
             {
                 oreType = oreData.oreData[i];

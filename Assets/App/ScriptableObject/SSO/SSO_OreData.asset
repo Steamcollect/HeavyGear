@@ -16,7 +16,7 @@ MonoBehaviour:
   - visual: {fileID: 21300000, guid: 8ca9346cfef96b446a7a5087fa2192e3, type: 3}
     stats:
       name: Dirt
-      baseValue: 1
+      defaultValue: 1e0
       index: 0
     particle:
       particleSystem: {fileID: 0}
@@ -24,7 +24,7 @@ MonoBehaviour:
   - visual: {fileID: 21300000, guid: fc96d0ec723bbe9408d413521f69407d, type: 3}
     stats:
       name: Iron
-      baseValue: 10
+      defaultValue: 1e1
       index: 1
     particle:
       particleSystem: {fileID: 0}
@@ -32,7 +32,7 @@ MonoBehaviour:
   - visual: {fileID: 21300000, guid: c535d67ccfcfb6a4f9ed947f1276642d, type: 3}
     stats:
       name: Gold
-      baseValue: 100
+      defaultValue: 1e2
       index: 2
     particle:
       particleSystem: {fileID: 0}

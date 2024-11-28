@@ -1,7 +1,9 @@
+using BigFloatNumerics;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.AnimatedValues;
 using UnityEngine;
 
 [Serializable]
@@ -26,9 +28,11 @@ public class OreStatsData
 {
     public string name;
 
-    public float baseValue;
+    public string defaultValue;
 
     public int index;
+
+    public BiggerFloat baseValue => new BiggerFloat(defaultValue);
 }
 
 [Serializable]

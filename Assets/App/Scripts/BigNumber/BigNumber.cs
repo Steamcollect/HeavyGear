@@ -1,7 +1,9 @@
+using BigFloatNumerics;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 [Serializable]
 public class BigNumber
@@ -9,7 +11,10 @@ public class BigNumber
     public float m { get; private set; }
     public int n { get; private set; }
 
-    public List<string> indexToMagnitude = new()
+    const float CompTolerance = 1e-1f;
+    const int CompTolerancei = 1;
+
+    private List<string> indexToMagnitude = new()
     {
         "",
         "K",
@@ -67,6 +72,12 @@ public class BigNumber
         Arrange();
     }
 
+    public BigNumber(BigNumber value)
+    {
+        this.m = value.m;
+        this.n = value.n;
+    }
+
     public BigNumber(double value) : this(value.ToString("e9"))
     {
     }
@@ -111,12 +122,97 @@ public class BigNumber
     #endregion
 
     #region Basic Arithmetic
+    public BigNumber Add(BigNumber other)
+    {
+        if(n > other.n)
+        {
+            if(this.n - other.n > 20) return this;
+            m += other.m / Mathf.Pow(10, (float)(this.n - other.n));
+            this.Arrange();
+        }
+        else
+        {
+            if(other.n - this.n > 20) return other;
+            m *= Mathf.Pow(10, (float)(this.n - other.n));
+            m += other.n;
+            this.n = other.n;
+            this.Arrange();
+        }
+
+        return this;
+    }
+
+    public BigNumber Subtract(BigNumber other)
+    {
+        return Add(other.Negate());
+    }
+
     public BigNumber Multiply(BigNumber other)
     {
         this.m *= other.m;
         this.n += other.n;
         this.Arrange();
         return this;
+    }
+
+    public BigNumber Negate()
+    {
+        m = -m;
+        return this;
+    }
+
+    public int CompareTo(BigNumber other)
+    {
+        var diff = this - other;
+        if (diff.n == 0 && diff.m == 0)
+            return 0;
+        
+        else return diff.m.CompareTo(0);
+    }
+
+    public static int Compare(BigNumber left, BigNumber right)
+    {
+        return (new BigNumber(left)).CompareTo(right);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+    #endregion
+
+    #region Operators
+    public static BigNumber operator -(BigNumber value)
+    {
+        return (new BigNumber(value)).Negate();
+    }
+    public static BigNumber operator -(BigNumber left, BigNumber right)
+    {
+        return (new BigNumber(left)).Subtract(right);
+    }
+    public static bool operator !=(BigNumber left, BigNumber right)
+    {
+        return Compare(left, right) != 0;
+    }
+    public static bool operator ==(BigNumber left, BigNumber right)
+    {
+        return Compare(left, right) == 0;
+    }
+    public static bool operator <(BigNumber left, BigNumber right)
+    {
+        return Compare(left, right) < 0;
+    }
+    public static bool operator <=(BigNumber left, BigNumber right)
+    {
+        return Compare(left, right) <= 0;
+    }
+    public static bool operator >(BigNumber left, BigNumber right)
+    {
+        return Compare(left, right) > 0;
+    }
+    public static bool operator >=(BigNumber left, BigNumber right)
+    {
+        return Compare(left, right) >= 0;
     }
     #endregion
 }

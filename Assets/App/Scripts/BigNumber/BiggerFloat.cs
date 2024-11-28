@@ -9,19 +9,41 @@ using UnityEngine;
 namespace BigFloatNumerics
 {
     [Serializable]
-    public struct BiggerFloat : IComparable, IComparable<BiggerFloat>, IEquatable<BiggerFloat>
+    public class BiggerFloat : IComparable, IComparable<BiggerFloat>, IEquatable<BiggerFloat>
     ///number is m × 10^n
     {
         public float m { get; private set; } // you could set this to `double` and there should be minimal problem. Decimal is better.
-        public BigInteger n { get; private set; }
-        public static readonly BiggerFloat Zero = new BiggerFloat() { m = 0, n = 0 };
-        public static readonly BiggerFloat One = new BiggerFloat() { m = 01, n = 0 };
+        public int n { get; private set; }
 
         public static readonly BiggerFloat IntMax = (BiggerFloat)int.MaxValue;
 
         const float CompTolerance = 1e-6f;
         const int CompTolerancei = 6;
 
+        private List<string> indexToMagnitude = new()
+    {
+        "",
+        "K",
+        "M",
+        "B",
+        "T",
+        "Qd",
+        "Qn",
+        "Sx",
+        "Sp",
+        "Oc",
+        "No",
+        "De",
+        "Ud",
+        "Dd",
+        "Tdd",
+        "Qdd",
+        "Qnd",
+        "Sxd",
+        "Spd",
+        "Ocd",
+        "Nvd",
+    };
 
         public BiggerFloat Arrange() // Sets Numerator to be at range of `[1,10)`
         {
@@ -44,7 +66,7 @@ namespace BigFloatNumerics
             this.m = bf.m;
             this.n = bf.n;
         }
-        public BiggerFloat(float m, BigInteger n)
+        public BiggerFloat(float m, int n)
         {
             this.m = m;
             this.n = n;
@@ -71,31 +93,31 @@ namespace BigFloatNumerics
         public BiggerFloat(ulong value)
         {
             m = (float)value;
-            n = BigInteger.Zero;
+            n = 0;
             Arrange();
         }
         public BiggerFloat(long value)
         {
             m = (float)value;
-            n = BigInteger.Zero;
+            n = 0;
             Arrange();
         }
         public BiggerFloat(uint value)
         {
             m = (float)value;
-            n = BigInteger.Zero;
+            n = 0;
             Arrange();
         }
         public BiggerFloat(int value)
         {
             m = (float)value;
-            n = BigInteger.Zero;
+            n = 0;
             Arrange();
         }
         public BiggerFloat(float value)
         {
             m = (float)value;
-            n = BigInteger.Zero;
+            n = 0;
             Arrange();
         }
         public BiggerFloat(double value) : this(value.ToString("e9"))// converts to "123e+5678", hence "+5678" can be parsed correctly, is very lazy approach
@@ -167,22 +189,6 @@ namespace BigFloatNumerics
 
             this.n += exponent;
             this.m = Mathf.Pow(m, exponent);
-            Arrange();
-
-            return this;
-        }
-
-        public BiggerFloat Pow(BigInteger exponent) // there is no smart way to do float lol
-        {
-            if (m == 0)
-            {
-                // Nothing to do
-            }
-            if (exponent > 30)
-                return Pow(Pow(this, exponent / 30), 30) + Pow(exponent % 30);
-
-            this.n += exponent;
-            this.m = Mathf.Pow(m, (float)exponent);
             Arrange();
 
             return this;
@@ -276,10 +282,6 @@ namespace BigFloatNumerics
         {
             return (new BiggerFloat(value)).Pow(exponent);
         }
-        public static BiggerFloat Pow(BiggerFloat value, BigInteger exponent)
-        {
-            return (new BiggerFloat(value)).Pow(exponent);
-        }
         public static BiggerFloat Remainder(BiggerFloat left, BiggerFloat right)
         {
             return (new BiggerFloat(left)).Remainder(right);
@@ -297,7 +299,21 @@ namespace BigFloatNumerics
         #region ToString and Parse
         public override string ToString()
         {
-            return $"{m:F10}e{n}";
+            string digit = "";
+            float value = m;
+            if (n % 3 == 0) digit = indexToMagnitude[n / 3];
+            else if (n % 3 == 1)
+            {
+                Debug.Log("dqd");
+                value *= 10;
+                digit = n / 3 - 1 >= 0 ? indexToMagnitude[n / 3] : indexToMagnitude[0];
+            }
+            else if (n % 3 == 2)
+            {
+                value *= 100;
+                digit = n / 3 - 1 >= 0 ? indexToMagnitude[n / 3] : indexToMagnitude[0];
+            }
+            return $"{value:F2}{digit}";
         }
         public string ToHumanFriendlyString(int? maxLength = null)
         {
@@ -351,7 +367,7 @@ namespace BigFloatNumerics
                 //decimal point (length - pos - 1)
                 float Signifacand = float.Parse(value.Substring(0, pos));
 
-                BigInteger denominator = BigInteger.Parse(value.Substring(pos));
+                int denominator = int.Parse(value.Substring(pos));
 
                 return (new BiggerFloat(Signifacand, denominator)).Arrange();
             }
@@ -365,12 +381,12 @@ namespace BigFloatNumerics
             }
             catch (ArgumentNullException)
             {
-                result = Zero;
+                result = 0;
                 return false;
             }
             catch (FormatException)
             {
-                result = Zero;
+                result = 0;
                 return false;
             }
         }
