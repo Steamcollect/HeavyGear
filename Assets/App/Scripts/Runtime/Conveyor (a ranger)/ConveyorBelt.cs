@@ -40,7 +40,7 @@ public class ConveyorBelt : MonoBehaviour
     {
         for (int i = 0; i < items.Count; i++)
         {
-            // If item reach the line
+            // If item reach the end of the line
             if (items[i].currentLerp >= 1)
             {
                 if (items[i].startPoint < pathPoints.Length - 2)
@@ -53,6 +53,7 @@ public class ConveyorBelt : MonoBehaviour
                 {
                     items[i].isAtTheEnd = true;
                     onObjectTouchTheEnd.Invoke();
+                    continue;
                 }
             }
 

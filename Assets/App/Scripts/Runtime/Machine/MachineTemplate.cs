@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class MachineTemplate : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] SSO_MachineData data;
+    public SSO_MachineData data;
 
     [Space(10)]
     [SerializeField] Clickable clickable;
