@@ -67,6 +67,10 @@ public class ConveyorBelt : MonoBehaviour
                 continue;
             }
 
+            // Move current item along the current line
+            items[i].item.position = Vector3.Lerp(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position, items[i].currentLerp);
+            items[i].currentLerp += (moveSpeed * Time.deltaTime) / items[i].pathDistance;
+            
             // Check if there is place for a new item
             if (i == items.Count - 1)
             {
@@ -78,16 +82,13 @@ public class ConveyorBelt : MonoBehaviour
                     onConveyorGetSpace?.Invoke(this);
                 }
             }
-
-            // Move current item along the current line
-            items[i].item.position = Vector3.Lerp(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position, items[i].currentLerp);
-            items[i].currentLerp += (moveSpeed * Time.deltaTime) / items[i].pathDistance;
         }
     }
 
     public void AddItem(Transform item)
     {
         items.Add(new ConveyorBeltItem(item));
+        haveSpaceToAddItem = false;
     }
 
     public void RemoveItem(ConveyorBeltItem item)

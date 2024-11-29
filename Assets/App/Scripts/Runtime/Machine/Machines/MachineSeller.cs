@@ -3,10 +3,8 @@ using UnityEngine;
 public class MachineSeller : InteractiveMachineTemplate
 {
     [Space(10), Header("Internal Settings")]
-    [SerializeField] int currentStorage;
+    int currentStorage;
     [SerializeField] int maxStorage;
-
-    float recuperationTimer;
 
     bool canRecupItem = true;
 

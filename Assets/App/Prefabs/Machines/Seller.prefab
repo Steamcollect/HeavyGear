@@ -147,8 +147,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 3907fc56ecb1ad140bd669322774384e, type: 2}
   clickable: {fileID: 4993082627202856605}
   currentState: 0
-  currentStorage: 0
-  maxStorage: 5
+  maxStorage: 10
   conveyorBelt: {fileID: 0}
 --- !u!114 &4993082627202856605
 MonoBehaviour:

@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04e6b627fa09cf42861b1263003c5d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 5
   itemSpacing: 0.5
+  haveSpaceToAddItem: 0
   pathPoints:
   - {fileID: 3057628569435516323}
   debugItems: []
