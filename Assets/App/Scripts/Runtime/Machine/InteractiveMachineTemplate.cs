@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public abstract class MachineTemplate : MonoBehaviour
+public abstract class InteractiveMachineTemplate : MonoBehaviour
 {
     [Header("References")]
     public SSO_MachineData data;
@@ -8,7 +8,7 @@ public abstract class MachineTemplate : MonoBehaviour
     [Space(10)]
     [SerializeField] Clickable clickable;
 
-    [HideInInspector] public MachineState currentState;
+    public MachineState currentState;
 
     private void OnEnable()
     {
@@ -27,7 +27,7 @@ public abstract class MachineTemplate : MonoBehaviour
 
     void OnClickDown()
     {
-        if(currentState == MachineState.Idle)
+        if(currentState == MachineState.Idle && CanDoAction())
         {
             StartAction();
         }
@@ -57,6 +57,8 @@ public abstract class MachineTemplate : MonoBehaviour
         StartCoroutine(ActionCooldown());
         currentState = MachineState.Cooldown;
     }
+
+    public abstract bool CanDoAction();
     #endregion
 
     #region COOLDOWN

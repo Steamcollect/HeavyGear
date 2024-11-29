@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-public class MachineSeller : MachineTemplate
+public class MachineSeller : InteractiveMachineTemplate
 {
     [Space(10), Header("Internal Settings")]
     [SerializeField] int currentStorage;
@@ -30,11 +30,8 @@ public class MachineSeller : MachineTemplate
     
     public override void OnActionStart()
     {
-        if (canRecupItem)
-        {
-            currentStorage = 0;
-            EndAction();
-        }
+        currentStorage = 0;
+        EndAction();
     }
 
     public override void OnCooldownEnd()
@@ -42,7 +39,7 @@ public class MachineSeller : MachineTemplate
         // Don nothing
     }
 
-    void AddStorage()
+    void AddStorage(ConveyorBelt conveyor)
     {
         if(currentState == MachineState.Idle && currentStorage < maxStorage && canRecupItem)
         {
@@ -59,7 +56,7 @@ public class MachineSeller : MachineTemplate
         {
             if(conveyorBelt.GetFirstItem() != null && conveyorBelt.GetFirstItem().isAtTheEnd)
             {
-                AddStorage();
+                AddStorage(null);
             }
         }
     }
@@ -71,5 +68,10 @@ public class MachineSeller : MachineTemplate
         canRecupItem = true;
 
         CheckItemsOnConveyor();
+    }
+
+    public override bool CanDoAction()
+    {
+        return currentStorage > 0;
     }
 }

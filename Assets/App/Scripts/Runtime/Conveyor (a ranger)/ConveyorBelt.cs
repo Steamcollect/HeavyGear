@@ -9,6 +9,8 @@ public class ConveyorBelt : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float itemSpacing;
 
+    [HideInInspector] public bool haveSpaceToAddItem = true;
+
     [Header("References")]
     [SerializeField] Transform[] pathPoints;
 
@@ -16,7 +18,8 @@ public class ConveyorBelt : MonoBehaviour
 
     List<ConveyorBeltItem> items = new List<ConveyorBeltItem>();
 
-    public Action onObjectTouchTheEnd;
+    public Action<ConveyorBelt> onObjectTouchTheEnd;
+    public Action<ConveyorBelt> onConveyorGetSpace;
 
     //[Space(10)]
     // RSO
@@ -28,6 +31,7 @@ public class ConveyorBelt : MonoBehaviour
 
     private void Start()
     {
+        haveSpaceToAddItem = true;
         foreach (var item in debugItems) AddItem(item);
     }
 
@@ -52,7 +56,7 @@ public class ConveyorBelt : MonoBehaviour
                 else
                 {
                     items[i].isAtTheEnd = true;
-                    onObjectTouchTheEnd.Invoke();
+                    onObjectTouchTheEnd?.Invoke(this);
                     continue;
                 }
             }
@@ -61,6 +65,18 @@ public class ConveyorBelt : MonoBehaviour
             if(i > 0 && Vector3.Distance(items[i].item.position, items[i - 1].item.position) <= itemSpacing)
             {
                 continue;
+            }
+
+            // Check if there is place for a new item
+            if (i == items.Count - 1)
+            {
+                bool lastFrame = haveSpaceToAddItem;
+                haveSpaceToAddItem = Vector3.Distance(items[i].item.position, pathPoints[0].position) > itemSpacing;
+
+                if (!lastFrame && haveSpaceToAddItem)
+                {
+                    onConveyorGetSpace?.Invoke(this);
+                }
             }
 
             // Move current item along the current line
@@ -76,8 +92,8 @@ public class ConveyorBelt : MonoBehaviour
 
     public void RemoveItem(ConveyorBeltItem item)
     {
-        Destroy(item.item.gameObject);
         items.Remove(item);
+        Destroy(item.item.gameObject);
     }
 
     public ConveyorBeltItem GetFirstItem()

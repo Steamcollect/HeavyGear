@@ -1,5 +1,5 @@
 using UnityEngine;
-public class MachineMiner : MachineTemplate
+public class MachineMiner : InteractiveMachineTemplate
 {
     [Space(10), Header("Internal Settings")]
     [SerializeField] GameObject itemPrefab;
@@ -29,5 +29,10 @@ public class MachineMiner : MachineTemplate
     public override void OnCooldownEnd()
     {
         // Do nothing
+    }
+
+    public override bool CanDoAction()
+    {
+        return conveyorBelt.haveSpaceToAddItem;
     }
 }
