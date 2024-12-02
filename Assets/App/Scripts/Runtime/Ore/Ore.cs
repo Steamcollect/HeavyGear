@@ -62,7 +62,7 @@ public class Ore : MonoBehaviour
 
     public void MultiplyValue(float value)
     {
-        CurrentOreValue *= value;
+        CurrentOreValue += value;
     }
 
     private void UpdateOre()

@@ -307,7 +307,7 @@ namespace BigFloatNumerics
             string digit = "";
             float value = m;
 
-            if (value * Mathf.Pow(10f, n) < 1000) return $"{value * Mathf.Pow(10f, n)}";
+            if (value * Mathf.Pow(10f, n) < 1000) return $"{(value * Mathf.Pow(10f, n)):F0}";
 
             if (n % 3 == 0) digit = indexToMagnitude[n / 3];
             else if (n % 3 == 1)
