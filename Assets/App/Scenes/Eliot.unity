@@ -199,14 +199,6 @@ PrefabInstance:
       value: Conveyor (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
-      propertyPath: itemSpacing
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: pathPoints.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -312,10 +304,6 @@ PrefabInstance:
     - target: {fileID: 4930978664704682682, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_Name
       value: Conveyor (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
-      propertyPath: moveSpeed
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: pathPoints.Array.size
@@ -748,6 +736,67 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1001 &647530054529358013
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4454997082206257505, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: oreToInstantiateOnStart
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440970787507350135, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
+      propertyPath: m_Name
+      value: OreManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
 --- !u!1001 &799684701757798924
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -949,6 +998,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 372071085}
     - target: {fileID: 8777184749761422716, guid: a995cc150e0981f4bb41b800de3d6240, type: 3}
+      propertyPath: conveyorsEnter.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8777184749761422716, guid: a995cc150e0981f4bb41b800de3d6240, type: 3}
       propertyPath: conveyorsEnter.Array.data[0]
       value: 
       objectReference: {fileID: 194389410}
@@ -1035,6 +1088,10 @@ PrefabInstance:
       value: Miner
       objectReference: {fileID: 0}
     - target: {fileID: 3308542492883353679, guid: e410a520597fb0e4e8b1b908cb6e5a2e, type: 3}
+      propertyPath: itemPrefab
+      value: 
+      objectReference: {fileID: 6392661161851914754, guid: d9fddda0eb0f2f34390c6ebd84bd2f5e, type: 3}
+    - target: {fileID: 3308542492883353679, guid: e410a520597fb0e4e8b1b908cb6e5a2e, type: 3}
       propertyPath: conveyorBelt
       value: 
       objectReference: {fileID: 194389410}
@@ -1096,3 +1153,4 @@ SceneRoots:
   - {fileID: 1076149154}
   - {fileID: 1970604893571610226}
   - {fileID: 3660917484780543341}
+  - {fileID: 647530054529358013}

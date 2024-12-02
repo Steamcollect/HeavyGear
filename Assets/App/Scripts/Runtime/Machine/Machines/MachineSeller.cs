@@ -1,12 +1,13 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 public class MachineSeller : InteractiveMachineTemplate
 {
     [Space(10), Header("Internal Settings")]
-    int currentStorage;
+    List<OreData> currentStorage = new List<OreData>();
     [SerializeField] int maxStorage;
 
-    bool canRecupItem = true;
+    bool canGetItem = true;
 
     [Space(10)]
     [SerializeField] ConveyorBelt conveyorBelt;
@@ -28,7 +29,7 @@ public class MachineSeller : InteractiveMachineTemplate
     
     public override void OnActionStart()
     {
-        currentStorage = 0;
+        currentStorage.Clear();
         EndAction();
     }
 
@@ -39,10 +40,9 @@ public class MachineSeller : InteractiveMachineTemplate
 
     void AddStorage(ConveyorBelt conveyor)
     {
-        if(currentState == MachineState.Idle && currentStorage < maxStorage && canRecupItem)
+        if(currentState == MachineState.Idle && currentStorage.Count < maxStorage && canGetItem)
         {
-            currentStorage++;
-            conveyorBelt.RemoveItem(conveyorBelt.GetFirstItem());
+            currentStorage.Add(conveyorBelt.RemoveItem(conveyorBelt.GetFirstItem()));
 
             StartCoroutine(GetItemTimer());
         }
@@ -50,7 +50,7 @@ public class MachineSeller : InteractiveMachineTemplate
 
     void CheckItemsOnConveyor()
     {
-        if (currentState == MachineState.Idle && currentStorage < maxStorage && canRecupItem)
+        if (currentState == MachineState.Idle && currentStorage.Count < maxStorage && canGetItem)
         {
             if(conveyorBelt.GetFirstItem() != null && conveyorBelt.GetFirstItem().isAtTheEnd)
             {
@@ -61,15 +61,16 @@ public class MachineSeller : InteractiveMachineTemplate
 
     IEnumerator GetItemTimer()
     {
-        canRecupItem = false;
+        canGetItem = false;
         yield return new WaitForSeconds(data.speed);
-        canRecupItem = true;
+        canGetItem = true;
 
         CheckItemsOnConveyor();
     }
 
     public override bool CanDoAction()
     {
-        return currentStorage > 0;
+        // Cant interact if there is no item inside
+        return currentStorage.Count > 0;
     }
 }

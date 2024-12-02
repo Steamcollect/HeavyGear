@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [System.Serializable]
-public class ConveyorBeltItem
+public class ConveyorBeltOre
 {
-    public Transform item;
+    public Ore ore;
 
     [HideInInspector] public float currentLerp = 1;
     [HideInInspector] public int startPoint = -1;
@@ -11,8 +11,8 @@ public class ConveyorBeltItem
     [HideInInspector] public float pathDistance;
     [HideInInspector] public bool isAtTheEnd = false;
 
-    public ConveyorBeltItem(Transform item)
+    public ConveyorBeltOre(Ore ore)
     {
-        this.item = item;
+        this.ore = ore;
     }
 }

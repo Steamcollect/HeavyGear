@@ -146,6 +146,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: d879f2fbb9e28444085e67c8dc97f392, type: 2}
   clickable: {fileID: 4078227737493135583}
+  currentState: 0
+  rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}
+  oreType:
+    visual: {fileID: 21300000, guid: 8ca9346cfef96b446a7a5087fa2192e3, type: 3}
+    stats:
+      name: Dirt
+      defaultValue: 1e0
+      index: 0
+    particle:
+      particleSystem: {fileID: 0}
+      particleColor: {r: 0, g: 0, b: 0, a: 0}
+  oreData: {fileID: 11400000, guid: d74e27d05c64f924ba3623e9a56bc695, type: 2}
   itemPrefab: {fileID: 1243056650495807559, guid: 2afb0ca7d2590234c90eaa12231aeb3a, type: 3}
   conveyorBelt: {fileID: 0}
 --- !u!114 &4078227737493135583

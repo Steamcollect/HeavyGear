@@ -36,7 +36,6 @@ public class Ore : MonoBehaviour
         get => currentOreValue;
         set
         {
-            text.text = value.ToString(); // Temporaire
             currentValue = value.ToString();
             currentOreValue = value;
             UpdateOre();
@@ -49,15 +48,11 @@ public class Ore : MonoBehaviour
         set => oreType = value;
     }
 
-    private void Initialize()
+    public void Initialize(OreData type)
     {
-        CurrentOreValue = oreType.stats.baseValue;
+        OreType = type;
+        CurrentOreValue = OreType.stats.baseValue;
         UpdateOre();
-    }
-
-    private void Start()
-    {
-        Initialize();
     }
 
     public void MultiplyValue(float value)
@@ -67,14 +62,15 @@ public class Ore : MonoBehaviour
 
     private void UpdateOre()
     {
-        for(int i = oreType.stats.index; i < oreData.oreData.Count; i++)
+        for(int i = 0; i < oreData.oreData.Count; i++)
         {
             if (currentOreValue >= oreData.oreData[i].stats.baseValue && oreType != oreData.oreData[i])
             {
                 oreType = oreData.oreData[i];
-                UpdateOreVisual();
             }
         }
+
+        UpdateOreVisual();
     }
 
     private void UpdateOreVisual()

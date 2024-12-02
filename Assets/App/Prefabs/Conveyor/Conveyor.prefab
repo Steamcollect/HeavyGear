@@ -50,7 +50,7 @@ MonoBehaviour:
   haveSpaceToAddItem: 0
   pathPoints:
   - {fileID: 3057628569435516323}
-  debugItems: []
+  rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}
 --- !u!1 &7298645643498388759
 GameObject:
   m_ObjectHideFlags: 0
