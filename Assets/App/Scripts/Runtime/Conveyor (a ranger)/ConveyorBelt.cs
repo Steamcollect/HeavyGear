@@ -14,26 +14,20 @@ public class ConveyorBelt : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform[] pathPoints;
 
-    [SerializeField] Transform[] debugItems;
-
-    List<ConveyorBeltItem> items = new List<ConveyorBeltItem>();
+    List<ConveyorBeltOre> ores = new List<ConveyorBeltOre>();
 
     public Action<ConveyorBelt> onObjectTouchTheEnd;
     public Action<ConveyorBelt> onConveyorGetSpace;
 
-    //[Space(10)]
+    [Space(10)]
     // RSO
+    [SerializeField] RSO_OreManager rsoOreManager;
+
     // RSF
     // RSP
 
     //[Header("Input")]
     //[Header("Output")]
-
-    private void Start()
-    {
-        haveSpaceToAddItem = true;
-        foreach (var item in debugItems) AddItem(item);
-    }
 
     private void FixedUpdate()
     {
@@ -42,40 +36,45 @@ public class ConveyorBelt : MonoBehaviour
 
     void MoveItems()
     {
-        for (int i = 0; i < items.Count; i++)
+        if(ores.Count <= 0)
+        {
+            haveSpaceToAddItem = true;
+        }
+
+        for (int i = 0; i < ores.Count; i++)
         {
             // If item reach the end of the line
-            if (items[i].currentLerp >= 1)
+            if (ores[i].currentLerp >= 1)
             {
-                if (items[i].startPoint < pathPoints.Length - 2)
+                if (ores[i].startPoint < pathPoints.Length - 2)
                 {
-                    items[i].currentLerp = 0;
-                    items[i].startPoint++;
-                    items[i].pathDistance = Vector3.Distance(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position);
+                    ores[i].currentLerp = 0;
+                    ores[i].startPoint++;
+                    ores[i].pathDistance = Vector3.Distance(pathPoints[ores[i].startPoint].position, pathPoints[ores[i].startPoint + 1].position);
                 }
                 else
                 {
-                    items[i].isAtTheEnd = true;
+                    ores[i].isAtTheEnd = true;
                     onObjectTouchTheEnd?.Invoke(this);
                     continue;
                 }
             }
 
             // Check if current item to close frome the front item
-            if(i > 0 && Vector3.Distance(items[i].item.position, items[i - 1].item.position) <= itemSpacing)
+            if(i > 0 && Vector3.Distance(ores[i].ore.transform.position, ores[i - 1].ore.transform.position) <= itemSpacing)
             {
                 continue;
             }
 
             // Move current item along the current line
-            items[i].item.position = Vector3.Lerp(pathPoints[items[i].startPoint].position, pathPoints[items[i].startPoint + 1].position, items[i].currentLerp);
-            items[i].currentLerp += (moveSpeed * Time.deltaTime) / items[i].pathDistance;
+            ores[i].ore.transform.position = Vector3.Lerp(pathPoints[ores[i].startPoint].position, pathPoints[ores[i].startPoint + 1].position, ores[i].currentLerp);
+            ores[i].currentLerp += (moveSpeed * Time.deltaTime) / ores[i].pathDistance;
             
             // Check if there is place for a new item
-            if (i == items.Count - 1)
+            if (i == ores.Count - 1)
             {
                 bool lastFrame = haveSpaceToAddItem;
-                haveSpaceToAddItem = Vector3.Distance(items[i].item.position, pathPoints[0].position) > itemSpacing;
+                haveSpaceToAddItem = Vector3.Distance(ores[i].ore.transform.position, pathPoints[0].position) > itemSpacing;
 
                 if (!lastFrame && haveSpaceToAddItem)
                 {
@@ -85,23 +84,27 @@ public class ConveyorBelt : MonoBehaviour
         }
     }
 
-    public void AddItem(Transform item)
+    public void AddItem(Ore ore)
     {
-        items.Add(new ConveyorBeltItem(item));
+        ores.Add(new ConveyorBeltOre(ore));
         haveSpaceToAddItem = false;
     }
 
-    public void RemoveItem(ConveyorBeltItem item)
+    public OreData RemoveItem(ConveyorBeltOre conveyorOre)
     {
-        items.Remove(item);
-        Destroy(item.item.gameObject);
+        Ore _ore = conveyorOre.ore;
+
+        ores.Remove(conveyorOre);
+        rsoOreManager.Value.DestroyOre(conveyorOre.ore);
+
+        return _ore.OreType;
     }
 
-    public ConveyorBeltItem GetFirstItem()
+    public ConveyorBeltOre GetFirstItem()
     {
-        if(items.Count > 0)
+        if(ores.Count > 0)
         {
-            return items[0];
+            return ores[0];
         }
         else
         {

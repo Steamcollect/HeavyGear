@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TreeEditor.TreeEditorHelper;
 public class ConveyorBeltMerger : MonoBehaviour
 {
     [Header("References")]
@@ -24,8 +25,10 @@ public class ConveyorBeltMerger : MonoBehaviour
         }
     }
 
-    //[Space(10)]
+    [Space(10)]
     // RSO
+    [SerializeField] RSO_OreManager rsoOreManager;
+
     // RSF
     // RSP
 
@@ -74,9 +77,11 @@ public class ConveyorBeltMerger : MonoBehaviour
 
                 if (entry.waitingForEntry)
                 {
-                    // Update item conveyor
-                    entry.conveyor.RemoveItem(entry.conveyor.GetFirstItem());
-                    conveyorExit.AddItem(Instantiate(itemPrefab).transform);
+                    Ore ore = rsoOreManager.Value.InstantiateOre();
+                    ore.gameObject.SetActive(true);
+
+                    ore.Initialize(entry.conveyor.RemoveItem(entry.conveyor.GetFirstItem()));
+                    conveyorExit.AddItem(ore);
 
                     entry.waitingForEntry = false;
 

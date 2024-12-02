@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 1243056650495807559, guid: 2afb0ca7d2590234c90eaa12231aeb3a, type: 3}
-  conveyorsEnter:
-  - {fileID: 0}
-  - {fileID: 0}
+  conveyorsEnter: []
   conveyorExit: {fileID: 0}
+  rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}

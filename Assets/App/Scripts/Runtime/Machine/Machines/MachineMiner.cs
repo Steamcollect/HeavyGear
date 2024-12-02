@@ -1,8 +1,28 @@
+using Sirenix.OdinInspector;
+using System.Collections.Generic;
 using UnityEngine;
+
 public class MachineMiner : InteractiveMachineTemplate
 {
+    [Space(10)]
+    [SerializeField] RSO_OreManager rsoOreManager;
+
     [Space(10), Header("Internal Settings")]
-    [SerializeField] GameObject itemPrefab;
+    #region ORE
+    [ValueDropdown("GetOreType", HideChildProperties = true)]
+    [SerializeField] private OreData oreType;
+    [SerializeField] private SSO_OreData oreData;
+
+    private IEnumerable<ValueDropdownItem<OreData>> GetOreType()
+    {
+        foreach (var ore in oreData.oreData)
+        {
+            yield return new ValueDropdownItem<OreData>(ore.stats.name, ore);
+        }
+    }
+    #endregion
+
+    [Space(10)]
     [SerializeField] ConveyorBelt conveyorBelt;
 
     public override void OnObjEnable()
@@ -21,7 +41,11 @@ public class MachineMiner : InteractiveMachineTemplate
     }
     public override void OnActionStart()
     {
-        conveyorBelt.AddItem(Instantiate(itemPrefab.transform));
+        Ore ore = rsoOreManager.Value.InstantiateOre();
+        ore.gameObject.SetActive(true);
+        ore.Initialize(oreType);
+
+        conveyorBelt.AddItem(ore);
 
         EndAction();
     }
