@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using BigFloatNumerics;
+using TMPro;
 using UnityEngine;
 public class MachineSeller : InteractiveMachineTemplate
 {
@@ -11,6 +13,9 @@ public class MachineSeller : InteractiveMachineTemplate
 
     [Space(10)]
     [SerializeField] ConveyorBelt conveyorBelt;
+
+    BigNumber coinValue = 0;
+    public TMP_Text coinTxt;
 
     public override void OnObjEnable()
     {
@@ -29,6 +34,12 @@ public class MachineSeller : InteractiveMachineTemplate
     
     public override void OnActionStart()
     {
+        foreach (OreData data in currentStorage)
+        {
+            coinValue += data.stats.baseValue;
+        }
+        coinTxt.text = coinValue.ToString();
+
         currentStorage.Clear();
         EndAction();
     }
