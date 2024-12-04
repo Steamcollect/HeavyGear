@@ -11,8 +11,7 @@ public class WindowManager : MonoBehaviour
 
     private int newWindowIndex;
 
-    [System.Serializable] public class WindowChangeEvent : UnityEvent<int> { }
-    public WindowChangeEvent onWindowChange;
+    public UnityEvent<int> onWindowChange;
 
     private GameObject currentWindow;
     private GameObject nextWindow;
