@@ -10,7 +10,6 @@ public class MachineCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("sssf");
         if(collision.TryGetComponent(out Ore ore))
         {
             oresInCollision.Add(ore);

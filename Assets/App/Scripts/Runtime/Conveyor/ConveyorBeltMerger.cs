@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 public class ConveyorBeltMerger : MonoBehaviour
 {
     [Header("References")]
@@ -76,7 +77,7 @@ public class ConveyorBeltMerger : MonoBehaviour
                     Ore ore = rsoOreManager.Value.InstantiateOre();
                     ore.gameObject.SetActive(true);
 
-                    ore.Initialize(entry.conveyor.RemoveItem(entry.conveyor.GetFirstItem()));
+                    ore.Initialize(entry.conveyor.RemoveItem(entry.conveyor.GetFirstItem()).OreType);
                     conveyorExit.AddItem(ore);
 
                     entry.waitingForEntry = false;

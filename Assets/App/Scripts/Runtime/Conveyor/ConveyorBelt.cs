@@ -90,14 +90,14 @@ public class ConveyorBelt : MonoBehaviour
         haveSpaceToAddItem = false;
     }
 
-    public OreData RemoveItem(ConveyorBeltOre conveyorOre)
+    public Ore RemoveItem(ConveyorBeltOre conveyorOre)
     {
         Ore _ore = conveyorOre.ore;
 
         ores.Remove(conveyorOre);
         rsoOreManager.Value.DestroyOre(conveyorOre.ore);
 
-        return _ore.OreType;
+        return _ore;
     }
 
     public ConveyorBeltOre GetFirstItem()

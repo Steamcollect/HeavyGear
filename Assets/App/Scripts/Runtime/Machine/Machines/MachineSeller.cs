@@ -6,7 +6,7 @@ using UnityEngine;
 public class MachineSeller : InteractiveMachineTemplate
 {
     [Space(10), Header("Internal Settings")]
-    List<OreData> currentStorage = new List<OreData>();
+    List<Ore> currentStorage = new List<Ore>();
     [SerializeField] int maxStorage;
 
     bool canGetItem = true;
@@ -34,9 +34,9 @@ public class MachineSeller : InteractiveMachineTemplate
     
     public override void OnActionStart()
     {
-        foreach (OreData data in currentStorage)
+        foreach (Ore data in currentStorage)
         {
-            coinValue += data.stats.baseValue;
+            coinValue += data.CurrentOreValue;
         }
         coinTxt.text = coinValue.ToString();
 
