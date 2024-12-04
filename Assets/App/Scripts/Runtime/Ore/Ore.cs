@@ -7,7 +7,7 @@ using UnityEngine;
 public class Ore : MonoBehaviour
 {
     [BoxGroup("Current Ore Value")]
-    [ReadOnly] public string currentValue;
+    [ReadOnly][SerializeField] private string currentValue;
 
     [Title("Settings")]
     [ValueDropdown("GetOreType",HideChildProperties = true)]
