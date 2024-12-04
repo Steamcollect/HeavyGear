@@ -16,4 +16,5 @@ MonoBehaviour:
   - Enabled: 1
     EnabledOverridden: 1
     Type: Sirenix.OdinValidator.Editor.Validators.ListNullElementValidator, Sirenix.OdinValidator.Editor
-    Override: 
+    Override: "{\r\n    \"$id\": 0,\r\n    \"$type\": \"0|Sirenix.OdinValidator.Editor.Validators.ListNullElementValidator,
+      Sirenix.OdinValidator.Editor\",\r\n    \"ValidatorSeverity\": 1\r\n}"
