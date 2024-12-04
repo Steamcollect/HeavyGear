@@ -55,10 +55,11 @@ public class Ore : MonoBehaviour
         UpdateOre();
     }
 
-    public void MultiplyValue(float value)
-    {
-        CurrentOreValue += value;
-    }
+    public void MultiplyValue(float value) => CurrentOreValue *= value;
+
+    public void AddValue(string value) => CurrentOreValue += new BigNumber(value);
+
+    public void RemoveValue(string value) => CurrentOreValue -= new BigNumber(value);
 
     private void UpdateOre()
     {
