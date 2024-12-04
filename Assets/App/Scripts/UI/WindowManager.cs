@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class WindowManager : MonoBehaviour
 {
     public List<WindowItem> windows = new List<WindowItem>();
+    private int currentWindowIndex = 0;
 
-    public int currentWindowIndex = 0;
-    private int currentButtonIndex = 0;
     private int newWindowIndex;
 
     [System.Serializable] public class WindowChangeEvent : UnityEvent<int> { }
@@ -18,17 +16,7 @@ public class WindowManager : MonoBehaviour
 
     private GameObject currentWindow;
     private GameObject nextWindow;
-    private GameObject currentButton;
-    private GameObject nextButton;
-    private Animator currentWindowAnimator;
-    private Animator nextWindowAnimator;
-    private Animator currentButtonAnimator;
-    private Animator nextButtonAnimator;
 
-    string windowFadeIn = "In";
-    string windowFadeOut = "Out";
-    string buttonFadeIn = "Hover to Pressed";
-    string buttonFadeOut = "Pressed to Normal";
     float cachedStateLength;
     public bool altMode;
 
@@ -37,8 +25,6 @@ public class WindowManager : MonoBehaviour
     {
         [BoxGroup] public string windowName = "My Window";
         [BoxGroup] public GameObject windowObject;
-        [BoxGroup] public GameObject buttonObject;
-        [BoxGroup] public GameObject firstSelected;
     }
 
     void Awake()
@@ -51,15 +37,61 @@ public class WindowManager : MonoBehaviour
 
     public void InitializeWindows()
     {
-        if (windows[currentWindowIndex].firstSelected != null)
-        { 
-            EventSystem.current.firstSelectedGameObject = windows[currentWindowIndex].firstSelected;
-        }
-        if (windows[currentWindowIndex].buttonObject != null)
+        currentWindow = windows[currentWindowIndex].windowObject;
+
+        onWindowChange.Invoke(currentWindowIndex);
+
+        for (int i = 0; i < windows.Count; i++)
         {
-            currentButton = windows[currentWindowIndex].buttonObject;
-            currentButtonAnimator = currentButton.GetComponent<Animator>();
-            currentButtonAnimator.Play(buttonFadeIn);
+            if (i != currentWindowIndex)
+            {
+                windows[i].windowObject.SetActive(false);
+            }
+        }
+    }
+
+    public void OpenWindow(string newWindow)
+    {
+        for (int i = 0; i < windows.Count; i++)
+        {
+            if (windows[i].windowName == newWindow)
+            {
+                newWindowIndex = i;
+                break;
+            }
+        }
+
+        if (newWindowIndex != currentWindowIndex)
+        {
+            StopCoroutine("DisablePreviousWindow");
+
+            currentWindow = windows[currentWindowIndex].windowObject;
+
+            currentWindowIndex = newWindowIndex;
+            nextWindow = windows[currentWindowIndex].windowObject;
+            nextWindow.SetActive(true);
+
+            StartCoroutine("DisablePreviousWindow");
+
+            onWindowChange.Invoke(currentWindowIndex);
+        }
+    }
+
+    public void OpenPanel(string newPanel)
+    {
+        OpenWindow(newPanel);
+    }
+
+    IEnumerator DisablePreviousWindow()
+    {
+        yield return new WaitForSecondsRealtime(cachedStateLength);
+
+        for (int i = 0; i < windows.Count; i++)
+        {
+            if (i == currentWindowIndex)
+                continue;
+
+            windows[i].windowObject.SetActive(false);
         }
     }
 }
