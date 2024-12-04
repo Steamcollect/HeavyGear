@@ -11,10 +11,8 @@ public class WindowManager : MonoBehaviour
 
     private int newWindowIndex;
 
-    public UnityEvent<int> onWindowChange;
-
-    private GameObject currentWindow;
-    private GameObject nextWindow;
+    private WindowItem currentWindow;
+    private WindowItem nextWindow;
 
     float cachedStateLength;
     public bool altMode;
@@ -24,6 +22,7 @@ public class WindowManager : MonoBehaviour
     {
         [BoxGroup] public string windowName = "My Window";
         [BoxGroup] public GameObject windowObject;
+        [BoxGroup] public WindowAnimator windowAnimator;
     }
 
     void Awake()
@@ -36,10 +35,6 @@ public class WindowManager : MonoBehaviour
 
     public void InitializeWindows()
     {
-        currentWindow = windows[currentWindowIndex].windowObject;
-
-        onWindowChange.Invoke(currentWindowIndex);
-
         for (int i = 0; i < windows.Count; i++)
         {
             if (i != currentWindowIndex)
@@ -64,15 +59,16 @@ public class WindowManager : MonoBehaviour
         {
             StopCoroutine("DisablePreviousWindow");
 
-            currentWindow = windows[currentWindowIndex].windowObject;
+            currentWindow = windows[currentWindowIndex];
 
             currentWindowIndex = newWindowIndex;
-            nextWindow = windows[currentWindowIndex].windowObject;
-            nextWindow.SetActive(true);
+            nextWindow = windows[currentWindowIndex];
+            nextWindow.windowObject.SetActive(true);
+
+            if (currentWindow.windowAnimator != null) currentWindow.windowAnimator.WindowFadeOut();
+            if (nextWindow.windowAnimator != null) nextWindow.windowAnimator.WindowFadeIn();
 
             StartCoroutine("DisablePreviousWindow");
-
-            onWindowChange.Invoke(currentWindowIndex);
         }
     }
 
@@ -83,7 +79,7 @@ public class WindowManager : MonoBehaviour
 
     IEnumerator DisablePreviousWindow()
     {
-        yield return new WaitForSecondsRealtime(cachedStateLength);
+        yield return new WaitForSecondsRealtime(0.3f);
 
         for (int i = 0; i < windows.Count; i++)
         {
