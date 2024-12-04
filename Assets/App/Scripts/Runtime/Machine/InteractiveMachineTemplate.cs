@@ -8,7 +8,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     [Space(10)]
     [SerializeField] Clickable clickable;
 
-    public MachineState currentState;
+    [HideInInspector] public MachineState currentState;
 
     private void OnEnable()
     {

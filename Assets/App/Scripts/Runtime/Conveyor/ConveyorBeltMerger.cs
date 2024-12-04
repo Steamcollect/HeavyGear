@@ -4,9 +4,6 @@ using UnityEngine;
 public class ConveyorBeltMerger : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] GameObject itemPrefab;
-
-    [Space(10)]
     public ConveyorBelt[] conveyorsEnter;
     [SerializeField] ConveyorBelt conveyorExit;
 

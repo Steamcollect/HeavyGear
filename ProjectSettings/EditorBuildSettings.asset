@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/App/Scenes/Eliot.unity
     guid: 2ca769d389860c64bb7676b484c23821
   - enabled: 0
-    path: Assets/App/Scenes/Service_Sandbox.unity
+    path: Assets/App/Scenes/Analytics_Sandbox.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 0
     path: Assets/App/Scenes/Tristan.unity
