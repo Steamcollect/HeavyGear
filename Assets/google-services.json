@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "840287954326",
+    "project_id": "heavygear-96987",
+    "storage_bucket": "heavygear-96987.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840287954326:android:5748c1c3c6f996a851a9b7",
+        "android_client_info": {
+          "package_name": "com.HeavyGames.HeavyGear"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA27V1nMivxYVqpKt7se2UOiBX6PMuEAk0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

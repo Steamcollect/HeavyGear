@@ -1,3 +1,4 @@
+using com.unity3d.mediation;
 using UnityEngine;
 public class AdsManager : MonoBehaviour
 {
@@ -21,10 +22,10 @@ public class AdsManager : MonoBehaviour
     private string appKey = "unexpected_platform";
     #endif
 
-    private void Start()
+    private void Awake()
     {
         IronSource.Agent.validateIntegration();
-        IronSource.Agent.init(appKey);
+        LevelPlay.Init(appKey);
     }
     
     private void OnEnable()
@@ -62,12 +63,12 @@ public class AdsManager : MonoBehaviour
     #region RewardAds
 
 
-    private void LoadRewardAds()
+    public void LoadRewardAds()
     {
         IronSource.Agent.loadRewardedVideo();
     }
 
-    private void ShowRewardAds()
+    public void ShowRewardAds()
     {
         if (IronSource.Agent.isRewardedVideoAvailable())
         {
@@ -96,6 +97,7 @@ public class AdsManager : MonoBehaviour
     // The placement parameter will include the reward data.
     // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
     void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo){
+        Debug.Log("info");
     }
     // The rewarded video ad was failed to show.
     void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo){
