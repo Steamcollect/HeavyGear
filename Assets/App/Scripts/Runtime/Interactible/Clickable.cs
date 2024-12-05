@@ -3,6 +3,7 @@ using UnityEngine;
 public class Clickable : MonoBehaviour
 {
     public Action onClickDown;
+    public Action onLongClickDown;
 
     //[Header("Settings")]
 
@@ -18,6 +19,11 @@ public class Clickable : MonoBehaviour
 
     public void OnClickDown()
     {
-        onClickDown.Invoke();
+        onClickDown?.Invoke();
+    }
+
+    public void OnLongClickDown()
+    {
+        onLongClickDown?.Invoke();
     }
 }

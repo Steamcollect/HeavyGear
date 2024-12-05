@@ -8,15 +8,15 @@ public class InteractionManager : MonoBehaviour
 
     bool isScreenTouch = false;
 
+    float touchScreenTime = 0;
+    [SerializeField] float longTouchTime;
+
+    bool iscreenLongTouch = false;
+
     private void Update()
     {
         if (Input.touchCount > 0)
         {
-            if(!isScreenTouch)
-            {
-                OnTouchDown();
-            }
-
             OnTouch();
 
             isScreenTouch = true;
@@ -27,33 +27,48 @@ public class InteractionManager : MonoBehaviour
             {
                 OnTouchUp();
             }
+        }
+    }
 
-            isScreenTouch = false;
+    void OnTouch()
+    {
+        if (!isScreenTouch)
+        {
+            OnTouchDown();
+        }
+
+        touchScreenTime += Time.deltaTime;
+
+        if(touchScreenTime > longTouchTime && !iscreenLongTouch)
+        {
+            iscreenLongTouch = true;
+            OnLongTouch();
         }
     }
 
     void OnTouchDown()
     {
-        TryTouchDownInteraction();
+        TryTouchDownInteraction()?.OnClickDown();
     }
 
-    void OnTouch()
+    void OnLongTouch()
     {
-
+        TryTouchDownInteraction()?.OnLongClickDown();
     }
-
+    
     void OnTouchUp()
     {
-
+        isScreenTouch = false;
+        iscreenLongTouch = false;
+        touchScreenTime = 0;
     }
 
-    void TryTouchDownInteraction()
+    Clickable TryTouchDownInteraction()
     {
         RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
 
-        if (hit.collider != null && hit.transform.TryGetComponent(out Clickable obj))
-        {
-            obj.OnClickDown();
-        }
+        if (hit.collider != null && hit.transform.TryGetComponent(out Clickable obj)) return obj;
+        
+        return null;
     }
 }

@@ -52,6 +52,11 @@ public class MachinePress : InteractiveMachineTemplate
         
     }
 
+    public override void Setup(MachineSlotSettings settings)
+    {
+        
+    }
+
     public override bool CanDoAction()
     {
         return true;
@@ -62,4 +67,5 @@ public class MachinePress : InteractiveMachineTemplate
         if(calculType == CalculType.Multiply) float.TryParse(value, out multiplyValue);
         else Value = new BigNumber(value);
     }
+
 }

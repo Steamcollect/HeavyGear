@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f39b3616333a34984c4770913cbe2b, type: 3}
   m_Name: SSO_Seller
   m_EditorClassIdentifier: 
-  machineName: Miner
-  machineDescription: A Great miner
+  machineName: Seller
+  machineDescription: A Great seller
   machineVisual: {fileID: 21300000, guid: 9733611f703737341a1ad9e1fb0f401b, type: 3}
-  machineType: 1
-  machinePrefab: {fileID: 1952651567220620667, guid: e410a520597fb0e4e8b1b908cb6e5a2e, type: 3}
+  machineType: 2
+  machinePrefab: {fileID: 4211716054252848512, guid: 1d7fb8f773ca3154ab97c250b6e18f6f, type: 3}

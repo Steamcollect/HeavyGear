@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4808686009145032699}
   - component: {fileID: 3668844520583457586}
   - component: {fileID: 3308542492883353679}
-  - component: {fileID: 4078227737493135583}
   m_Layer: 0
   m_Name: Miner
   m_TagString: Untagged
@@ -145,7 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: d879f2fbb9e28444085e67c8dc97f392, type: 2}
-  clickable: {fileID: 4078227737493135583}
   currentState: 0
   rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}
   oreType:
@@ -158,16 +156,3 @@ MonoBehaviour:
       particleSystem: {fileID: 0}
       particleColor: {r: 0, g: 0, b: 0, a: 0}
   oreData: {fileID: 11400000, guid: d74e27d05c64f924ba3623e9a56bc695, type: 2}
-  conveyorBelt: {fileID: 0}
---- !u!114 &4078227737493135583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952651567220620667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e382813bdc717d64e9efb4e1018bae1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

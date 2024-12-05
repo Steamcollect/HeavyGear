@@ -11,8 +11,7 @@ public class MachineSeller : InteractiveMachineTemplate
 
     bool canGetItem = true;
 
-    [Space(10)]
-    [SerializeField] ConveyorBelt conveyorBelt;
+    ConveyorBelt conveyorBelt;
 
     BigNumber coinValue = 0;
     public TMP_Text coinTxt;
@@ -83,5 +82,10 @@ public class MachineSeller : InteractiveMachineTemplate
     {
         // Cant interact if there is no item inside
         return currentStorage.Count > 0;
+    }
+
+    public override void Setup(MachineSlotSettings settings)
+    {
+        conveyorBelt = settings.conveyorsEnter[0];
     }
 }

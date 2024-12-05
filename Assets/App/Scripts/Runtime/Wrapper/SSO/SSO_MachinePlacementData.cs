@@ -13,5 +13,5 @@ public class SSO_MachinePlacementData : ScriptableObject
     public MachineType machineType;
 
     [Space(10)]
-    public GameObject machinePrefab;
+    public InteractiveMachineTemplate machinePrefab;
 }
