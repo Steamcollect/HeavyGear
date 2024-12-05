@@ -7,15 +7,16 @@ using UnityEngine.Events;
 public class WindowManager : MonoBehaviour
 {
     public List<WindowItem> windows = new List<WindowItem>();
-    private int currentWindowIndex = 0;
 
+    [Header("Settings")]
+    public float delayBeforeStartAnimation;
+    public float delayBeforeSetActiveFalse;
+
+    private int currentWindowIndex = 0;
     private int newWindowIndex;
 
     private WindowItem currentWindow;
     private WindowItem nextWindow;
-
-    float cachedStateLength;
-    public bool altMode;
 
     [System.Serializable]
     public class WindowItem
@@ -79,7 +80,7 @@ public class WindowManager : MonoBehaviour
 
     IEnumerator DisablePreviousWindow()
     {
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(delayBeforeSetActiveFalse);
 
         for (int i = 0; i < windows.Count; i++)
         {
