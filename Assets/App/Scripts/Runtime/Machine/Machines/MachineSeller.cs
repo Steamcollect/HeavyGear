@@ -8,7 +8,8 @@ public class MachineSeller : InteractiveMachineTemplate
     [Space(10), Header("Internal Settings")]
     List<Ore> currentStorage = new List<Ore>();
     [SerializeField] int maxStorage;
-
+    [SerializeField] private RSO_Coins rsoCoins;
+    
     bool canGetItem = true;
 
     ConveyorBelt conveyorBelt;
@@ -35,6 +36,7 @@ public class MachineSeller : InteractiveMachineTemplate
         foreach (Ore data in currentStorage)
         {
             coinValue += data.CurrentOreValue;
+            rsoCoins.Value += data.CurrentOreValue;
         }
 
         currentStorage.Clear();

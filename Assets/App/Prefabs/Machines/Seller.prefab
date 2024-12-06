@@ -100,4 +100,4 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 3907fc56ecb1ad140bd669322774384e, type: 2}
   currentState: 0
   maxStorage: 10
-  coinTxt: {fileID: 0}
+  rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}

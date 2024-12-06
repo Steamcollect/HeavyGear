@@ -6,6 +6,6 @@ public class FPSLocker : MonoBehaviour
 {
     private void Awake()
     {
-        Application.targetFrameRate = 144;
+        Application.targetFrameRate = 60;
     }
 }
