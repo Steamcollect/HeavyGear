@@ -16,9 +16,9 @@ public class MachinePlacementManager : MonoBehaviour
 
     [Header("Input")]
     [SerializeField] RSE_OpenMachinePlacementPanel rseOpenMachinePlacementPanel;
-    [SerializeField] RSE_OpenMachinePlacementPanel rseCloseMachinePlacementPanel;
+    [SerializeField] RSE_CloseMachinePlacementPanel rseCloseMachinePlacementPanel;
     [SerializeField] RSE_SetupMachinePlacementPanelContent rseSetupMachinePlacementPanelContent;
-    [SerializeField] RSE_UpdateMachinePlacementPanelContent rseUpdateMachinePlacmentPanelContent;
+    [SerializeField] RSE_UpdateMachinePlacementPanelContent rseUpdateMachinePlacementPanelContent;
 
     [Header("Output")]
     [SerializeField] RSE_AddNewMachine rseAddNewMachine;
@@ -45,7 +45,7 @@ public class MachinePlacementManager : MonoBehaviour
     void OnItemPlacement(MachineSlotSettings settings)
     {
         placementSettings = settings;
-        rseUpdateMachinePlacmentPanelContent.Call(settings.machineType);
+        rseUpdateMachinePlacementPanelContent.Call(settings.machineType);
         rseOpenMachinePlacementPanel.Call();
     }
 
@@ -55,8 +55,12 @@ public class MachinePlacementManager : MonoBehaviour
         machine.transform.position = placementSettings.slot.transform.position;
         machine.transform.rotation = placementSettings.slot.transform.rotation;
 
-        machine.SetupClickable(placementSettings.clickable);
-        machine.Setup(placementSettings);
+        machine.SetupParentRequirement(placementSettings.clickable);
+        machine.SetupChildRequirement(placementSettings);
+
+        placementSettings.slot.UpdateCurrentMachine(machine);
+
+        placementSettings = null;
 
         rseCloseMachinePlacementPanel.Call();
     }

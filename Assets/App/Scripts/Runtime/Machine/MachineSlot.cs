@@ -25,6 +25,35 @@ public class MachineSlot : MonoBehaviour
         settings.clickable.onLongClickDown -= OnLongClick;
     }
 
+    private void Awake()
+    {
+        settings.slot = this;
+    }
+
+    private void Start()
+    {
+        switch (settings.machineType)
+        {
+            case MachineType.Miner:
+                if (settings.conveyorsExit.Length == 0)
+                    Debug.LogError("Your slot is type of \"Miner\" but you haven't selected any exit conveyor!");
+                break;
+
+            case MachineType.Polisher:
+                break;
+
+            case MachineType.Seller:
+                if (settings.conveyorsEnter.Length == 0)
+                    Debug.LogError("Your slot is type of \"Seller\" but you haven't selected any enter conveyor!");
+                break;
+        }
+    }
+
+    public void UpdateCurrentMachine(InteractiveMachineTemplate machine)
+    {
+        currentMachine = machine;
+    }
+
     void OnClick()
     {
         if(currentMachine == null)

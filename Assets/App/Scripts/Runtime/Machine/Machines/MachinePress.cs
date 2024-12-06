@@ -13,17 +13,17 @@ public class MachinePress : InteractiveMachineTemplate
 
     public override void OnObjEnable()
     {
-
+        // Do nothing
     }
 
     public override void OnObjDisable()
     {
-
+        // Do nothing
     }
 
     public override void OnIdleStart()
     {
-        
+        // Do nothing
     }
 
     public override void OnActionStart()
@@ -49,12 +49,12 @@ public class MachinePress : InteractiveMachineTemplate
 
     public override void OnCooldownEnd()
     {
-        
+        // Do nothing
     }
 
-    public override void Setup(MachineSlotSettings settings)
+    public override void SetupChildRequirement(MachineSlotSettings settings)
     {
-        
+        // Do nothing
     }
 
     public override bool CanDoAction()

@@ -45,7 +45,7 @@ public class MachineSeller : InteractiveMachineTemplate
 
     public override void OnCooldownEnd()
     {
-        // Don nothing
+        // Do nothing
     }
 
     void AddStorage(ConveyorBelt conveyor)
@@ -84,7 +84,7 @@ public class MachineSeller : InteractiveMachineTemplate
         return currentStorage.Count > 0;
     }
 
-    public override void Setup(MachineSlotSettings settings)
+    public override void SetupChildRequirement(MachineSlotSettings settings)
     {
         conveyorBelt = settings.conveyorsEnter[0];
     }

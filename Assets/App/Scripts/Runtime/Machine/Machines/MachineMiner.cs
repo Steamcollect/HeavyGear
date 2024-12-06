@@ -59,7 +59,7 @@ public class MachineMiner : InteractiveMachineTemplate
         return conveyorBelt.haveSpaceToAddItem;
     }
 
-    public override void Setup(MachineSlotSettings settings)
+    public override void SetupChildRequirement(MachineSlotSettings settings)
     {
         conveyorBelt = settings.conveyorsExit[0];
     }

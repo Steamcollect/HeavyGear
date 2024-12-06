@@ -9,10 +9,12 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     [HideInInspector] public MachineState currentState;
 
-    public void SetupClickable(Clickable clickable)
+    public void SetupParentRequirement(Clickable newClickable)
     {
-        this.clickable = clickable;
+        clickable = newClickable;
         clickable.onClickDown += Interact;
+
+        currentState = MachineState.Idle;
 
         OnObjEnable();
     }
@@ -27,6 +29,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     void Interact()
     {
+        print("nteract");
         if(currentState == MachineState.Idle && CanDoAction())
         {
             StartAction();
@@ -75,5 +78,5 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     }
     #endregion
 
-    public abstract void Setup(MachineSlotSettings settings);
+    public abstract void SetupChildRequirement(MachineSlotSettings settings);
 }

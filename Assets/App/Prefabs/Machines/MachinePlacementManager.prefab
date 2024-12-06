@@ -49,8 +49,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c83b0505e36aff54aba89a252e74dacf, type: 2}
   - {fileID: 11400000, guid: 1c16593047620cf41816e19b4cefc373, type: 2}
   rseOpenMachinePlacementPanel: {fileID: 11400000, guid: 073c6738086596f48aa867ebcd76b474, type: 2}
-  rseCloseMachinePlacementPanel: {fileID: 11400000, guid: 073c6738086596f48aa867ebcd76b474, type: 2}
+  rseCloseMachinePlacementPanel: {fileID: 11400000, guid: 372ecae1fd5546842965c0e9824ca91d, type: 2}
   rseSetupMachinePlacementPanelContent: {fileID: 11400000, guid: b9b07d0d234b55143b0212f4d059b99d, type: 2}
-  rseUpdateMachinePlacmentPanelContent: {fileID: 11400000, guid: 37deeacd6c517f84b810c0c44189f1d9, type: 2}
+  rseUpdateMachinePlacementPanelContent: {fileID: 11400000, guid: 37deeacd6c517f84b810c0c44189f1d9, type: 2}
   rseAddNewMachine: {fileID: 11400000, guid: ff567ce0bd3c80e4989c4e45691b6a6e, type: 2}
   rseSelecteMachineToPlace: {fileID: 11400000, guid: 1c459db0c5ecd9c4396d1d9dcd2573d9, type: 2}

@@ -41,6 +41,7 @@ public class MachinePlacementPanel : MonoBehaviour
         {
             MachinePlacementUI current = Instantiate(machinePlacementUIPrefab, content);
             current.Setup(machine);
+            machinesUI.Add(current);
         }
     }
 
