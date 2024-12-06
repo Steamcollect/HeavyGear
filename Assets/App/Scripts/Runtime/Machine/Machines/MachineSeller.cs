@@ -14,11 +14,10 @@ public class MachineSeller : InteractiveMachineTemplate
     ConveyorBelt conveyorBelt;
 
     BigNumber coinValue = 0;
-    public TMP_Text coinTxt;
 
     public override void OnObjEnable()
     {
-        conveyorBelt.onObjectTouchTheEnd += AddStorage;
+        // Do nothing
     }
 
     public override void OnObjDisable()
@@ -37,7 +36,6 @@ public class MachineSeller : InteractiveMachineTemplate
         {
             coinValue += data.CurrentOreValue;
         }
-        coinTxt.text = coinValue.ToString();
 
         currentStorage.Clear();
         EndAction();
@@ -87,5 +85,6 @@ public class MachineSeller : InteractiveMachineTemplate
     public override void SetupChildRequirement(MachineSlotSettings settings)
     {
         conveyorBelt = settings.conveyorsEnter[0];
+        conveyorBelt.onObjectTouchTheEnd += AddStorage;
     }
 }

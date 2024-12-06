@@ -5,7 +5,7 @@ public class MachinePress : InteractiveMachineTemplate
     [Header("Internal Settings")]
     [SerializeField] CalculType calculType;
     [SerializeField] string value;
-    float multiplyValue;
+
     BigNumber Value;
 
     [Space(10)]
@@ -35,11 +35,13 @@ public class MachinePress : InteractiveMachineTemplate
                 case CalculType.Add:
                     ore.AddValue(Value);
                     break;
+
                 case CalculType.Remove:
                     ore.RemoveValue(Value);
                     break;
+
                     case CalculType.Multiply:
-                    ore.MultiplyValue(multiplyValue);
+                    
                     break;
             }
         }
@@ -64,8 +66,6 @@ public class MachinePress : InteractiveMachineTemplate
 
     private void OnValidate()
     {
-        if(calculType == CalculType.Multiply) float.TryParse(value, out multiplyValue);
-        else Value = new BigNumber(value);
+        Value = new BigNumber(value);
     }
-
 }

@@ -29,7 +29,6 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     void Interact()
     {
-        print("nteract");
         if(currentState == MachineState.Idle && CanDoAction())
         {
             StartAction();
