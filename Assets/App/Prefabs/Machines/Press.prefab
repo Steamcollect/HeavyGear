@@ -272,6 +272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 7a1c7a7b7940af94da5069700f9c4d6d, type: 2}
   currentState: 0
-  calculType: 0
-  value: 1e10
+  calculType: 2
+  value: 1e1
   oreCollider: {fileID: 7705743748596913283}
