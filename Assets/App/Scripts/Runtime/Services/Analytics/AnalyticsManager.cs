@@ -1,13 +1,8 @@
 using System;
-using BT.ScriptablesObject;
 using Sirenix.OdinInspector;
 using Unity.Services.Analytics;
 using Unity.Services.Core;
 using UnityEngine;
-using UnityEngine.Analytics;
-
-// using Firebase.Extensions;
-
 public class AnalyticsManager : MonoBehaviour
 {
     

@@ -1,75 +1,74 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
-// using com.unity3d.mediation;
-public class AdsManager : MonoBehaviour
+using UnityEngine.Advertisements;
+
+public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
 {
-// #if UNITY_ANDROID
-//     private string appKey = "205dd9305";
-// #else
-//     private string appKey = "unexpected_platform";
-// #endif
-//     
-//     private void Awake()
-//     {
-//         Debug.Log("unity-script: unity version" + IronSource.unityVersion());
-//         
-//         Debug.Log("unity-script: IronSource.Agent.validateIntegration");
-//         IronSource.Agent.validateIntegration();
-//         
-//         LevelPlayAdFormat[] legacyAdFormats = { LevelPlayAdFormat.REWARDED };
-//         
-//         Debug.Log("unity-script: LevelPlay SDK initialization");
-//         LevelPlay.Init(appKey, "demoUserUnity",legacyAdFormats);
-//         
-//         LevelPlay.OnInitSuccess += SdkInitializationCompletedEvent;
-//         LevelPlay.OnInitFailed += SdkInitializationFailedEvent;
-//         
-//         
-//     }
-//
-//     void OnApplicationPause(bool isPaused)
-//     {
-//         Debug.Log("unity-script: OnApplicationPause = " + isPaused);
-//         IronSource.Agent.onApplicationPause(isPaused);
-//     }
-//     
-//     private void SdkInitializationFailedEvent(LevelPlayInitError obj)
-//     {
-//         Debug.Log("unity-script: I got SdkInitializationCompletedEvent with config: "+ obj);
-//     }
-//
-//     private void SdkInitializationCompletedEvent(LevelPlayConfiguration obj)
-//     {
-//         Debug.Log("unity-script: I got SdkInitializationFailedEvent with error: "+ obj);
-//         EnableAds();
-//     }
-//
-//     private void EnableAds()
-//     {
-//         // IronSource.Agent.setManualLoadRewardedVideo(true);
-//         IronSource.Agent.loadRewardedVideo();
-//         
-//         // //Add AdInfo Rewarded Video Events
-//         // IronSourceRewardedVideoEvents.onAdOpenedEvent += RewardedVideoOnAdOpenedEvent;
-//         // IronSourceRewardedVideoEvents.onAdClosedEvent += RewardedVideoOnAdClosedEvent;
-//         // IronSourceRewardedVideoEvents.onAdAvailableEvent += RewardedVideoOnAdAvailable;
-//         // IronSourceRewardedVideoEvents.onAdUnavailableEvent += RewardedVideoOnAdUnavailable;
-//         // IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
-//         // IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
-//         // IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
-//
-//     }
-//
-//     public void ShowRewardedVideo()
-//     {
-//         if (IronSource.Agent.isRewardedVideoAvailable())
-//         {
-//             IronSource.Agent.showRewardedVideo();
-//         }
-//         else
-//         {
-//             Debug.Log("unity-script: Rewarded video not available");
-//         }
-//     }
-//
+    [Title("Settings")] 
+    [SerializeField] private bool debugMode;
+    
+    [Title("Input")]
+    [SerializeField] private RSE_ShowAds rseShowAds;
+    
+    [Title("Output")]
+    [SerializeField] private RSE_AdsRunning rseAdsRunning;
+    [SerializeField] private RSE_GiveReward rseGiveReward;
+    [SerializeField] private RSE_AdsFinished rseAdsFinished;
+    
+    #if UNITY_ANDROID || UNITY_EDITOR
+    private readonly string gameId = "5744111";
+    #elif UNITY_IOS
+    private readonly string gameId = "5744110";
+    #else
+    private readonly string gameId = "unexepedted_platform";
+    #endif
+
+    private bool adsEnable;
+    private AdsRewardExtension adsRewardExtension;
+
+
+    private void OnEnable()
+    {
+        rseShowAds.action += TryShowAds;
+        adsRewardExtension.OnAdsFinished += rseAdsFinished.Call;
+        adsRewardExtension.OnAdsRunning += rseAdsRunning.Call;
+        adsRewardExtension.OnGiveReward += rseGiveReward.Call;
+    }
+    
+    private void OnDisable()
+    {
+        rseShowAds.action -= TryShowAds;
+        adsRewardExtension.OnAdsFinished -= rseAdsFinished.Call;
+        adsRewardExtension.OnAdsRunning -= rseAdsRunning.Call;
+        adsRewardExtension.OnGiveReward -= rseGiveReward.Call;
+    }
+    
+    private void Awake() => adsRewardExtension = gameObject.AddComponent<AdsRewardExtension>();
+    
+    private void Start()
+    {
+        if (!Advertisement.isInitialized && Advertisement.isSupported)
+        {
+            Advertisement.Initialize(gameId, debugMode,this);
+        }
+    }
+    
+    public void OnInitializationComplete()
+    {
+        Debug.Log("Unity Ads initialization complete.");
+        adsRewardExtension.LoadAds();
+        adsEnable = true;
+    }
+
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
+        Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+    }
+
+    private void TryShowAds()
+    {
+        if (adsEnable) adsRewardExtension.ShowAds();
+    }
+    
 }

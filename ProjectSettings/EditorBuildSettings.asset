@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/App/Scenes/Eliot.unity
     guid: 2ca769d389860c64bb7676b484c23821
   - enabled: 0
@@ -14,8 +14,8 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/App/Scenes/Tristan.unity
     guid: fdbd1f67dc71f1f49a5395c9dd03ef33
-  - enabled: 0
-    path: Assets/App/Scenes/Ads_Sandbox.unity
+  - enabled: 1
+    path: Assets/App/Scenes/Service_Sandbox.unity
     guid: 2d2491e1c4223d54ba0021207eb5905e
   - enabled: 0
     path: Assets/LevelPlay/Samples/UnityLevelPlaySample/Scenes/LevelPlaySample.unity
