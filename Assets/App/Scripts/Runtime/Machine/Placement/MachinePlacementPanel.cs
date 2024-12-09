@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MachinePlacementPanel : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] GameObject panel;
     [SerializeField] Transform content;
+    ContentSizeFitter contentSizeFitter;
     [SerializeField] MachinePlacementUI machinePlacementUIPrefab;
     List<MachinePlacementUI> machinesUI = new List<MachinePlacementUI>();
 
@@ -35,6 +37,11 @@ public class MachinePlacementPanel : MonoBehaviour
         rseSetupContent.action -= SetupContent;
     }
 
+    private void Awake()
+    {
+        contentSizeFitter = content.GetComponent<ContentSizeFitter>();
+    }
+
     void SetupContent(List<SSO_MachinePlacementData> machines)
     {
         foreach (SSO_MachinePlacementData machine in machines)
@@ -57,9 +64,17 @@ public class MachinePlacementPanel : MonoBehaviour
     void OpenPanel()
     {
         panel.SetActive(true);
+        StartCoroutine(UpdateContentSize());
     }
     public void ClosePanel()
     {
         panel.SetActive(false);
+    }
+
+    IEnumerator UpdateContentSize()
+    {
+        yield return new WaitForSeconds(.01f);
+        contentSizeFitter.SetLayoutVertical();
+        contentSizeFitter.SetLayoutHorizontal();
     }
 }
