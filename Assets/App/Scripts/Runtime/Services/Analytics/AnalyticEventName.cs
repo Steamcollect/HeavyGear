@@ -5,4 +5,5 @@ public enum AnalyticEventName
     CurrentMoney,
     UsedMachine,
     Purchase,
+    Debug,
 }

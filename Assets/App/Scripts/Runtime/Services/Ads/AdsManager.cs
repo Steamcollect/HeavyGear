@@ -1,114 +1,74 @@
-using com.unity3d.mediation;
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
-public class AdsManager : MonoBehaviour
+using UnityEngine.Advertisements;
+
+public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
 {
-    //[Header("Settings")]
-
-    //[Header("References")]
-
-    //[Space(10)]
-    // RSO
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
-
-    #if UNITY_ANDROID
-    private string appKey = "20481b0a5";
+    [Title("Settings")] 
+    [SerializeField] private bool debugMode;
+    
+    [Title("Input")]
+    [SerializeField] private RSE_ShowAds rseShowAds;
+    
+    [Title("Output")]
+    [SerializeField] private RSE_AdsRunning rseAdsRunning;
+    [SerializeField] private RSE_GiveReward rseGiveReward;
+    [SerializeField] private RSE_AdsFinished rseAdsFinished;
+    
+    #if UNITY_ANDROID || UNITY_EDITOR
+    private readonly string gameId = "5744111";
     #elif UNITY_IOS
-    private string appKey = "";
+    private readonly string gameId = "5744110";
     #else
-    private string appKey = "unexpected_platform";
+    private readonly string gameId = "unexepedted_platform";
     #endif
 
-    private void Awake()
-    {
-        IronSource.Agent.validateIntegration();
-        LevelPlay.Init(appKey);
-    }
-    
+    private bool adsEnable;
+    private AdsRewardExtension adsRewardExtension;
+
+
     private void OnEnable()
     {
-        IronSourceEvents.onSdkInitializationCompletedEvent += OnSdkInitialized;
-        
-        //Add AdInfo Rewarded Video Events
-        IronSourceRewardedVideoEvents.onAdOpenedEvent += RewardedVideoOnAdOpenedEvent;
-        IronSourceRewardedVideoEvents.onAdClosedEvent += RewardedVideoOnAdClosedEvent;
-        IronSourceRewardedVideoEvents.onAdAvailableEvent += RewardedVideoOnAdAvailable;
-        IronSourceRewardedVideoEvents.onAdUnavailableEvent += RewardedVideoOnAdUnavailable;
-        IronSourceRewardedVideoEvents.onAdShowFailedEvent += RewardedVideoOnAdShowFailedEvent;
-        IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
-        IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
-
+        rseShowAds.action += TryShowAds;
+        adsRewardExtension.OnAdsFinished += rseAdsFinished.Call;
+        adsRewardExtension.OnAdsRunning += rseAdsRunning.Call;
+        adsRewardExtension.OnGiveReward += rseGiveReward.Call;
     }
-
+    
     private void OnDisable()
     {
-        IronSourceEvents.onSdkInitializationCompletedEvent -= OnSdkInitialized;
-        
-        IronSourceRewardedVideoEvents.onAdOpenedEvent -= RewardedVideoOnAdOpenedEvent;
-        IronSourceRewardedVideoEvents.onAdClosedEvent -= RewardedVideoOnAdClosedEvent;
-        IronSourceRewardedVideoEvents.onAdAvailableEvent -= RewardedVideoOnAdAvailable;
-        IronSourceRewardedVideoEvents.onAdUnavailableEvent -= RewardedVideoOnAdUnavailable;
-        IronSourceRewardedVideoEvents.onAdShowFailedEvent -= RewardedVideoOnAdShowFailedEvent;
-        IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
-        IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
+        rseShowAds.action -= TryShowAds;
+        adsRewardExtension.OnAdsFinished -= rseAdsFinished.Call;
+        adsRewardExtension.OnAdsRunning -= rseAdsRunning.Call;
+        adsRewardExtension.OnGiveReward -= rseGiveReward.Call;
     }
-
-    private void OnSdkInitialized(){Debug.Log("IronSource SDK initialized");}
     
-    private void OnApplicationPause(bool pauseStatus){IronSource.Agent.onApplicationPause(pauseStatus);}
-
-    #region RewardAds
-
-
-    public void LoadRewardAds()
+    private void Awake() => adsRewardExtension = gameObject.AddComponent<AdsRewardExtension>();
+    
+    private void Start()
     {
-        IronSource.Agent.loadRewardedVideo();
-    }
-
-    public void ShowRewardAds()
-    {
-        if (IronSource.Agent.isRewardedVideoAvailable())
+        if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
-            IronSource.Agent.showRewardedVideo();
+            Advertisement.Initialize(gameId, debugMode,this);
         }
     }
     
-    
-    /************* RewardedVideo AdInfo Delegates *************/
-    // Indicates that there’s an available ad.
-    // The adInfo object includes information about the ad that was loaded successfully
-    // This replaces the RewardedVideoAvailabilityChangedEvent(true) event
-    void RewardedVideoOnAdAvailable(IronSourceAdInfo adInfo) {
-    }
-    // Indicates that no ads are available to be displayed
-    // This replaces the RewardedVideoAvailabilityChangedEvent(false) event
-    void RewardedVideoOnAdUnavailable() {
-    }
-    // The Rewarded Video ad view has opened. Your activity will loose focus.
-    void RewardedVideoOnAdOpenedEvent(IronSourceAdInfo adInfo){
-    }
-    // The Rewarded Video ad view is about to be closed. Your activity will regain its focus.
-    void RewardedVideoOnAdClosedEvent(IronSourceAdInfo adInfo){
-    }
-    // The user completed to watch the video, and should be rewarded.
-    // The placement parameter will include the reward data.
-    // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback.
-    void RewardedVideoOnAdRewardedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo){
-        Debug.Log("info");
-    }
-    // The rewarded video ad was failed to show.
-    void RewardedVideoOnAdShowFailedEvent(IronSourceError error, IronSourceAdInfo adInfo){
-    }
-    // Invoked when the video ad was clicked.
-    // This callback is not supported by all networks, and we recommend using it only if
-    // it’s supported by all networks you included in your build.
-    void RewardedVideoOnAdClickedEvent(IronSourcePlacement placement, IronSourceAdInfo adInfo){
+    public void OnInitializationComplete()
+    {
+        Debug.Log("Unity Ads initialization complete.");
+        adsRewardExtension.LoadAds();
+        adsEnable = true;
     }
 
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
+        Debug.Log($"Unity Ads Initialization Failed: {error.ToString()} - {message}");
+    }
 
-    #endregion
+    private void TryShowAds()
+    {
+        if (adsEnable) adsRewardExtension.ShowAds();
+    }
     
 }

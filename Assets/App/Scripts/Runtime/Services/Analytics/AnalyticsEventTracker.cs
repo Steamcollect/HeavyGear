@@ -3,7 +3,7 @@ using BT.ScriptablesObject;
 using JetBrains.Annotations;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using UnityEngine.Analytics;
+using Unity.Services.Analytics;
 
 public abstract class AnalyticsEventTracker<T> : MonoBehaviour
  {
@@ -13,17 +13,21 @@ public abstract class AnalyticsEventTracker<T> : MonoBehaviour
  
      [Title("Input")] 
      [SerializeField] protected RuntimeScriptableEvent<T> rseDataTracked;
+
+     [Title("Output")] 
+     [SerializeField] protected RSE_SendAnalyticsEvent rseSendAnalyticsEvent;
  
-     protected void OnEnable() => rseDataTracked.action += OnDataTrackedChanged;
-     protected void OnDisable() => rseDataTracked.action -= OnDataTrackedChanged;
+     protected virtual void OnEnable() => rseDataTracked.action += OnDataTrackedChanged;
+     protected virtual void OnDisable() => rseDataTracked.action -= OnDataTrackedChanged;
  
-     protected void OnDataTrackedChanged(T dataT)
+     public virtual void OnDataTrackedChanged(T dataT)
      {
-         var analyticsResult = Analytics.CustomEvent(eventName.ToString(), new Dictionary<string, object>
+         CustomEvent customEvent = new CustomEvent(eventName.ToString())
          {
              { nameDataT, dataT}
-         });
-         print(analyticsResult);
+         };
+         Debug.Log($"Analytics Tracker: SendAnalyticsEvent {customEvent}");
+         rseSendAnalyticsEvent.Call(customEvent);
      }
  }
  
@@ -36,18 +40,20 @@ public abstract class AnalyticsEventTracker<T,T1> : MonoBehaviour
 
     [Title("Input")] 
     [SerializeField] protected RuntimeScriptableEvent<T,T1> rseDataTracked;
+    [Title("Output")] 
+    [SerializeField] protected RuntimeScriptableEvent<CustomEvent> rseSendAnalyticsEvent;
 
     protected void OnEnable() => rseDataTracked.action += OnDataTrackedChanged;
     protected void OnDisable() => rseDataTracked.action -= OnDataTrackedChanged;
 
-    protected void OnDataTrackedChanged(T dataT,T1 dataT1)
+    public virtual void OnDataTrackedChanged(T dataT,T1 dataT1)
     {
-        var analyticsResult = Analytics.CustomEvent(eventName.ToString(), new Dictionary<string, object>
+        CustomEvent customEvent = new CustomEvent(eventName.ToString())
         {
             { nameDataT, dataT},
-            {nameDataT1, dataT1}
-        });
-        print(analyticsResult);
+            { nameDataT1, dataT1 }
+        };
+        rseSendAnalyticsEvent.Call(customEvent);
     }
 }
 
@@ -61,18 +67,20 @@ public abstract class AnalyticsEventTracker<T,T1,T2> : MonoBehaviour
 
     [Title("Input")] 
     [SerializeField] protected RuntimeScriptableEvent<T,T1,T2> rseDataTracked;
+    [Title("Output")] 
+    [SerializeField] protected RuntimeScriptableEvent<CustomEvent> rseSendAnalyticsEvent;
 
     protected void OnEnable() => rseDataTracked.action += OnDataTrackedChanged;
     protected void OnDisable() => rseDataTracked.action -= OnDataTrackedChanged;
 
-    protected void OnDataTrackedChanged(T dataT,T1 dataT1,T2 dataT2)
+    public virtual void OnDataTrackedChanged(T dataT,T1 dataT1,T2 dataT2)
     {
-        var analyticsResult = Analytics.CustomEvent(eventName.ToString(), new Dictionary<string, object>
+        CustomEvent customEvent = new CustomEvent(eventName.ToString())
         {
-            { nameDataT, dataT },
+            { nameDataT, dataT},
             {nameDataT1, dataT1},
             {nameDataT2, dataT2}
-        });
-        print(analyticsResult);
+        };
+        rseSendAnalyticsEvent.Call(customEvent);
     }
 }

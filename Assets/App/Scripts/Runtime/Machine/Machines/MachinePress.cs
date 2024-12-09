@@ -6,7 +6,7 @@ public class MachinePress : InteractiveMachineTemplate
     [SerializeField] CalculType calculType;
     [SerializeField] string value;
 
-    BigNumber Value;
+    BigNumber Value => new BigNumber(value);
 
     [Space(10)]
     [SerializeField] MachineCollider oreCollider;
@@ -39,9 +39,8 @@ public class MachinePress : InteractiveMachineTemplate
                 case CalculType.Remove:
                     ore.RemoveValue(Value);
                     break;
-
-                    case CalculType.Multiply:
-                    
+                case CalculType.Multiply:
+                    ore.MultiplyValue((float)Value);
                     break;
             }
         }
@@ -62,10 +61,5 @@ public class MachinePress : InteractiveMachineTemplate
     public override bool CanDoAction()
     {
         return true;
-    }
-
-    private void OnValidate()
-    {
-        Value = new BigNumber(value);
     }
 }
