@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df08bca793bf8fe4fb74a87452650854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oreToInstantiateOnStart: 50
   orePrefab: {fileID: 7540014640451865297, guid: d9fddda0eb0f2f34390c6ebd84bd2f5e, type: 3}
   rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}

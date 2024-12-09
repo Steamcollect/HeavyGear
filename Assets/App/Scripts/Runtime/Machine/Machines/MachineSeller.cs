@@ -8,18 +8,17 @@ public class MachineSeller : InteractiveMachineTemplate
     [Space(10), Header("Internal Settings")]
     List<Ore> currentStorage = new List<Ore>();
     [SerializeField] int maxStorage;
-
+    [SerializeField] private RSO_Coins rsoCoins;
+    
     bool canGetItem = true;
 
-    [Space(10)]
-    [SerializeField] ConveyorBelt conveyorBelt;
+    ConveyorBelt conveyorBelt;
 
     BigNumber coinValue = 0;
-    public TMP_Text coinTxt;
 
     public override void OnObjEnable()
     {
-        conveyorBelt.onObjectTouchTheEnd += AddStorage;
+        // Do nothing
     }
 
     public override void OnObjDisable()
@@ -37,8 +36,8 @@ public class MachineSeller : InteractiveMachineTemplate
         foreach (Ore data in currentStorage)
         {
             coinValue += data.CurrentOreValue;
+            rsoCoins.Value += data.CurrentOreValue;
         }
-        coinTxt.text = coinValue.ToString();
 
         currentStorage.Clear();
         EndAction();
@@ -46,7 +45,7 @@ public class MachineSeller : InteractiveMachineTemplate
 
     public override void OnCooldownEnd()
     {
-        // Don nothing
+        // Do nothing
     }
 
     void AddStorage(ConveyorBelt conveyor)
@@ -83,5 +82,11 @@ public class MachineSeller : InteractiveMachineTemplate
     {
         // Cant interact if there is no item inside
         return currentStorage.Count > 0;
+    }
+
+    public override void SetupChildRequirement(MachineSlotSettings settings)
+    {
+        conveyorBelt = settings.conveyorsEnter[0];
+        conveyorBelt.onObjectTouchTheEnd += AddStorage;
     }
 }

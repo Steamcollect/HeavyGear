@@ -22,8 +22,7 @@ public class MachineMiner : InteractiveMachineTemplate
     }
     #endregion
 
-    [Space(10)]
-    [SerializeField] ConveyorBelt conveyorBelt;
+    ConveyorBelt conveyorBelt;
 
     public override void OnObjEnable()
     {
@@ -58,5 +57,10 @@ public class MachineMiner : InteractiveMachineTemplate
     public override bool CanDoAction()
     {
         return conveyorBelt.haveSpaceToAddItem;
+    }
+
+    public override void SetupChildRequirement(MachineSlotSettings settings)
+    {
+        conveyorBelt = settings.conveyorsExit[0];
     }
 }
