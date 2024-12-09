@@ -415,7 +415,7 @@ MonoBehaviour:
   normal: {fileID: 3260558423733575511}
   pressed: {fileID: 8098071593699683520}
   animator: {fileID: 104950106769433744}
-  clip: {fileID: 7400000, guid: 89a48c2758c7c9341a3fa9fd8b74d41a, type: 2}
+  clip: {fileID: 7400000, guid: 8cf1a1d6a23070f4da4d9efbb183befb, type: 2}
   onClick:
     m_PersistentCalls:
       m_Calls:
