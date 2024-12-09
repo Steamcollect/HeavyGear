@@ -2,7 +2,7 @@ using UnityEngine;
 public class MachineSlot : MonoBehaviour
 {
     [SerializeField] MachineSlotSettings settings;
-    InteractiveMachineTemplate currentMachine;
+    [HideInInspector]public InteractiveMachineTemplate currentMachine;
 
     //[Space(10)]
     // RSO
