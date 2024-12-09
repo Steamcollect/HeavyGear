@@ -3,15 +3,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Button : MonoBehaviour, IPointerClickHandler
+public class Button : MonoBehaviour, IPointerDownHandler
 {
-    [Header("Resources")]
+    [Header("References")]
     [SerializeField] private RectTransform swayObject;
     [SerializeField] private CanvasGroup normal;
     [SerializeField] private CanvasGroup pressed;
-
-    [Header("Settings")]
-    [SerializeField] private float transitionSpeed;
+    [SerializeField] private Animator animator;
+    [SerializeField] private AnimationClip clip;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onClick;
@@ -22,41 +21,9 @@ public class Button : MonoBehaviour, IPointerClickHandler
         pressed.alpha = 0;
     }
 
-    public void OnPointerClick(PointerEventData data)
+    public void OnPointerDown(PointerEventData data)
     {
-        StopCoroutine("ButtonPressed");
-        StartCoroutine("ButtonPressed");
+        animator.Play(clip.name);
         onClick.Invoke();
-    }
-
-    private IEnumerator ButtonPressed()
-    {
-        pressed.gameObject.SetActive(true);
-
-        while(swayObject.localScale.x > 0.8f)
-        {
-            pressed.alpha += Time.unscaledDeltaTime * transitionSpeed;
-
-            swayObject.localScale -= Vector3.one * Time.unscaledDeltaTime * (transitionSpeed / 10);
-
-            yield return null;
-        }
-
-        pressed.alpha = 1;
-        swayObject.localScale = Vector3.one * 0.8f;
-
-        while (swayObject.localScale.x < 1.0f)
-        {
-            pressed.alpha -= Time.unscaledDeltaTime * transitionSpeed;
-
-            swayObject.localScale += Vector3.one * Time.unscaledDeltaTime * (transitionSpeed / 10);
-
-            yield return null;
-        }
-
-        pressed.alpha = 0;
-        swayObject.localScale = Vector3.one;
-
-        pressed.gameObject.SetActive(false);
     }
 }

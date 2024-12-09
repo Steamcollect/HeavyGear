@@ -6,10 +6,8 @@ using UnityEngine.Events;
 
 public class WindowManager : MonoBehaviour
 {
-    public List<WindowItem> windows = new List<WindowItem>();
-
     [Header("Settings")]
-    public float delayBeforeStartAnimation;
+    public List<WindowItem> windows = new List<WindowItem>();
     public float delayBeforeSetActiveFalse;
 
     private int currentWindowIndex = 0;
