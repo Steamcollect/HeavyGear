@@ -144,13 +144,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fabdf1af6e2a834e9392ba63ddafe5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   settings:
     conveyorsEnter: []
     conveyorsExit: []
     clickable: {fileID: 5090533115915088085}
+    machineType: 0
     slot: {fileID: 0}
+  currentMachine: {fileID: 0}
   rseAddNewMachine: {fileID: 11400000, guid: ff567ce0bd3c80e4989c4e45691b6a6e, type: 2}
+  rseOpenModificationPanel: {fileID: 11400000, guid: c03e38f803941784db1675e4d281ae20, type: 2}
 --- !u!114 &5090533115915088085
 MonoBehaviour:
   m_ObjectHideFlags: 0

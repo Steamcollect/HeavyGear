@@ -12,7 +12,8 @@ public class MachineSlot : MonoBehaviour
     [Header("Input")]
     [SerializeField] RSE_AddNewMachine rseAddNewMachine;
 
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_OpenModificationSettings rseOpenModificationPanel;
 
     private void OnEnable()
     {
@@ -64,6 +65,9 @@ public class MachineSlot : MonoBehaviour
 
     void OnLongClick()
     {
-
+        if(currentMachine != null)
+        {
+            rseOpenModificationPanel.Call(this);
+        }
     }
 }

@@ -15,7 +15,8 @@ public class MachineModificationPanel : MonoBehaviour
     [SerializeField] RSE_OpenMachineModificationPanel rseOpenPanel;
     [SerializeField] RSE_CloseMachineModificationPanel rseClosePanel;
 
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_DestroyMachine rseDestroyMachine;
 
     private void OnEnable()
     {
@@ -32,8 +33,14 @@ public class MachineModificationPanel : MonoBehaviour
     {
         panel.SetActive(true);
     }
-    void ClosePanel()
+    public void ClosePanel()
     {
         panel.SetActive(false);
+    }
+
+    public void DestroyButton()
+    {
+        rseDestroyMachine.Call();
+        ClosePanel();
     }
 }
