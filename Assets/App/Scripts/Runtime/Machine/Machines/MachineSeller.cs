@@ -72,7 +72,7 @@ public class MachineSeller : InteractiveMachineTemplate
     IEnumerator GetItemTimer()
     {
         canGetItem = false;
-        yield return new WaitForSeconds(data.speed);
+        yield return new WaitForSeconds(statistics.speed);
         canGetItem = true;
 
         CheckItemsOnConveyor();

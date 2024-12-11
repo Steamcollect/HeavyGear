@@ -270,7 +270,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd34c8517f2be334ba0345cd40672e6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 7a1c7a7b7940af94da5069700f9c4d6d, type: 2}
+  statistics: {fileID: 11400000, guid: 7a1c7a7b7940af94da5069700f9c4d6d, type: 2}
+  _statistics:
+    speed: 0
+    cooldown: 0
+    power: 0
+    level: 0
+    rarity: 0
   currentState: 0
   calculType: 2
   value: 1e1

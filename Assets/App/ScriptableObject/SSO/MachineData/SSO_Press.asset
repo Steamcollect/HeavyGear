@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 509890fade36cf4408275877bd40544e, type: 3}
   m_Name: SSO_Press
   m_EditorClassIdentifier: 
-  speed: 0
-  cooldown: 1
-  power: 0
-  level: 0
-  rarity: 0
+  data:
+    speed: 0
+    cooldown: 0.5
+    power: 0
+    level: 0
+    rarity: 0

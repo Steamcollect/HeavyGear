@@ -1,13 +1,17 @@
 using System.Collections;
 using UnityEngine;
+
 public abstract class InteractiveMachineTemplate : MonoBehaviour
 {
     [Header("References")]
-    public SSO_MachineData data;
+    public SSO_MachineData SSO_statistics;
+    [HideInInspector] public MachineData statistics;
 
     Clickable clickable;
 
     [HideInInspector] public MachineState currentState;
+
+    public RSO_UpgradeData rsoUpgradeData;
 
     public void SetupParentRequirement(Clickable newClickable)
     {
@@ -26,6 +30,11 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
         OnObjDisable();
     }
     public abstract void OnObjDisable();
+
+    private void Start()
+    {
+        statistics = SSO_statistics.data.Copy();
+    }
 
     void Interact()
     {
@@ -72,7 +81,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     IEnumerator ActionCooldown()
     {
-        yield return new WaitForSeconds(data.cooldown);
+        yield return new WaitForSeconds(statistics.cooldown);
         EndCooldown();
     }
     #endregion
