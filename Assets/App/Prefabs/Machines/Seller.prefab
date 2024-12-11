@@ -97,13 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bfdee4b2e177242a8be9e8bfbbf080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statistics: {fileID: 11400000, guid: 3907fc56ecb1ad140bd669322774384e, type: 2}
-  _statistics:
+  SSO_statistics: {fileID: 11400000, guid: 3907fc56ecb1ad140bd669322774384e, type: 2}
+  statistics:
     speed: 0
     cooldown: 0
     power: 0
-    level: 0
     rarity: 0
   currentState: 0
+  rsoUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
   maxStorage: 10
   rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}
