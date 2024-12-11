@@ -9,12 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 509890fade36cf4408275877bd40544e, type: 3}
-  m_Name: SSO_Seller
+  m_Script: {fileID: 11500000, guid: ac74b4fb173b4cf4d96015358f615db3, type: 3}
+  m_Name: RSO_UpgradeData
   m_EditorClassIdentifier: 
-  data:
-    speed: 0
-    cooldown: 0.5
-    power: 0
-    level: 0
-    rarity: 0

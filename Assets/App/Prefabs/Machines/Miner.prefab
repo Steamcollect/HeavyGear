@@ -97,7 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a8ebc9a1936f3439eb046abc272449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: d879f2fbb9e28444085e67c8dc97f392, type: 2}
+  statistics: {fileID: 11400000, guid: d879f2fbb9e28444085e67c8dc97f392, type: 2}
+  _statistics:
+    speed: 0
+    cooldown: 0
+    power: 0
+    level: 0
+    rarity: 0
   currentState: 0
   rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}
   oreType:

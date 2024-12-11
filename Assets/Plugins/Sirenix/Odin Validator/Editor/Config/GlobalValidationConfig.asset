@@ -76,12 +76,12 @@ MonoBehaviour:
     serializedValue: 0
     changedFromDefault: 0
   WatchForChanges:
-    serializedValue: 0
-    changedFromDefault: 0
+    serializedValue: 1
+    changedFromDefault: 1
   ValidateInBackground:
     serializedValue: 0
     changedFromDefault: 0
   KeepMainValidationSessionAliveInBackground:
     serializedValue: 0
-    changedFromDefault: 0
+    changedFromDefault: 1
   HasShownValidationConfig: 1

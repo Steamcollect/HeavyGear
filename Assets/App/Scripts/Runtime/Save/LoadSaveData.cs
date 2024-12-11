@@ -28,7 +28,7 @@ namespace BT.Save
             rseCommandSave.action -= SaveToJson;
         }
 
-        private void Start()
+        private void Awake()
         {
             filepath = Application.persistentDataPath + "/Save.json";
 
