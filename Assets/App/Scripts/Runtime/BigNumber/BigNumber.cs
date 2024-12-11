@@ -43,6 +43,8 @@ namespace BigFloatNumerics
         "Spd",
         "Ocd",
         "Nvd",
+        "skbdi",
+        "tlt"
     };
 
         public BigNumber Arrange() // Sets Numerator to be at range of `[1,10)`

@@ -1,9 +1,10 @@
 using BigFloatNumerics;
 using UnityEngine;
+
 public class CoinManager : MonoBehaviour
 {
     [Header("References")]
-    BigNumber coins;
+    BigNumber coins = new BigNumber(0);
 
     [Space(10)]
     // RSO
@@ -27,7 +28,7 @@ public class CoinManager : MonoBehaviour
 
     void AddCoin(BigNumber coinToAdd)
     {
-        coins.Add(coinToAdd);
+        coins += coinToAdd;
         rsoCoins.Value = coins;
     }
 }
