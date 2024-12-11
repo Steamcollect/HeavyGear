@@ -11,7 +11,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     [HideInInspector] public MachineState currentState;
 
-    public RSO_UpgradeData rsoUpgradeData;
+    public RSO_UpgradeData rsoUpgradeData; 
 
     public void SetupParentRequirement(Clickable newClickable)
     {
