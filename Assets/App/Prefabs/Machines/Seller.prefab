@@ -106,4 +106,4 @@ MonoBehaviour:
   currentState: 0
   rsoUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
   maxStorage: 10
-  rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}
+  rseAddCoin: {fileID: 11400000, guid: 1ad6f9ab8ec749949a83cade4e0d5b91, type: 2}
