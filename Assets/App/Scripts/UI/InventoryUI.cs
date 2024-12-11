@@ -1,7 +1,10 @@
 using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
-    //[Header("Settings")]
+    [Header("Settings")]
+    [SerializeField] private GameObject commonCardVisual;
+    [SerializeField] private GameObject rareCardVisual;
+    [SerializeField] private GameObject legendaryCardVisual;
 
     //[Header("References")]
 
@@ -12,4 +15,9 @@ public class InventoryUI : MonoBehaviour
 
     //[Header("Input")]
     //[Header("Output")]
+
+    public void UpdateInventoryUI(SSO_MachinePlacementData[] machines)
+    {
+        Debug.Log(machines[0].machineName);
+    }
 }

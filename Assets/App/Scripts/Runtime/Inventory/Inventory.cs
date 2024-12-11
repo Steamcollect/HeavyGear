@@ -6,7 +6,9 @@ public class Inventory : MonoBehaviour
     [Header("Settings")]
     public SSO_MachinePlacementData[] machines;
 
-    //[Header("References")]
+    [Header("References")]
+    public InventoryUI inventoryUI;
+
     List<InventoryMachineData> content = new List<InventoryMachineData>();
 
     [Space(10)]
@@ -31,6 +33,13 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         content = rsoContentSaved.Value.inventoryMachineData;
+
+        if(inventoryUI != null) UpdateInventoryUI();
+    }
+
+    private void UpdateInventoryUI()
+    {
+        inventoryUI.UpdateInventoryUI(machines);
     }
 
     void AddMachine(SSO_MachinePlacementData machine)
