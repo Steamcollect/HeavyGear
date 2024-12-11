@@ -4,6 +4,7 @@ using UnityEngine;
 public class CoinManager : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] SSO_CoinLevel coinLevel;
     BigNumber coins = new BigNumber(0);
 
     [Space(10)]
@@ -30,5 +31,18 @@ public class CoinManager : MonoBehaviour
     {
         coins += coinToAdd;
         rsoCoins.Value = coins;
+
+        if (coins >= coinLevel.nextFactoryLevel)
+        {
+            Debug.Log("Next factory Unlock");
+        }
+
+        for (int i = 0; i < coinLevel.rebirthLevels.Count; i++)
+        {
+            if (coins >= coinLevel.rebirthLevels[i])
+            {
+                Debug.Log("Rebirth " + i + ", at " + coinLevel.rebirthLevels[i] + "possible");
+            }
+        }
     }
 }
