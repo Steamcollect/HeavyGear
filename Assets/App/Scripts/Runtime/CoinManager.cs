@@ -1,5 +1,6 @@
 using BigFloatNumerics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoinManager : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class CoinManager : MonoBehaviour
     [Header("Input")]
     [SerializeField] RSE_AddCoin rseAddCoin;
 
-    //[Header("Output")]
+    [Header("Output")]
+    [SerializeField] RSE_LoadNewScene rseLoadNewScene;
 
     private void OnEnable()
     {
@@ -35,6 +37,9 @@ public class CoinManager : MonoBehaviour
         if (coins >= coinLevel.nextFactoryLevel)
         {
             Debug.Log("Next factory Unlock");
+
+            // Changer de scene si le joueur le souhaite
+            //rseLoadNewScene.Call(coinLevel.nextFactorySceneName);
         }
 
         for (int i = 0; i < coinLevel.rebirthLevels.Count; i++)
@@ -42,6 +47,9 @@ public class CoinManager : MonoBehaviour
             if (coins >= coinLevel.rebirthLevels[i])
             {
                 Debug.Log("Rebirth " + i + ", at " + coinLevel.rebirthLevels[i] + "possible");
+
+                // Rebirth, charger la scene actuelle si le joueur le souhaite
+                //rseLoadNewScene.Call( <Faut trouver le nom de la scene actuelle> );
             }
         }
     }
