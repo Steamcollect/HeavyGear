@@ -41,9 +41,10 @@ public class ConveyorBelt : MonoBehaviour
     }
 
 
-    public void ChangePathPointAvailable(int indexPath, bool blocked)
+    public void ChangePathPointAvailable(int indexPath, bool blocked,bool snapToPathPoints = false)
     {
         pathPointsList[indexPath].blocked = blocked;
+        pathPointsList[indexPath].snapToPoint = snapToPathPoints;
     }
     
     private void FixedUpdate()
@@ -130,7 +131,7 @@ public class ConveyorBelt : MonoBehaviour
     /// <returns></returns>
     private bool CheckCannotMoveItem(ref int i)
     {
-        bool itemBlockedByNextPoint = ores[i].currentPoint + 1 <= pathPointsList.Length && pathPointsList[ores[i].currentPoint+1].blocked && Utils.NumberInRange(pathPointsList[ores[i].currentPoint + 1].threasholdLerp - ores[i].currentLerp,-0.03f,0.03f);
+        bool itemBlockedByNextPoint = ores[i].currentPoint + 1 <= pathPointsList.Length && pathPointsList[ores[i].currentPoint+1].blocked && !pathPointsList[i].snapToPoint? Utils.NumberInRange(pathPointsList[ores[i].currentPoint + 1].threasholdLerp - ores[i].currentLerp,-0.03f,0.03f) : Utils.NumberInRange(ores[i].currentLerp,0.97f,1.9f);
         
         bool itemCannotMove = i > 0 &&
                               Vector3.Distance(ores[i].ore.transform.position, ores[i - 1].ore.transform.position) <=
@@ -195,5 +196,6 @@ public class PathPoint
 {
     public Transform transform;
     public bool blocked;
+    public bool snapToPoint;
     public float threasholdLerp = -1f;
 }
