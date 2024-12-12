@@ -82,4 +82,10 @@ public static class Utils
         action.Invoke();
     }
     #endregion
+
+    public static bool NumberInRange(float value, float min, float max)
+    {
+        return value >= min && value <= max;
+    }
+    
 }
