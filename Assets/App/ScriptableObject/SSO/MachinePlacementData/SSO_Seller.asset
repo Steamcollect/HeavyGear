@@ -16,4 +16,5 @@ MonoBehaviour:
   machineDescription: A Great seller
   machineVisual: {fileID: 21300000, guid: 9733611f703737341a1ad9e1fb0f401b, type: 3}
   machineType: 2
+  machineRarity: 0
   machinePrefab: {fileID: 4211716054252848512, guid: 1d7fb8f773ca3154ab97c250b6e18f6f, type: 3}

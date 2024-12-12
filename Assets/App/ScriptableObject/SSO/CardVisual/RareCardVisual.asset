@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33922d15359d9d64ab9d9e6cb4c9dd30, type: 3}
   m_Name: RareCardVisual
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 0, g: 0, b: 0, a: 0}
-  borderColor: {r: 0, g: 0, b: 0, a: 0}
-  borderGlowColor: {r: 0, g: 0, b: 0, a: 0}
-  borderShadowColor: {r: 0, g: 0, b: 0, a: 0}
-  sliderBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
-  sliderFillColor: {r: 0, g: 0, b: 0, a: 0}
+  backgroundColor: {r: 1, g: 0.83921576, b: 0, a: 1}
+  borderColor: {r: 1, g: 0.92855203, b: 0, a: 1}
+  borderGlowColor: {r: 1, g: 0.88747245, b: 0.5424528, a: 1}
+  borderShadowColor: {r: 1, g: 0.8078432, b: 0, a: 1}
+  sliderBackgroundColor: {r: 0.7830189, g: 0.6435378, b: 0.121885024, a: 1}
+  sliderFillColor: {r: 0.78431374, g: 0.6431373, b: 0.12156863, a: 1}

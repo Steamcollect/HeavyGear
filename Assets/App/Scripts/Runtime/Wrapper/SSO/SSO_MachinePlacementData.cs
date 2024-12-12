@@ -11,6 +11,7 @@ public class SSO_MachinePlacementData : ScriptableObject
 
     [Space(5)]
     public MachineType machineType;
+    public MachineRarity machineRarity;
 
     [Space(10)]
     public InteractiveMachineTemplate machinePrefab;
