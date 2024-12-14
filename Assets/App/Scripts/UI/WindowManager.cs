@@ -10,6 +10,9 @@ public class WindowManager : MonoBehaviour
     public List<WindowItem> windows = new List<WindowItem>();
     public float delayBeforeSetActiveFalse;
 
+    [Header("References")]
+    [SerializeField] private RSE_OpenWindow rseOpenWindow;
+
     private int currentWindowIndex = 0;
     private int newWindowIndex;
 

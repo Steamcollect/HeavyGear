@@ -1,11 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [Header("Settings")]
-    public SSO_MachinePlacementData[] machines;
-
     [Header("References")]
     public InventoryUI inventoryUI;
 
@@ -39,7 +37,7 @@ public class Inventory : MonoBehaviour
 
     private void UpdateInventoryUI()
     {
-        inventoryUI.UpdateInventoryUI(machines);
+        //inventoryUI.UpdateInventoryUI(machines);
     }
 
     void AddMachine(SSO_MachinePlacementData machine)
@@ -56,6 +54,8 @@ public class Inventory : MonoBehaviour
         {
             content.Add(new InventoryMachineData { machine = machine, amount = 1, machineLevel = 1 });
         }
+
+        content = content.OrderByDescending(x => x.machine.machineRarity).ToList();
     }
 
     void LevelUp(InventoryMachineData slot)

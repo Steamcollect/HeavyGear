@@ -3466,6 +3466,7 @@ MonoBehaviour:
     windowObject: {fileID: 1628296861}
     windowAnimator: {fileID: 1628296862}
   delayBeforeSetActiveFalse: 0.2
+  rseOpenWindow: {fileID: 0}
 --- !u!1 &1337905931
 GameObject:
   m_ObjectHideFlags: 0
