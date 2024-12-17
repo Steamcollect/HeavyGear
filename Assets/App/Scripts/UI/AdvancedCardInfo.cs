@@ -22,24 +22,13 @@ public class AdvancedCardInfo : MonoBehaviour
         canvasGroup.alpha = 0.0f;
     }
 
-    public void ShowAdvancedCard(GameObject baseCard)
+    public void ShowAdvancedCard(CardUI card)
     {
-        RectTransform targetRectTransform = rectTransform;
-
-        rectTransform = baseCard.GetComponent<RectTransform>();
-        baseCard.GetComponent<CanvasGroup>().alpha = 0.0f;
         canvasGroup.alpha = 1.0f;
-
-        StartCoroutine("UpgradeCardSize");
     }
 
-    public void CloseAdvancedCard(GameObject baseCard)
+    public void CloseAdvancedCard(CardUI card)
     {
-
-    }
-
-    IEnumerable UpgradeCardSize()
-    {
-        yield return new WaitForSeconds(0.5f);
+        canvasGroup.alpha = 0.0f;
     }
 }
