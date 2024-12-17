@@ -8,7 +8,6 @@ public class WindowManager : MonoBehaviour
 {
     [Header("Settings")]
     public List<WindowItem> windows = new List<WindowItem>();
-    public float delayBeforeSetActiveFalse;
 
     [Header("References")]
     [SerializeField] private RSE_OpenWindow rseOpenWindow;
@@ -25,6 +24,18 @@ public class WindowManager : MonoBehaviour
         [BoxGroup] public string windowName = "My Window";
         [BoxGroup] public GameObject windowObject;
         [BoxGroup] public WindowAnimator windowAnimator;
+    }
+
+    
+
+    private void OnEnable()
+    {
+        rseOpenWindow.action += OpenWindow;
+    }
+
+    private void OnDisable()
+    {
+        rseOpenWindow.action -= OpenWindow;
     }
 
     void Awake()
@@ -74,14 +85,9 @@ public class WindowManager : MonoBehaviour
         }
     }
 
-    public void OpenPanel(string newPanel)
-    {
-        OpenWindow(newPanel);
-    }
-
     IEnumerator DisablePreviousWindow()
     {
-        yield return new WaitForSecondsRealtime(delayBeforeSetActiveFalse);
+        yield return new WaitForSecondsRealtime(.2f);
 
         for (int i = 0; i < windows.Count; i++)
         {

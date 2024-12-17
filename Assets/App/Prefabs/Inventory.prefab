@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d54215dab3e0b43b7f05f698c457ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machines:
-  - {fileID: 11400000, guid: b63199b61f62d494eaa93430fba955e4, type: 2}
-  - {fileID: 11400000, guid: c83b0505e36aff54aba89a252e74dacf, type: 2}
-  - {fileID: 11400000, guid: 1c16593047620cf41816e19b4cefc373, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseAddSlot: {fileID: 11400000, guid: 05a3226d9c3dd0a40855ac41ea701179, type: 2}
+  rsoMachinesListUI: {fileID: 11400000, guid: 054ae470d9704cb4f8d8efca1a558f84, type: 2}

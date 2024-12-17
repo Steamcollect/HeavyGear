@@ -3,10 +3,9 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Button : MonoBehaviour, IPointerDownHandler
+public class CustomUIButton : MonoBehaviour, IPointerDownHandler
 {
     [Header("References")]
-    [SerializeField] private RectTransform swayObject;
     [SerializeField] private CanvasGroup normal;
     [SerializeField] private CanvasGroup pressed;
     [SerializeField] private Animator animator;
@@ -17,13 +16,13 @@ public class Button : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
-        normal.alpha = 1;
-        pressed.alpha = 0;
+        if(normal != null) normal.alpha = 1;
+        if (pressed != null) pressed.alpha = 0;
     }
 
     public void OnPointerDown(PointerEventData data)
     {
-        animator.Play(clip.name);
+        if(animator != null) animator.Play(clip.name);
         onClick.Invoke();
     }
 }

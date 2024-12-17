@@ -1,3 +1,5 @@
+using BT.Save;
+using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,19 +7,29 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [Header("References")]
-    public InventoryUI inventoryUI;
-
-    List<InventoryMachineData> content = new List<InventoryMachineData>();
-
-    [Space(10)]
     // RSO
-    [SerializeField] RSO_ContentSaved rsoContentSaved;
+    [SerializeField] private RSO_ContentSaved rsoContentSaved;
     // RSF
     // RSP
 
     [Header("Input")]
-    [SerializeField] RSE_AddMachineToInventory rseAddSlot;
-    //[Header("Output")]
+    [SerializeField] private RSE_AddMachineToInventory rseAddSlot;
+
+    [Header("Output")]
+    [SerializeField] private RSO_MachinesListUI rsoMachinesListUI;
+
+    private List<InventoryMachineData> content = new List<InventoryMachineData>();
+
+    private List<InventoryMachineData> Content
+    {
+        get => content;
+        set
+        {
+            content = value;
+
+            rsoMachinesListUI.Value = value;
+        }
+    }
 
     private void OnEnable()
     {
@@ -30,32 +42,29 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        content = rsoContentSaved.Value.inventoryMachineData;
-
-        if(inventoryUI != null) UpdateInventoryUI();
-    }
-
-    private void UpdateInventoryUI()
-    {
-        //inventoryUI.UpdateInventoryUI(machines);
+        Content = rsoContentSaved.Value.inventoryMachineData;
     }
 
     void AddMachine(SSO_MachinePlacementData machine)
     {
-        InventoryMachineData slot = content.Find(x => x.machine == machine);
+        InventoryMachineData slot = Content.Find(x => x.machine == machine);
         if (slot != null)
         {
             slot.amount++;
 
-            // Level up
             if(slot.amount >= slot.maxAmount) LevelUp(slot);
         }
         else
         {
-            content.Add(new InventoryMachineData { machine = machine, amount = 1, machineLevel = 1 });
+            Content.Add(new InventoryMachineData { machine = machine, amount = 1, machineLevel = 1 });
         }
 
-        content = content.OrderByDescending(x => x.machine.machineRarity).ToList();
+        SortMachinesByRarity();
+    }
+
+    private void SortMachinesByRarity()
+    {
+        Content = Content.OrderByDescending(x => x.machine.machineRarity).ToList();
     }
 
     void LevelUp(InventoryMachineData slot)

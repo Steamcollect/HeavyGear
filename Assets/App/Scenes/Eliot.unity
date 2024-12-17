@@ -2997,6 +2997,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8892753846542964555, guid: 3c2608f9bed62424b935d10c3ba4d28c, type: 3}
+      propertyPath: rsoMachinesListUI
+      value: 
+      objectReference: {fileID: 11400000, guid: 054ae470d9704cb4f8d8efca1a558f84, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

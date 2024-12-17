@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineName: Miner
   machineDescription: A Great miner
-  machineVisual: {fileID: 21300000, guid: 9733611f703737341a1ad9e1fb0f401b, type: 3}
+  machineVisual: {fileID: -70206701, guid: c72be78e4cb0e97459ca7c49067bc2af, type: 3}
   machineType: 0
+  machineRarity: 0
   machinePrefab: {fileID: 1068557246109189370, guid: 0b5200f6801f3aa469ded49bfe1439c4, type: 3}
