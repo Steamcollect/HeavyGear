@@ -44,12 +44,12 @@ public class CardUI : MonoBehaviour
 
     private void SetCardVisual(SSO_CardVisual cardVisual)
     {
-        background.color = cardVisual.backgroundColor;
-        border.color = cardVisual.borderColor;
-        borderGlow.color = cardVisual.borderGlowColor;
-        borderShadow.color = cardVisual.borderShadowColor;
-        sliderBackground.color = cardVisual.sliderBackgroundColor;
-        sliderFill.color = cardVisual.sliderFillColor;
+        background.color = cardVisual.firstColor;
+        border.color = cardVisual.firstColor;
+        borderGlow.color = cardVisual.secondColor;
+        borderShadow.color = cardVisual.firstColor;
+        sliderBackground.color = cardVisual.firstColor;
+        sliderFill.color = cardVisual.firstColor;
     }
 
     private void SetCardStats()

@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33922d15359d9d64ab9d9e6cb4c9dd30, type: 3}
   m_Name: CommonCardVisual
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 0, g: 0.5104327, b: 1, a: 1}
-  borderColor: {r: 0, g: 0.51214886, b: 1, a: 1}
-  borderGlowColor: {r: 0.5411765, g: 0.86664003, b: 1, a: 1}
-  borderShadowColor: {r: 0, g: 0.63284254, b: 1, a: 1}
-  sliderBackgroundColor: {r: 0.121568605, g: 0.4624076, b: 0.78431374, a: 1}
-  sliderFillColor: {r: 0.12156863, g: 0.4627451, b: 0.78431374, a: 1}
+  firstColor: {r: 0, g: 0.5265317, b: 1, a: 1}
+  secondColor: {r: 0, g: 0.77752113, b: 1, a: 1}

@@ -6379,17 +6379,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1500177734740243769, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
+      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6241695834926915112}
     - target: {fileID: 6631632877523745247, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
       propertyPath: m_Name
       value: CardVisual
-      objectReference: {fileID: 0}
-    - target: {fileID: 6631632877523745247, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7966298823675530874, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
-      propertyPath: m_Alpha
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8457894214766812536, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6402,52 +6398,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6631632877523745247, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1915747000}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
 --- !u!224 &1915746998 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1429359001680922510, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
   m_PrefabInstance: {fileID: 1915746997}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1915746999 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6631632877523745247, guid: c280acd9ed1995b4dacb21b6aa262d5b, type: 3}
-  m_PrefabInstance: {fileID: 1915746997}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1915747000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1915746999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e67fc07fe93bf98418c967b4eea3f813, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normal: {fileID: 0}
-  pressed: {fileID: 0}
-  animator: {fileID: 0}
-  clip: {fileID: 0}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7213435297446160782}
-        m_TargetAssemblyTypeName: AdvancedCardInfo, Assembly-CSharp
-        m_MethodName: ShowAdvancedCard
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1915746999}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &1924523542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7812,7 +7769,7 @@ GameObject:
   - component: {fileID: 7213435297446160781}
   - component: {fileID: 7213435297446160782}
   m_Layer: 5
-  m_Name: CardVisual
+  m_Name: AdvancedCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
