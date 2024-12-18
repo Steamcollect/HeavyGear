@@ -12,9 +12,9 @@ public class CameraController : MonoBehaviour
 
     int lastTouchCount;
 
-    [SerializeField] float zoomMultplier;
-    [SerializeField] Vector2 minMaxZoom;
-    float startingDistanceBetweenFingers, distanceBetweenFingers;
+    //[SerializeField] float zoomMultplier;
+    //[SerializeField] Vector2 minMaxZoom;
+    //float startingDistanceBetweenFingers, distanceBetweenFingers;
 
     [Space(10)]
     [SerializeField] Vector2 horizontalWallPosition;
@@ -59,22 +59,22 @@ public class CameraController : MonoBehaviour
                 canMove = Vector2.Distance(dragStartPosition, dragCurrentPosition) > 1 ;
             }
 
-            if(Input.touchCount == 2 && lastTouchCount != 2)
-            {
-                if(lastTouchCount != 2)
-                {
-                    startingDistanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-                }
-                else
-                {
-                    distanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-                }
+            //if(Input.touchCount == 2 && lastTouchCount != 2)
+            //{
+            //    if(lastTouchCount != 2)
+            //    {
+            //        startingDistanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+            //    }
+            //    else
+            //    {
+            //        distanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+            //    }
 
-                float newZoom = (distanceBetweenFingers - startingDistanceBetweenFingers) * zoomMultplier;
-                if(newZoom < minMaxZoom.x) newZoom = minMaxZoom.x;
-                if (newZoom > minMaxZoom.y) newZoom = minMaxZoom.y;
-                cam.orthographicSize = newZoom;
-            }
+            //    float newZoom = (distanceBetweenFingers - startingDistanceBetweenFingers) * zoomMultplier;
+            //    if(newZoom < minMaxZoom.x) newZoom = minMaxZoom.x;
+            //    if (newZoom > minMaxZoom.y) newZoom = minMaxZoom.y;
+            //    cam.orthographicSize = newZoom;
+            //}
         }
 
         lastTouchCount = Input.touchCount;
