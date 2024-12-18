@@ -1,16 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] float movementTime;
-
-    public Vector2 posOffset;
+    bool canMove;
 
     Vector3 dragStartPosition, dragCurrentPosition;
     Vector3 newPosition;
 
     int lastTouchCount;
+
+    [SerializeField] float zoomMultplier;
+    [SerializeField] Vector2 minMaxZoom;
+    float startingDistanceBetweenFingers, distanceBetweenFingers;
 
     [Space(10)]
     [SerializeField] Vector2 horizontalWallPosition;
@@ -36,7 +40,7 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         CalculateMovement();
-        Move();
+        if(canMove) Move();
     }
 
     void CalculateMovement()
@@ -51,7 +55,25 @@ public class CameraController : MonoBehaviour
             else
             {
                 dragCurrentPosition = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
-                newPosition = transform.position + dragStartPosition - dragCurrentPosition;
+
+                canMove = Vector2.Distance(dragStartPosition, dragCurrentPosition) > 1 ;
+            }
+
+            if(Input.touchCount == 2 && lastTouchCount != 2)
+            {
+                if(lastTouchCount != 2)
+                {
+                    startingDistanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+                }
+                else
+                {
+                    distanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+                }
+
+                float newZoom = (distanceBetweenFingers - startingDistanceBetweenFingers) * zoomMultplier;
+                if(newZoom < minMaxZoom.x) newZoom = minMaxZoom.x;
+                if (newZoom > minMaxZoom.y) newZoom = minMaxZoom.y;
+                cam.orthographicSize = newZoom;
             }
         }
 
@@ -59,16 +81,16 @@ public class CameraController : MonoBehaviour
     }
     void Move()
     {
+        newPosition = transform.position + dragStartPosition - dragCurrentPosition;
+
+        // Check if out of box
+        if (newPosition.x < horizontalWallPosition.x) newPosition.x = horizontalWallPosition.x;
+        if (newPosition.x > horizontalWallPosition.y) newPosition.x = horizontalWallPosition.y;
+        if (newPosition.y < verticalWallPosition.x) newPosition.y = verticalWallPosition.x;
+        if (newPosition.y > verticalWallPosition.y) newPosition.y = verticalWallPosition.y;
+
         newPosition.z = -10;
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
-    }
-
-    Vector2 HorizontalBounds()
-    {
-        float min = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x;
-        float max = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x;
-
-        return new Vector2(min, max);
     }
 
     private void OnDrawGizmos()
@@ -79,8 +101,5 @@ public class CameraController : MonoBehaviour
 
         Gizmos.DrawLine(new Vector2(horizontalWallPosition.x, verticalWallPosition.x), new Vector2(horizontalWallPosition.y, verticalWallPosition.x));
         Gizmos.DrawLine(new Vector2(horizontalWallPosition.x, verticalWallPosition.y), new Vector2(horizontalWallPosition.y, verticalWallPosition.y));
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(new Vector2(HorizontalBounds().x, 0), new Vector2(HorizontalBounds().y, 0));
     }
 }
