@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/LevelPlay/Samples/UnityLevelPlaySample/Scenes/LevelPlaySample.unity
     guid: bd1eb3e1953724de08fadd7cbbc6d358
   - enabled: 1
-    path: Assets/App/Scenes/Playground_Prototype.unity
-    guid: 0852be5800a723046b2d560ea72a98ed
+    path: Assets/App/Scenes/CameraController.unity
+    guid: 89c214443f5175f41844dd18514a0456
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c136a0c6914b5ee4d8d16988d23e4ba5, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 272169955833a63438c5ae9e1d5fcacd, type: 2}
