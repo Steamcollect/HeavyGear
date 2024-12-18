@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33922d15359d9d64ab9d9e6cb4c9dd30, type: 3}
   m_Name: LegendaryCardVisual
   m_EditorClassIdentifier: 
-  backgroundColor: {r: 1, g: 0, b: 0, a: 1}
-  borderColor: {r: 1, g: 0, b: 0, a: 1}
-  borderGlowColor: {r: 1, g: 0.740566, b: 0.740566, a: 1}
-  borderShadowColor: {r: 1, g: 0, b: 0, a: 1}
-  sliderBackgroundColor: {r: 1, g: 0, b: 0, a: 1}
-  sliderFillColor: {r: 1, g: 0, b: 0, a: 1}
+  firstColor: {r: 1, g: 0.06932798, b: 0, a: 1}
+  secondColor: {r: 1, g: 0.5801887, b: 0.5801887, a: 1}

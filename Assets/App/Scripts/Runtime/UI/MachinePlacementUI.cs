@@ -9,7 +9,13 @@ public class MachinePlacementUI : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_Text nameTxt;
     [SerializeField] TMP_Text descriptionTxt;
-    [SerializeField] Image visualImage;
+    [SerializeField] Image machineVisual;
+    [SerializeField] Image backgroud;
+    [SerializeField] Image border;
+    [Space(10)]
+    [SerializeField] private SSO_CardVisual common;
+    [SerializeField] private SSO_CardVisual rare;
+    [SerializeField] private SSO_CardVisual legendary;
 
     //[Space(10)]
     // RSO
@@ -20,13 +26,35 @@ public class MachinePlacementUI : MonoBehaviour
     [Header("Output")]
     [SerializeField] RSE_SelectMachineToPlace rseSelectMachineToPlace;
 
-    public void Setup(SSO_MachinePlacementData machine)
+    public void Setup(InventoryMachineData machine)
     {
-        machineData = machine;
+        machineData = machine.machine;
 
         nameTxt.text = machineData.machineName;
         descriptionTxt.text = machineData.machineDescription;
-        visualImage.sprite = machineData.machineVisual;
+        machineVisual.sprite = machineData.machineVisual;
+
+        switch (machineData.machineRarity)
+        {
+            case MachineRarity.Common:
+                SetCardVisual(common);
+                break;
+            case MachineRarity.Rare:
+                SetCardVisual(rare);
+                break;
+            case MachineRarity.Legendary:
+                SetCardVisual(legendary);
+                break;
+            default:
+                SetCardVisual(common);
+                break;
+        }
+    }
+
+    private void SetCardVisual(SSO_CardVisual cardVisual)
+    {
+        backgroud.color = cardVisual.firstColor;
+        border.color = cardVisual.firstColor;
     }
 
     public void SelectButton()

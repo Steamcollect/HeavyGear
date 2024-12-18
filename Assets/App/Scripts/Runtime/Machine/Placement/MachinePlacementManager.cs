@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Events;
 
 public class MachinePlacementManager : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] List<SSO_MachinePlacementData> machines = new List<SSO_MachinePlacementData>();
+    //[Header("Settings")]
 
     //[Header("References")]
 
@@ -15,9 +15,8 @@ public class MachinePlacementManager : MonoBehaviour
     // RSP
 
     [Header("Input")]
-    [SerializeField] RSE_OpenMachinePlacementPanel rseOpenMachinePlacementPanel;
-    [SerializeField] RSE_CloseMachinePlacementPanel rseCloseMachinePlacementPanel;
-    [SerializeField] RSE_SetupMachinePlacementPanelContent rseSetupMachinePlacementPanelContent;
+    [SerializeField] UnityEvent openMachinePlacementPanel;
+    [SerializeField] UnityEvent closeMachinePlacementPanel;
     [SerializeField] RSE_UpdateMachinePlacementPanelContent rseUpdateMachinePlacementPanelContent;
 
     [Header("Output")]
@@ -37,16 +36,11 @@ public class MachinePlacementManager : MonoBehaviour
         rseSelecteMachineToPlace.action -= PlaceItem;
     }
 
-    private void Start()
-    {
-        rseSetupMachinePlacementPanelContent.Call(machines);
-    }
-
     void OnItemPlacement(MachineSlotSettings settings)
     {
         placementSettings = settings;
         rseUpdateMachinePlacementPanelContent.Call(settings.machineType);
-        rseOpenMachinePlacementPanel.Call();
+        openMachinePlacementPanel.Invoke();
     }
 
     void PlaceItem(SSO_MachinePlacementData machineSelected)
@@ -62,6 +56,6 @@ public class MachinePlacementManager : MonoBehaviour
 
         placementSettings = null;
 
-        rseCloseMachinePlacementPanel.Call();
+        closeMachinePlacementPanel.Invoke();
     }
 }

@@ -16,18 +16,17 @@ public class Inventory : MonoBehaviour
     [SerializeField] private RSE_AddMachineToInventory rseAddSlot;
 
     [Header("Output")]
-    [SerializeField] private RSO_MachinesListUI rsoMachinesListUI;
+    [SerializeField] private RSE_UpdateMachineInventory rseUpdateMachineInventory;
 
-    private List<InventoryMachineData> content = new List<InventoryMachineData>();
+    public List<InventoryMachineData> content;
 
-    private List<InventoryMachineData> Content
+    public List<InventoryMachineData> Content
     {
         get => content;
         set
         {
-            content = value;
-
-            rsoMachinesListUI.Value = value;
+            content = SortMachinesByRarity(value);
+            rseUpdateMachineInventory.Call(content);
         }
     }
 
@@ -42,7 +41,8 @@ public class Inventory : MonoBehaviour
 
     private void Start()
     {
-        Content = rsoContentSaved.Value.inventoryMachineData;
+        Content = content;
+        //Content = rsoContentSaved.Value.inventoryMachineData;
     }
 
     void AddMachine(SSO_MachinePlacementData machine)
@@ -58,13 +58,11 @@ public class Inventory : MonoBehaviour
         {
             Content.Add(new InventoryMachineData { machine = machine, amount = 1, machineLevel = 1 });
         }
-
-        SortMachinesByRarity();
     }
 
-    private void SortMachinesByRarity()
+    private List<InventoryMachineData> SortMachinesByRarity(List<InventoryMachineData> machines)
     {
-        Content = Content.OrderByDescending(x => x.machine.machineRarity).ToList();
+        return machines.OrderByDescending(x => x.machine.machineRarity).ToList();
     }
 
     void LevelUp(InventoryMachineData slot)

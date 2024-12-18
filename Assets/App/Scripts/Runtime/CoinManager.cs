@@ -33,7 +33,7 @@ public class CoinManager : MonoBehaviour
     {
         coins += coinToAdd;
         rsoCoins.Value = coins;
-
+        if (coinLevel == null) return;
         if (coins >= coinLevel.nextFactoryLevel)
         {
             Debug.Log("Next factory Unlock");

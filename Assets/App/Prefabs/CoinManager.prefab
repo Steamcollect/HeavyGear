@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eb72f88717e9e44b9654ed663db841a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinLevel: {fileID: 11400000, guid: 35a6531957969664393610ed4d12dcf7, type: 2}
+  coinLevel: {fileID: 0}
   rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}
   rseAddCoin: {fileID: 11400000, guid: 1ad6f9ab8ec749949a83cade4e0d5b91, type: 2}
   rseLoadNewScene: {fileID: 11400000, guid: 061d61e548b14ea4d8598e40c381a694, type: 2}

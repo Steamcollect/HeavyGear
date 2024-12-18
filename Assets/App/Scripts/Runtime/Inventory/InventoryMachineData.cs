@@ -1,3 +1,4 @@
+[System.Serializable]
 public class InventoryMachineData
 {
     public SSO_MachinePlacementData machine;

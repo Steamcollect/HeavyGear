@@ -13,28 +13,20 @@ public class MachinePlacementPanel : MonoBehaviour
     List<MachinePlacementUI> machinesUI = new List<MachinePlacementUI>();
 
     [Header("Input")]
-    [SerializeField] RSE_SetupMachinePlacementPanelContent rseSetupContent;
+    [SerializeField] RSE_UpdateMachineInventory rseUpdateMachineInventory;
     [SerializeField] RSE_UpdateMachinePlacementPanelContent rseUpdateContent;
 
-    [Header("Input")]
-    [SerializeField] RSE_OpenMachinePlacementPanel rseOpenPanel;
-    [SerializeField] RSE_CloseMachinePlacementPanel rseClosePanel;
+    //[Header("Input")]
 
     private void OnEnable()
     {
-        rseOpenPanel.action += OpenPanel;
-        rseClosePanel.action += ClosePanel;
-
         rseUpdateContent.action += UpdateContent;
-        rseSetupContent.action += SetupContent;
+        rseUpdateMachineInventory.action += SetupContent;
     }
     private void OnDisable()
     {
-        rseOpenPanel.action -= OpenPanel;
-        rseClosePanel.action -= ClosePanel;
-
         rseUpdateContent.action -= UpdateContent;
-        rseSetupContent.action -= SetupContent;
+        rseUpdateMachineInventory.action -= SetupContent;
     }
 
     private void Awake()
@@ -42,9 +34,9 @@ public class MachinePlacementPanel : MonoBehaviour
         contentSizeFitter = content.GetComponent<ContentSizeFitter>();
     }
 
-    void SetupContent(List<SSO_MachinePlacementData> machines)
+    void SetupContent(List<InventoryMachineData> machines)
     {
-        foreach (SSO_MachinePlacementData machine in machines)
+        foreach (InventoryMachineData machine in machines)
         {
             MachinePlacementUI current = Instantiate(machinePlacementUIPrefab, content);
             current.Setup(machine);
@@ -59,22 +51,5 @@ public class MachinePlacementPanel : MonoBehaviour
             if(machine.machineData.machineType == machineType) machine.gameObject.SetActive(true);
             else machine.gameObject.SetActive(false);
         }
-    }
-
-    void OpenPanel()
-    {
-        panel.SetActive(true);
-        StartCoroutine(UpdateContentSize());
-    }
-    public void ClosePanel()
-    {
-        panel.SetActive(false);
-    }
-
-    IEnumerator UpdateContentSize()
-    {
-        yield return new WaitForSeconds(.01f);
-        contentSizeFitter.SetLayoutVertical();
-        contentSizeFitter.SetLayoutHorizontal();
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 public class InventoryUI : MonoBehaviour
 {
@@ -5,14 +6,26 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject cardVisual;
     [SerializeField] private GameObject list;
     [Space(10)]
-    [SerializeField] private RSO_MachinesListUI rsoMachinesListUI;
+    [SerializeField] private RSE_UpdateMachineInventory rseUpdateMachineInventory;
 
-    public void UpdateInventoryUI()
+    private void OnEnable()
     {
-        for (int i = 0; i < rsoMachinesListUI.Value.Count; i++)
+        rseUpdateMachineInventory.action += UpdateInventoryUI;
+    }
+
+    private void OnDisable()
+    {
+        rseUpdateMachineInventory.action -= UpdateInventoryUI;
+    }
+
+    public void UpdateInventoryUI(List<InventoryMachineData> machines)
+    {
+        Debug.Log("test");
+        for (int i = 0; i < machines.Count; i++)
         {
             GameObject card = Instantiate(cardVisual, list.transform);
-            card.GetComponent<CardUI>().SetCard(rsoMachinesListUI.Value[i].machine);
+            CardUI cardUI = card.GetComponent<CardUI>();
+            cardUI.SetCard(machines[i]);
         }
     }
 }

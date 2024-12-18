@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 public class MachineModificationManager : MonoBehaviour
 {
     //[Header("Settings")]
@@ -15,8 +16,7 @@ public class MachineModificationManager : MonoBehaviour
     [SerializeField] RSE_OpenModificationSettings rseOpenModificationSettings;
     [SerializeField] RSE_DestroyMachine rseDestroyMachine;
 
-    [Header("Output")]
-    [SerializeField] RSE_OpenMachineModificationPanel rseOpenModificationPanel;
+    [SerializeField] private UnityEvent openModificationPanel;
 
     private void OnEnable()
     {
@@ -32,7 +32,7 @@ public class MachineModificationManager : MonoBehaviour
     void OpenModificationSettings(MachineSlot slot)
     {
         currentSlot = slot;
-        rseOpenModificationPanel.Call();
+        openModificationPanel.Invoke();
     }
 
     void DestroyMachine()

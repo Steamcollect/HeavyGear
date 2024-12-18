@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,23 +10,25 @@ public class CardUI : MonoBehaviour
     [SerializeField] private MachineRarity machineRarity;
     [Space(10)]
     [SerializeField] private Image background;
-    [Space(5)]
+    [Space(10)]
     [SerializeField] private Image border;
     [SerializeField] private Image borderGlow;
     [SerializeField] private Image borderShadow;
-    [Space(5)]
+    [Space(10)]
     [SerializeField] private Image sliderBackground;
     [SerializeField] private Image sliderFill;
+    [Space(10)]
+    [SerializeField] private TextMeshProUGUI cardNumber;
+    [SerializeField] private Slider slider;
+
     [Header("References")]
     [SerializeField] private SSO_CardVisual commonCard;
     [SerializeField] private SSO_CardVisual rareCard;
     [SerializeField] private SSO_CardVisual legendaryCard;
 
-    public MachineRarity GetMachineRarity() => machineRarity;
-
-    public void SetCard(SSO_MachinePlacementData machine)
+    public void SetCard(InventoryMachineData machine)
     {
-        switch (machine.machineRarity)
+        switch (machine.machine.machineRarity)
         {
             case MachineRarity.Common:
                 SetCardVisual(commonCard); 
@@ -40,6 +43,9 @@ public class CardUI : MonoBehaviour
                 Debug.LogWarning("No machine rarity set");
                 break;
         }
+
+        cardNumber.text = machine.amount + "/" + machine.maxAmount;
+        slider.value = (float)machine.amount / (float)machine.maxAmount;
     }
 
     private void SetCardVisual(SSO_CardVisual cardVisual)
@@ -50,10 +56,5 @@ public class CardUI : MonoBehaviour
         borderShadow.color = cardVisual.firstColor;
         sliderBackground.color = cardVisual.firstColor;
         sliderFill.color = cardVisual.firstColor;
-    }
-
-    private void SetCardStats()
-    {
-
     }
 }

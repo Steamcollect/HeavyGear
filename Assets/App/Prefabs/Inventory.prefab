@@ -46,4 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseAddSlot: {fileID: 11400000, guid: 05a3226d9c3dd0a40855ac41ea701179, type: 2}
-  rsoMachinesListUI: {fileID: 11400000, guid: 054ae470d9704cb4f8d8efca1a558f84, type: 2}
+  rseUpdateMachineInventory: {fileID: 11400000, guid: fb3da20a594b7f54bbea2b2ba42bb3d5, type: 2}
+  content:
+  - machine: {fileID: 11400000, guid: b63199b61f62d494eaa93430fba955e4, type: 2}
+    amount: 10
+    maxAmount: 50
+    machineLevel: 10

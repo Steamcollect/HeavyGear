@@ -3,26 +3,39 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class CustomUIButton : MonoBehaviour, IPointerDownHandler
+public class CustomUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
 {
     [Header("References")]
-    [SerializeField] private CanvasGroup normal;
-    [SerializeField] private CanvasGroup pressed;
     [SerializeField] private Animator animator;
-    [SerializeField] private AnimationClip clip;
+    [SerializeField] private AnimationClip downClip;
+    [SerializeField] private AnimationClip upClip;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onClick;
 
-    private void Awake()
-    {
-        if(normal != null) normal.alpha = 1;
-        if (pressed != null) pressed.alpha = 0;
-    }
+    private bool isCursorHoverButton;
 
     public void OnPointerDown(PointerEventData data)
     {
-        if(animator != null) animator.Play(clip.name);
-        onClick.Invoke();
+        isCursorHoverButton = true;
+        PlayDownAnimation();
     }
+
+    public void OnPointerExit(PointerEventData data)
+    {
+        isCursorHoverButton = false;
+        PlayUpAnimation();
+    }
+
+    public void OnPointerUp(PointerEventData data)
+    {
+
+        if (isCursorHoverButton) onClick.Invoke();
+
+        PlayUpAnimation();
+        isCursorHoverButton = false;
+    }
+
+    private void PlayDownAnimation() { if (animator != null) animator.Play(downClip.name); }
+    private void PlayUpAnimation() { if (animator != null) animator.Play(upClip.name); }
 }

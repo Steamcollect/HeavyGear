@@ -22,7 +22,7 @@ public class AdvancedCardInfo : MonoBehaviour
         canvasGroup.alpha = 0.0f;
     }
 
-    public void ShowAdvancedCard(CardUI card)
+    public void ShowAdvancedCard(InventoryMachineData machineData)
     {
         canvasGroup.alpha = 1.0f;
     }

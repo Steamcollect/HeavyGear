@@ -44,13 +44,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f15c7699020f8e4eb4e1427bb45aa0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machines:
-  - {fileID: 11400000, guid: b63199b61f62d494eaa93430fba955e4, type: 2}
-  - {fileID: 11400000, guid: c83b0505e36aff54aba89a252e74dacf, type: 2}
-  - {fileID: 11400000, guid: 1c16593047620cf41816e19b4cefc373, type: 2}
-  rseOpenMachinePlacementPanel: {fileID: 11400000, guid: 073c6738086596f48aa867ebcd76b474, type: 2}
-  rseCloseMachinePlacementPanel: {fileID: 11400000, guid: 372ecae1fd5546842965c0e9824ca91d, type: 2}
-  rseSetupMachinePlacementPanelContent: {fileID: 11400000, guid: b9b07d0d234b55143b0212f4d059b99d, type: 2}
+  openMachinePlacementPanel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: be00a6e650f1eef4b85e7475f957c797, type: 2}
+        m_TargetAssemblyTypeName: BT.ScriptablesObject.RuntimeScriptableEvent`1[[System.String,
+          mscorlib
+        m_MethodName: Call
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Placement
+          m_BoolArgument: 0
+        m_CallState: 2
+  closeMachinePlacementPanel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: be00a6e650f1eef4b85e7475f957c797, type: 2}
+        m_TargetAssemblyTypeName: BT.ScriptablesObject.RuntimeScriptableEvent`1[[System.String,
+          mscorlib
+        m_MethodName: Call
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Main
+          m_BoolArgument: 0
+        m_CallState: 2
   rseUpdateMachinePlacementPanelContent: {fileID: 11400000, guid: 37deeacd6c517f84b810c0c44189f1d9, type: 2}
   rseAddNewMachine: {fileID: 11400000, guid: ff567ce0bd3c80e4989c4e45691b6a6e, type: 2}
   rseSelecteMachineToPlace: {fileID: 11400000, guid: 1c459db0c5ecd9c4396d1d9dcd2573d9, type: 2}
