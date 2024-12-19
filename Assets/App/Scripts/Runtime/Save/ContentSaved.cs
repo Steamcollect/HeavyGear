@@ -11,9 +11,9 @@ namespace BT.Save
         public List<InventoryMachineData> inventoryMachineData = new List<InventoryMachineData>();
 
         // Coins
-        public BigNumber coinAmount;
-        public BigNumber coinPerMin;
-        public DateTime lastDateTimeQuit;
+        public string coinAmount;
+        public string coinPerMin;
+        public string lastDateTimeQuit;
         public int idleDelay = 300; // In minutes
     }
 }

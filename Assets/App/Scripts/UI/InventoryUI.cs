@@ -20,7 +20,6 @@ public class InventoryUI : MonoBehaviour
 
     public void UpdateInventoryUI(List<InventoryMachineData> machines)
     {
-        Debug.Log("test");
         for (int i = 0; i < machines.Count; i++)
         {
             GameObject card = Instantiate(cardVisual, list.transform);

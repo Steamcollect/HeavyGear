@@ -43,14 +43,15 @@ public class CoinManager : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
 
-        AddCoin(rsoContentSaved.Value.coinAmount);
+        AddCoin(new BigNumber(rsoContentSaved.Value.coinAmount));
 
         // Calculate idle delay
-        TimeSpan timeBetween = (DateTime.Now - rsoContentSaved.Value.lastDateTimeQuit);
-        int totMin = (int)timeBetween.TotalMinutes;
+        TimeSpan varTime = DateTime.Now - DateTime.Parse(rsoContentSaved.Value.lastDateTimeQuit);
+        double fractionalMinutes = varTime.TotalMinutes;
+        int totMin = (int)fractionalMinutes;
 
         if (totMin > rsoContentSaved.Value.idleDelay) totMin = rsoContentSaved.Value.idleDelay;
-        AddCoin(rsoContentSaved.Value.coinPerMin * totMin);
+        AddCoin(new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
     }
 
     void AddCoin(BigNumber coinToAdd)
@@ -59,13 +60,13 @@ public class CoinManager : MonoBehaviour
         StartCoroutine(CoinPerMinDelay(coinToAdd));
 
         // Set save
-        rsoContentSaved.Value.coinAmount = coins;
+        rsoContentSaved.Value.coinAmount = coins.ToString();
 
         rsoCoins.Value = coins;
         if (coinLevel == null) return;
         if (coins >= coinLevel.nextFactoryLevel)
         {
-            Debug.Log("Next factory Unlock");
+            //Debug.Log("Next factory Unlock");
 
             // Changer de scene si le joueur le souhaite
             //rseLoadNewScene.Call(coinLevel.nextFactorySceneName);
@@ -75,7 +76,7 @@ public class CoinManager : MonoBehaviour
         {
             if (coins >= coinLevel.rebirthLevels[i])
             {
-                Debug.Log("Rebirth " + i + ", at " + coinLevel.rebirthLevels[i] + "possible");
+                //Debug.Log("Rebirth " + i + ", at " + coinLevel.rebirthLevels[i] + "possible");
 
                 // Rebirth, charger la scene actuelle si le joueur le souhaite
                 //rseLoadNewScene.Call( <Faut trouver le nom de la scene actuelle> );
@@ -92,9 +93,9 @@ public class CoinManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        rsoContentSaved.Value.coinAmount = coins;
-        rsoContentSaved.Value.coinPerMin = coinPerMin;
-        rsoContentSaved.Value.lastDateTimeQuit = DateTime.Now;
+        rsoContentSaved.Value.coinAmount = coins.ToString();
+        rsoContentSaved.Value.coinPerMin = coinPerMin.ToString();
+        rsoContentSaved.Value.lastDateTimeQuit = DateTime.Now.ToString();
 
         rseSaveData.Call();
     }
