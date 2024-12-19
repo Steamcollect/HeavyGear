@@ -224,11 +224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Offset.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
@@ -1138,11 +1138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Offset.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
@@ -1334,11 +1334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Offset.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.y
@@ -1646,11 +1646,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8047205273379626679, guid: 68e54d00c9292d74da7ef59e4266186a, type: 3}
   m_PrefabInstance: {fileID: 808995694}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &872099547 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8312248277133210084, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-  m_PrefabInstance: {fileID: 8949112643087912374}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &925933924
 GameObject:
@@ -2446,11 +2441,11 @@ Transform:
   m_GameObject: {fileID: 1223361658}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.364902, y: -77.21444, z: -37125.832}
-  m_LocalScale: {x: 415.5077, y: 415.5077, z: 415.5077}
+  m_LocalPosition: {x: -0.07194072, y: -0.14866525, z: 18.519577}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 872099547}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1228810944
 GameObject:
@@ -2716,11 +2711,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Size.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_Offset.y
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080712446466045707, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
       propertyPath: m_IsTrigger
@@ -3169,7 +3164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: itemSpacing
-      value: 1
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5391750183264169635, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: pathPoints.Array.size
@@ -3490,10 +3485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8312248277133210084, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1223361660}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
 --- !u!1660057539 &9223372036854775807
@@ -3501,6 +3493,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1221637488}
+  - {fileID: 1223361660}
   - {fileID: 1425891828}
   - {fileID: 925933925}
   - {fileID: 8949112643087912374}

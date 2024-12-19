@@ -17,8 +17,6 @@ public class Ore : MonoBehaviour
     [Required]
     [SerializeField] private SSO_OreData oreData;
     [Space(10)]
-    [SerializeField] private TextMeshProUGUI text;
-    [Space(10)]
     [SerializeField] private OreVisual oreVisual;
 
     private BigNumber currentOreValue = new BigNumber(1e0);
