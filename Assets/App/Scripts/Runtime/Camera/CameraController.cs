@@ -32,8 +32,22 @@ public class CameraController : MonoBehaviour
     // RSF
     // RSP
 
-    //[Header("Input")]
+    [Header("Input")]
+    [SerializeField] RSE_LockCamera rseLockCamera;
+    [SerializeField] RSE_UnlockCamera rseUnlockCamera;
+
     //[Header("Output")]
+
+    private void OnEnable()
+    {
+        rseLockCamera.action += LockCamera;
+        rseUnlockCamera.action += UnlockCamera;
+    }
+    private void OnDisable()
+    {
+        rseLockCamera.action -= LockCamera;
+        rseUnlockCamera.action -= UnlockCamera;
+    }
 
     private void Start()
     {
@@ -87,6 +101,15 @@ public class CameraController : MonoBehaviour
 
         newPosition.z = -10;
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime * movementMultiplier);
+    }
+
+    void LockCamera()
+    {
+        canMove = false;
+    }
+    void UnlockCamera()
+    {
+        canMove = true;
     }
 
     private void OnDrawGizmos()

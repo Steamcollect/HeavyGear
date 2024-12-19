@@ -14,8 +14,27 @@ public class InteractionManager : MonoBehaviour
 
     Touch lastTouch;
 
+    bool canInteract = true;
+
+    [Header("Input")]
+    [SerializeField] RSE_LockWorldInteraction rseLockInteraction;
+    [SerializeField] RSE_UnlockWorldInteraction rseUnlockInteraction;
+
+    private void OnEnable()
+    {
+        rseLockInteraction.action += LockCamera;
+        rseUnlockInteraction.action += UnlockCamera;
+    }
+    private void OnDisable()
+    {
+        rseLockInteraction.action -= LockCamera;
+        rseUnlockInteraction.action -= UnlockCamera;
+    }
+
     private void Update()
     {
+        if(!canInteract) return;
+
         if (Input.touchCount > 0)
         {
             OnTouch();
@@ -74,5 +93,14 @@ public class InteractionManager : MonoBehaviour
         if (hit.collider != null && hit.transform.TryGetComponent(out Clickable obj)) return obj;
         
         return null;
+    }
+
+    void LockCamera()
+    {
+        canInteract = false;
+    }
+    void UnlockCamera()
+    {
+        canInteract = true;
     }
 }
