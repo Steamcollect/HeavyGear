@@ -37,7 +37,6 @@ public class MachineModificationManager : MonoBehaviour
 
     void DestroyMachine()
     {
-        print("fsfss");
         Destroy(currentSlot.currentMachine.gameObject);
         currentSlot.UpdateCurrentMachine(null);
     }

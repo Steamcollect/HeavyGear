@@ -17,12 +17,12 @@ public class MachineSlot : MonoBehaviour
 
     private void OnEnable()
     {
-        settings.clickable.onClickDown += OnClick;
+        settings.clickable.onClickUp += OnClick;
         settings.clickable.onLongClickDown += OnLongClick;
     }
     private void OnDisable()
     {
-        settings.clickable.onClickDown -= OnClick;
+        settings.clickable.onClickUp -= OnClick;
         settings.clickable.onLongClickDown -= OnLongClick;
     }
 
