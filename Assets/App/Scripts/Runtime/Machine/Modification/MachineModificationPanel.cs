@@ -14,18 +14,8 @@ public class MachineModificationPanel : MonoBehaviour
     [Header("Output")]
     [SerializeField] RSE_DestroyMachine rseDestroyMachine;
 
-    void OpenPanel()
-    {
-        panel.SetActive(true);
-    }
-    public void ClosePanel()
-    {
-        panel.SetActive(false);
-    }
-
     public void DestroyButton()
     {
         rseDestroyMachine.Call();
-        ClosePanel();
     }
 }
