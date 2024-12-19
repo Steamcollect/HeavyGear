@@ -13,6 +13,7 @@ public class ImporterSpriteFix : EditorWindow
     private SerializedObject serializedObject;
     private SerializedProperty spriteProperty;
     private Vector2 pivot;
+    private int pixelDensity;
 
     [MenuItem("Tools/Import Sprite Fix")]
 
@@ -45,14 +46,23 @@ public class ImporterSpriteFix : EditorWindow
         EditorGUILayout.Space();
         EditorGUILayout.PropertyField(spriteProperty);
         pivot = EditorGUILayout.Vector2Field("Pivot", pivot);
-        if (GUILayout.Button("Fix"))
+        EditorGUILayout.Space();
+        pixelDensity = EditorGUILayout.IntField("Pixel Density",pixelDensity);
+        EditorGUILayout.Space();
+        EditorGUILayout.BeginHorizontal();
+        if (GUILayout.Button("Fix Pivot"))
         {
             FixSprites();
         }
+        if (GUILayout.Button("Fix Pixel Density"))
+        {
+            FixSprites(true);
+        }
+        EditorGUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();
     }
     
-    private void FixSprites()
+    private void FixSprites(bool fixDensity = false)
     {
         var hoderComp = holder.GetComponent<ContainerHolder>();
         foreach (var texture in hoderComp.container)
