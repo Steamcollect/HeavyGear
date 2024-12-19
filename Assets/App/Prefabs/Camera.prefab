@@ -150,7 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c29d1ad3f690714bb693f35f1f61319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementTime: 9
-  horizontalWallPosition: {x: -5, y: 5}
-  verticalWallPosition: {x: -5, y: 5}
-  cam: {fileID: 3565530430767823034}
+  detectionDistance: 0.1
+  movementTime: 12
+  friction: 2.5
+  horizontalWallPosition: {x: -3, y: 3}
+  verticalWallPosition: {x: -3, y: 3}
+  cam: {fileID: 0}
