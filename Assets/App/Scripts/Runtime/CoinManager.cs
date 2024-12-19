@@ -52,6 +52,7 @@ public class CoinManager : MonoBehaviour
 
         if (totMin > rsoContentSaved.Value.idleDelay) totMin = rsoContentSaved.Value.idleDelay;
         AddCoin(new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
+        print("Show value : " + new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
     }
 
     void AddCoin(BigNumber coinToAdd)

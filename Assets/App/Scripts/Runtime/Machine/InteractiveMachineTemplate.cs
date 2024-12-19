@@ -16,7 +16,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     public void SetupParentRequirement(Clickable newClickable)
     {
         clickable = newClickable;
-        clickable.onClickDown += Interact;
+        clickable.onClickUp += Interact;
 
         currentState = MachineState.Idle;
 
@@ -25,7 +25,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     public abstract void OnObjEnable();
     private void OnDisable()
     {
-        clickable.onClickDown -= Interact;
+        clickable.onClickUp -= Interact;
 
         OnObjDisable();
     }

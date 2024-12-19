@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 public class Clickable : MonoBehaviour
 {
-    public Action onClickDown;
+    public Action onClickUp;
     public Action onLongClickDown;
 
     //[Header("Settings")]
@@ -17,9 +17,9 @@ public class Clickable : MonoBehaviour
     //[Header("Input")]
     //[Header("Output")]
 
-    public void OnClickDown()
+    public void OnClickUp()
     {
-        onClickDown?.Invoke();
+        onClickUp?.Invoke();
     }
 
     public void OnLongClickDown()
