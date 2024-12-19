@@ -1,9 +1,10 @@
-using System.Collections.Generic;
+    using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     [Header("Settings")]
+    [SerializeField] private float detectionDistance;
     [SerializeField] float movementTime;
     bool canMove;
 
@@ -56,7 +57,7 @@ public class CameraController : MonoBehaviour
             {
                 dragCurrentPosition = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-                canMove = Vector2.Distance(dragStartPosition, dragCurrentPosition) > 1 ;
+                canMove = Vector2.Distance(dragStartPosition, dragCurrentPosition) > detectionDistance ;
             }
 
             //if(Input.touchCount == 2 && lastTouchCount != 2)
