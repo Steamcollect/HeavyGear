@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_OreData
   m_EditorClassIdentifier: 
   oreData:
-  - visual: {fileID: 21300000, guid: 8ca9346cfef96b446a7a5087fa2192e3, type: 3}
+  - visual: {fileID: 21300000, guid: 7c7464439fec32340ac4e7962bc6c3ef, type: 3}
     stats:
       name: Dirt
       defaultValue: 1e0
@@ -21,7 +21,7 @@ MonoBehaviour:
     particle:
       particleSystem: {fileID: 0}
       particleColor: {r: 0, g: 0, b: 0, a: 0}
-  - visual: {fileID: 21300000, guid: fc96d0ec723bbe9408d413521f69407d, type: 3}
+  - visual: {fileID: 21300000, guid: 007f01dc610d85441a31b025ef72e0b4, type: 3}
     stats:
       name: Iron
       defaultValue: 1e1
@@ -29,7 +29,7 @@ MonoBehaviour:
     particle:
       particleSystem: {fileID: 0}
       particleColor: {r: 0, g: 0, b: 0, a: 0}
-  - visual: {fileID: 21300000, guid: c535d67ccfcfb6a4f9ed947f1276642d, type: 3}
+  - visual: {fileID: 21300000, guid: 6ade3359afd69cf4481cdc54ba351970, type: 3}
     stats:
       name: Gold
       defaultValue: 1e2
