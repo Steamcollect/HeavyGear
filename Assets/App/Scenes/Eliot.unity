@@ -174,10 +174,8 @@ MonoBehaviour:
   panel: {fileID: 1012921340}
   content: {fileID: 196396887}
   machinePlacementUIPrefab: {fileID: 6992763542403931350, guid: 6039e95115a2e4f4d8d42a82802cf700, type: 3}
-  rseSetupContent: {fileID: 11400000, guid: b9b07d0d234b55143b0212f4d059b99d, type: 2}
+  rseUpdateMachineInventory: {fileID: 0}
   rseUpdateContent: {fileID: 11400000, guid: 37deeacd6c517f84b810c0c44189f1d9, type: 2}
-  rseOpenPanel: {fileID: 11400000, guid: 073c6738086596f48aa867ebcd76b474, type: 2}
-  rseClosePanel: {fileID: 11400000, guid: 372ecae1fd5546842965c0e9824ca91d, type: 2}
 --- !u!4 &194389409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1980787420196267216, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
@@ -997,8 +995,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 486244708}
-  rseOpenPanel: {fileID: 11400000, guid: 87e31e6ca3a8a174982bfaf75f8b97b0, type: 2}
-  rseClosePanel: {fileID: 11400000, guid: 7476ec42540bc6f4db7cb63821f50c6e, type: 2}
   rseDestroyMachine: {fileID: 11400000, guid: 4f3cfbd0b1bfd5f4baadc7f0ea2a2dc9, type: 2}
 --- !u!1001 &764019958
 PrefabInstance:
@@ -2354,10 +2350,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 396109543}
     m_Modifications:
-    - target: {fileID: 3452315031728734579, guid: b5fb7f3cb8d4aa6428f6626a7294b7b5, type: 3}
-      propertyPath: coinLevel
-      value: 
-      objectReference: {fileID: 11400000, guid: 35a6531957969664393610ed4d12dcf7, type: 2}
     - target: {fileID: 8434695073467985577, guid: b5fb7f3cb8d4aa6428f6626a7294b7b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
