@@ -6,7 +6,10 @@ public class CameraController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float detectionDistance;
     [SerializeField] float movementTime;
-    bool canMove;
+    [SerializeField] float friction;
+    float movementMultiplier;
+    bool canMove = true;
+    bool isMoving;
 
     Vector3 dragStartPosition, dragCurrentPosition;
     Vector3 newPosition;
@@ -40,8 +43,11 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        CalculateMovement();
-        if(canMove) Move();
+        if (canMove)
+        {
+            CalculateMovement();
+            if (isMoving) Move();
+        }
     }
 
     void CalculateMovement()
@@ -52,30 +58,19 @@ public class CameraController : MonoBehaviour
             {
                 dragStartPosition = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
                 dragCurrentPosition = dragStartPosition;
+                movementMultiplier = 1;
             }
             else
             {
                 dragCurrentPosition = cam.ScreenToWorldPoint(Input.GetTouch(0).position);
 
-                canMove = Vector2.Distance(dragStartPosition, dragCurrentPosition) > detectionDistance ;
+                isMoving = Vector2.Distance(dragStartPosition, dragCurrentPosition) > detectionDistance;
             }
-
-            //if(Input.touchCount == 2 && lastTouchCount != 2)
-            //{
-            //    if(lastTouchCount != 2)
-            //    {
-            //        startingDistanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-            //    }
-            //    else
-            //    {
-            //        distanceBetweenFingers = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-            //    }
-
-            //    float newZoom = (distanceBetweenFingers - startingDistanceBetweenFingers) * zoomMultplier;
-            //    if(newZoom < minMaxZoom.x) newZoom = minMaxZoom.x;
-            //    if (newZoom > minMaxZoom.y) newZoom = minMaxZoom.y;
-            //    cam.orthographicSize = newZoom;
-            //}
+        }
+        else
+        {
+            movementMultiplier -= Time.deltaTime * friction;
+            if(movementMultiplier < 0) movementMultiplier = 0;
         }
 
         lastTouchCount = Input.touchCount;
@@ -91,7 +86,7 @@ public class CameraController : MonoBehaviour
         if (newPosition.y > verticalWallPosition.y) newPosition.y = verticalWallPosition.y;
 
         newPosition.z = -10;
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime);
+        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * movementTime * movementMultiplier);
     }
 
     private void OnDrawGizmos()
