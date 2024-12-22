@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &871650401120519401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6413205458494895629}
+  - component: {fileID: 14950755438750593}
+  m_Layer: 0
+  m_Name: MachineStatisticsUpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6413205458494895629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871650401120519401}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &14950755438750593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871650401120519401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e7697a1c974c64bb39fe28ee2f12d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rsoUpgrades: {fileID: 11400000, guid: 51a118fc51f813f4ca7af5052f231ad3, type: 2}
+  rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
+  rseAddMinerSpeedMult: {fileID: 11400000, guid: fb48919a57d703d46bceb11c40c148ab, type: 2}
+  rseAddMinerPowerMult: {fileID: 11400000, guid: 01397ab70d02a414c9b523394cdee614, type: 2}
+  rseAddMinerGiftProb: {fileID: 11400000, guid: 1a9729e2ee3e90643ba0372f8d21a0e1, type: 2}
+  rseAddMinerAutomation: {fileID: 11400000, guid: c242cfd86fe44e2448e594e961accdda, type: 2}
+  rseAddSellerSpeedMult: {fileID: 11400000, guid: 5c2b8d12cbf666b478bfd39f9644bb25, type: 2}
+  rseAddSellerCapacityMult: {fileID: 11400000, guid: 29e584b60936ae44aba8228c3642fb06, type: 2}
+  rseAddSellerProfitMult: {fileID: 11400000, guid: 5c690f9958951b044875a0cd373c0606, type: 2}
+  rseAddSellerAutomation: {fileID: 11400000, guid: eaa0f43117b34094086f59b7aaefeeb5, type: 2}
+  rseAddPolisherSpeedMult: {fileID: 11400000, guid: 08598c5c8103a724e8ac0a74d12ac08b, type: 2}
+  rseAddPolisherPowerMult: {fileID: 11400000, guid: b1cee9370315f66498fda5698d9a035c, type: 2}
+  rseAddPolisherAutomation: {fileID: 11400000, guid: 9dc485b87e1d0eb428cbbae1abdce8df, type: 2}
+  rseAddConveyorSpeedMult: {fileID: 11400000, guid: 2a300adf1b502df46b6a3878ab30c413, type: 2}

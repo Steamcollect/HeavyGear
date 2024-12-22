@@ -72,4 +72,9 @@ public class MachineAutoTest : InteractiveMachineTemplate
     {
         conveyorBelt = settings.conveyorsExit[0];
     }
+
+    public override float CooldownMultiplier()
+    {
+        return 1;
+    }
 }

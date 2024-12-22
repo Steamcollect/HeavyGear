@@ -89,4 +89,9 @@ public class MachineSeller : InteractiveMachineTemplate
         conveyorBelt = settings.conveyorsEnter[0];
         conveyorBelt.onObjectTouchTheEnd += AddStorage;
     }
+
+    public override float CooldownMultiplier()
+    {
+        return 1;
+    }
 }

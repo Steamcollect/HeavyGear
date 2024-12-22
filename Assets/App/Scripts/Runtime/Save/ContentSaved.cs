@@ -9,6 +9,8 @@ namespace BT.Save
     {
         public FactoryUpgradeData factoryUpgradeData;
         public List<InventoryMachineData> inventoryMachineData = new List<InventoryMachineData>();
+        public MachineStatisticsUpgrade machineStatisticsUpgrade;
+        public Dictionary<int, int> machineButtonsUpgrades = new Dictionary<int, int>();
 
         // Coins
         public string coinAmount;

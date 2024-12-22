@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   longTouchTime: 0.5
+  rseLockInteraction: {fileID: 11400000, guid: 80881fd778213ef4a85cc047292f5703, type: 2}
+  rseUnlockInteraction: {fileID: 11400000, guid: 553abb54e1c55eb4f94a775f60c952b4, type: 2}

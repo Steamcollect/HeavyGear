@@ -62,4 +62,9 @@ public class MachinePress : InteractiveMachineTemplate
     {
         return true;
     }
+
+    public override float CooldownMultiplier()
+    {
+        return 1;
+    }
 }

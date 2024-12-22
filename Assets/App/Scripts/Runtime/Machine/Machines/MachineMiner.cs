@@ -63,4 +63,9 @@ public class MachineMiner : InteractiveMachineTemplate
     {
         conveyorBelt = settings.conveyorsExit[0];
     }
+
+    public override float CooldownMultiplier()
+    {
+        return rsoStatisticsUpgrades.Value.minerSpeedMultiplier;
+    }
 }

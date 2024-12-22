@@ -21,6 +21,7 @@ public class CoinManager : MonoBehaviour
 
     [Header("Input")]
     [SerializeField] RSE_AddCoin rseAddCoin;
+    [SerializeField] RSE_RemoveCoin rseRemoveCoin;
 
     [Header("Output")]
     [SerializeField] RSE_LoadNewScene rseLoadNewScene;
@@ -29,10 +30,12 @@ public class CoinManager : MonoBehaviour
     private void OnEnable()
     {
         rseAddCoin.action += AddCoin;
+        rseRemoveCoin.action += RemoveCoin;
     }
     private void OnDisable()
     {
         rseAddCoin.action -= AddCoin;
+        rseRemoveCoin.action -= RemoveCoin;
     }
 
     private void Start()
@@ -58,12 +61,12 @@ public class CoinManager : MonoBehaviour
     void AddCoin(BigNumber coinToAdd)
     {
         coins += coinToAdd;
+        rsoCoins.Value = coins;
         StartCoroutine(CoinPerMinDelay(coinToAdd));
 
         // Set save
         rsoContentSaved.Value.coinAmount = coins.ToString();
 
-        rsoCoins.Value = coins;
         if (coinLevel == null) return;
         if (coins >= coinLevel.nextFactoryLevel)
         {
@@ -83,6 +86,12 @@ public class CoinManager : MonoBehaviour
                 //rseLoadNewScene.Call( <Faut trouver le nom de la scene actuelle> );
             }
         }
+    }
+    void RemoveCoin(BigNumber coinToRemove)
+    {
+        coins -= coinToRemove;
+        rsoCoins.Value = coins;
+        rsoContentSaved.Value.coinAmount = coins.ToString();
     }
 
     IEnumerator CoinPerMinDelay(BigNumber coin)

@@ -7,13 +7,15 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     public SSO_MachineData SSO_statistics;
     [HideInInspector] public MachineData statistics;
 
+    public RSO_MachinesStatisticsUpgrades rsoStatisticsUpgrades;
+
     Clickable clickable;
 
     [HideInInspector] public MachineState currentState;
 
     public RSO_UpgradeData rsoUpgradeData; 
 
-    public void SetupParentRequirement(Clickable newClickable)
+    public void SetupParentRequirement(Clickable newClickable) // On Enable
     {
         clickable = newClickable;
         clickable.onClickUp += Interact;
@@ -81,9 +83,10 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     IEnumerator ActionCooldown()
     {
-        yield return new WaitForSeconds(statistics.cooldown);
+        yield return new WaitForSeconds(statistics.cooldown * CooldownMultiplier());
         EndCooldown();
     }
+    public abstract float CooldownMultiplier();
     #endregion
 
     public abstract void SetupChildRequirement(MachineSlotSettings settings);

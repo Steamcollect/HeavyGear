@@ -103,6 +103,7 @@ MonoBehaviour:
     cooldown: 0
     power: 0
     rarity: 0
+  rsoStatisticsUpgrades: {fileID: 11400000, guid: 51a118fc51f813f4ca7af5052f231ad3, type: 2}
   currentState: 0
   rsoUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
   maxStorage: 10
