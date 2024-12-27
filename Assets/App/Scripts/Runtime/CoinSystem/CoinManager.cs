@@ -8,12 +8,10 @@ using UnityEngine.SceneManagement;
 public class CoinManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] SSO_CoinLevel coinLevel;
-    BigNumber coins = new BigNumber(0);
-    BigNumber coinPerMin = new BigNumber(0);
+    BigNumber coins = new (0);
+    BigNumber coinPerMin = new (0);
 
     [Space(10)]
-    // RSO
     [SerializeField] RSO_Coins rsoCoins;
     [SerializeField] RSO_ContentSaved rsoContentSaved;
     // RSF
@@ -24,7 +22,6 @@ public class CoinManager : MonoBehaviour
     [SerializeField] RSE_RemoveCoin rseRemoveCoin;
 
     [Header("Output")]
-    [SerializeField] RSE_LoadNewScene rseLoadNewScene;
     [SerializeField] RSE_CommandEvent rseSaveData;
 
     private void OnEnable()
@@ -42,6 +39,7 @@ public class CoinManager : MonoBehaviour
     {
         StartCoroutine(LateStart());
     }
+    
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(.1f);
@@ -55,7 +53,7 @@ public class CoinManager : MonoBehaviour
 
         if (totMin > rsoContentSaved.Value.idleDelay) totMin = rsoContentSaved.Value.idleDelay;
         AddCoin(new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
-        print("Show value : " + new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
+        // print("Show value : " + new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
     }
 
     void AddCoin(BigNumber coinToAdd)
@@ -66,27 +64,8 @@ public class CoinManager : MonoBehaviour
 
         // Set save
         rsoContentSaved.Value.coinAmount = coins.ToString();
-
-        if (coinLevel == null) return;
-        if (coins >= coinLevel.nextFactoryLevel)
-        {
-            //Debug.Log("Next factory Unlock");
-
-            // Changer de scene si le joueur le souhaite
-            //rseLoadNewScene.Call(coinLevel.nextFactorySceneName);
-        }
-
-        for (int i = 0; i < coinLevel.rebirthLevels.Count; i++)
-        {
-            if (coins >= coinLevel.rebirthLevels[i])
-            {
-                //Debug.Log("Rebirth " + i + ", at " + coinLevel.rebirthLevels[i] + "possible");
-
-                // Rebirth, charger la scene actuelle si le joueur le souhaite
-                //rseLoadNewScene.Call( <Faut trouver le nom de la scene actuelle> );
-            }
-        }
     }
+    
     void RemoveCoin(BigNumber coinToRemove)
     {
         coins -= coinToRemove;

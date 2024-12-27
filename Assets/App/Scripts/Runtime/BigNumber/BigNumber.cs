@@ -12,8 +12,8 @@ namespace BigFloatNumerics
     public class BigNumber : IComparable, IComparable<BigNumber>, IEquatable<BigNumber>
     ///number is m × 10^n
     {
-        public float m { get; private set; } // you could set this to `double` and there should be minimal problem. Decimal is better.
-        public int n { get; private set; }
+        [field:SerializeField] public float m { get; private set; } // you could set this to `double` and there should be minimal problem. Decimal is better.
+        [field:SerializeField] public int n { get; private set; }
 
         public static readonly BigNumber IntMax = (BigNumber)int.MaxValue;
 
