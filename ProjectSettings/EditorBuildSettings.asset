@@ -6,22 +6,22 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/App/Scenes/Eliot.unity
+    path: Assets/App/Scenes/Personal/Eliot.unity
     guid: 2ca769d389860c64bb7676b484c23821
   - enabled: 0
-    path: Assets/App/Scenes/Analytics_Sandbox.unity
+    path: Assets/App/Scenes/FeatureTest/Analytics_Sandbox.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 0
     path: Assets/App/Scenes/Tristan.unity
     guid: fdbd1f67dc71f1f49a5395c9dd03ef33
   - enabled: 0
-    path: Assets/App/Scenes/Service_Sandbox.unity
+    path: Assets/App/Scenes/FeatureTest/Service_Sandbox.unity
     guid: 2d2491e1c4223d54ba0021207eb5905e
   - enabled: 0
     path: Assets/LevelPlay/Samples/UnityLevelPlaySample/Scenes/LevelPlaySample.unity
     guid: bd1eb3e1953724de08fadd7cbbc6d358
   - enabled: 1
-    path: Assets/App/Scenes/CameraController.unity
+    path: Assets/App/Scenes/FeatureTest/CameraController.unity
     guid: 89c214443f5175f41844dd18514a0456
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c136a0c6914b5ee4d8d16988d23e4ba5, type: 2}
