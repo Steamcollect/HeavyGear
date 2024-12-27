@@ -66,3 +66,5 @@ MonoBehaviour:
   rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseLoadNewScene: {fileID: 11400000, guid: 061d61e548b14ea4d8598e40c381a694, type: 2}
+  rseNextFactoryReached: {fileID: 11400000, guid: f8a85f7a12c46f64cbabdd0f96638fd8, type: 2}
+  rseNextLevelReached: {fileID: 11400000, guid: fa1d8ec70d7e56140952def8eab22701, type: 2}

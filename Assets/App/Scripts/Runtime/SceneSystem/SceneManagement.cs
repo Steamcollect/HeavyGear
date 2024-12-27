@@ -31,15 +31,16 @@ public class SceneManagement : MonoBehaviour
 
     void SetupNewLevel(string levelName)
     {
-        if (isLoadingScene)
-        {
-            Debug.LogError("You try to load a new scene while the process is already runing!");
-            return;
-        }
-
-        isLoadingScene = true;
-        levelToLoad = levelName;
-        UnloadCurrentScene();
+        SceneManager.LoadScene(levelName);
+        // if (isLoadingScene)
+        // {
+        //     Debug.LogError("You try to load a new scene while the process is already runing!");
+        //     return;
+        // }
+        //
+        // isLoadingScene = true;
+        // levelToLoad = levelName;
+        // UnloadCurrentScene();
     }
 
     void UnloadCurrentScene()

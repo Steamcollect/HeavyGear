@@ -1,7 +1,10 @@
 using System;
 using BigFloatNumerics;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class CoinLevel : MonoBehaviour
 {
 
@@ -14,6 +17,7 @@ public class CoinLevel : MonoBehaviour
     private bool aimReached = false;
     
     [Title("Output")]
+    [SerializeField] private RSE_LoadNewScene rseLoadNewScene;
     [SerializeField] private RSE_NextFactoryReached rseNextFactoryReached;
     [SerializeField] private RSE_NextLevelReached rseNextLevelReached;
 
@@ -25,13 +29,16 @@ public class CoinLevel : MonoBehaviour
         if (aimReached) return;
         if (rsoCoins.Value.CompareTo(0) == 0) return;
         
-        if (rsoContentSaved.Value.currentCoinLevel >= ssoCoinLevel.rebirthLevels.Count - 1)
+        if (rsoContentSaved.Value.currentCoinLevel >= ssoCoinLevel.rebirthLevels.Count)
         {
             CompareAimValueReached(ssoCoinLevel.nextFactoryLevel,()=>
             {
                 Debug.Log("Next Factory reached");
                 aimReached = true;
                 rseNextFactoryReached.Call();
+                rsoContentSaved.Value.currentCoinLevel = 0;
+                rsoCoins.Value = new(0);
+                rseLoadNewScene.Call(ssoCoinLevel.nextFactorySceneName);
             });
         }
         else
@@ -40,9 +47,10 @@ public class CoinLevel : MonoBehaviour
             {
                 Debug.Log("Level reached");
                 aimReached = true;
-                rsoContentSaved.Value.currentCoinLevel = Mathf.Min(ssoCoinLevel.rebirthLevels.Count - 1,
-                    rsoContentSaved.Value.currentCoinLevel + 1);
+                rsoContentSaved.Value.currentCoinLevel = Mathf.Clamp(rsoContentSaved.Value.currentCoinLevel + 1,0,ssoCoinLevel.rebirthLevels.Count);
                 rseNextLevelReached.Call();
+                rsoCoins.Value = new(0);
+                rseLoadNewScene.Call(SceneManager.GetActiveScene().name);
             });
         }
     }

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 451b3bbb2b2019440b3f536d2c7127c6, type: 3}
-  m_Name: SSO_CoinLevel
+  m_Name: SSO_CoinLevel_1
   m_EditorClassIdentifier: 
   _rebirthLevelsEditor:
-  - 1e1
-  _nextFactoryLevelEditor: 100e0
-  nextFactorySceneName: 000
+  - 1e1000000
+  _nextFactoryLevelEditor: 8e800000000
+  nextFactorySceneName: 
   rebirthLevels:
   - <m>k__BackingField: 1
-    <n>k__BackingField: 1
+    <n>k__BackingField: 1000000
   nextFactoryLevel:
-    <m>k__BackingField: 1
-    <n>k__BackingField: 2
+    <m>k__BackingField: 8
+    <n>k__BackingField: 800000000

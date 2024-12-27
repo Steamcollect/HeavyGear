@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/App/Scenes/FeatureTest/CameraController.unity
     guid: 89c214443f5175f41844dd18514a0456
+  - enabled: 1
+    path: Assets/App/Scenes/FeatureTest/FactoryLevels/FactoryLevel_0.unity
+    guid: eb20153fa69f1254893dee794ddb891b
+  - enabled: 1
+    path: Assets/App/Scenes/FeatureTest/FactoryLevels/FactoryLevel_1.unity
+    guid: c260dccfd41db344c8256fd7ceae3c1d
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c136a0c6914b5ee4d8d16988d23e4ba5, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 272169955833a63438c5ae9e1d5fcacd, type: 2}
