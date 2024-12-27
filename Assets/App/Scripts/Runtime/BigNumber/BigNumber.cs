@@ -15,7 +15,7 @@ namespace BigFloatNumerics
         [field:SerializeField] public float m { get; private set; } // you could set this to `double` and there should be minimal problem. Decimal is better.
         [field:SerializeField] public int n { get; private set; }
 
-        public static readonly BigNumber IntMax = (BigNumber)int.MaxValue;
+        public static readonly BigNumber IntMax = int.MaxValue;
 
         const float CompTolerance = 1e-6f;
         const int CompTolerancei = 6;
@@ -220,7 +220,8 @@ namespace BigFloatNumerics
 
         public int CompareTo(BigNumber other)
         {
-            var diff = this - other;
+            var copy = new BigNumber(other);
+            var diff = this - copy;
 
             if (diff.n == 0 && diff.m == 0)
                 return 0;
