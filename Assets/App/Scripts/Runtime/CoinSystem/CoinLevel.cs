@@ -1,4 +1,5 @@
 using System;
+using BigFloatNumerics;
 using Sirenix.OdinInspector;
 using UnityEngine;
 public class CoinLevel : MonoBehaviour
@@ -10,38 +11,49 @@ public class CoinLevel : MonoBehaviour
     [SerializeField] private RSO_Coins rsoCoins;
     [SerializeField] private RSO_ContentSaved rsoContentSaved;
     
+    private bool aimReached = false;
+    
     [Title("Output")]
-    [SerializeField] private RSE_LoadNewScene rseLoadNewScene;
+    [SerializeField] private RSE_NextFactoryReached rseNextFactoryReached;
+    [SerializeField] private RSE_NextLevelReached rseNextLevelReached;
 
     public void OnEnable() => rsoCoins.OnChanged += CheckLevelReached;
     public void OnDisable() => rsoCoins.OnChanged -= CheckLevelReached;
 
     private void CheckLevelReached()
     {
+        if (aimReached) return;
         if (rsoCoins.Value.CompareTo(0) == 0) return;
-        print(ssoCoinLevel.rebirthLevels[rsoContentSaved.Value.currentCoinLevel].ToString());
-        int valueCompare = rsoCoins.Value.CompareTo(ssoCoinLevel.rebirthLevels[rsoContentSaved.Value.currentCoinLevel]);
+        
+        if (rsoContentSaved.Value.currentCoinLevel >= ssoCoinLevel.rebirthLevels.Count - 1)
+        {
+            CompareAimValueReached(ssoCoinLevel.nextFactoryLevel,()=>
+            {
+                Debug.Log("Next Factory reached");
+                aimReached = true;
+                rseNextFactoryReached.Call();
+            });
+        }
+        else
+        {
+            CompareAimValueReached(ssoCoinLevel.rebirthLevels[rsoContentSaved.Value.currentCoinLevel], () =>
+            {
+                Debug.Log("Level reached");
+                aimReached = true;
+                rsoContentSaved.Value.currentCoinLevel = Mathf.Min(ssoCoinLevel.rebirthLevels.Count - 1,
+                    rsoContentSaved.Value.currentCoinLevel + 1);
+                rseNextLevelReached.Call();
+            });
+        }
+    }
+
+
+    private void CompareAimValueReached(BigNumber aimValue, Action callback)
+    {
+        int valueCompare = rsoCoins.Value.CompareTo(aimValue);
         if (valueCompare is 1 or 0)
         {
-            Debug.Log("Level reached");
+            callback?.Invoke();
         }
-        // if (coins >= coinLevel.nextFactoryLevel)
-        // {
-        //     //Debug.Log("Next factory Unlock");
-        //
-        //     // Changer de scene si le joueur le souhaite
-        //     //rseLoadNewScene.Call(coinLevel.nextFactorySceneName);
-        // }
-        //
-        // for (int i = 0; i < coinLevel.rebirthLevels.Count; i++)
-        // {
-        //     if (coins >= coinLevel.rebirthLevels[i])
-        //     {
-        //         //Debug.Log("Rebirth " + i + ", at " + coinLevel.rebirthLevels[i] + "possible");
-        //
-        //         // Rebirth, charger la scene actuelle si le joueur le souhaite
-        //         //rseLoadNewScene.Call( <Faut trouver le nom de la scene actuelle> );
-        //     }
-        // }
     }
 }
