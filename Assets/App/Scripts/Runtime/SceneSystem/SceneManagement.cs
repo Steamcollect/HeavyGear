@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
     //[Header("Settings")]
-    string levelToLoad;
+    private string sceneToLoad;
+    private string currentSceneLoaded;
     bool isLoadingScene = false;
 
     //[Header("References")]
@@ -31,31 +32,31 @@ public class SceneManagement : MonoBehaviour
 
     void SetupNewLevel(string levelName)
     {
-        SceneManager.LoadScene(levelName);
-        // if (isLoadingScene)
-        // {
-        //     Debug.LogError("You try to load a new scene while the process is already runing!");
-        //     return;
-        // }
-        //
-        // isLoadingScene = true;
-        // levelToLoad = levelName;
-        // UnloadCurrentScene();
+        if (isLoadingScene)
+        {
+            Debug.LogError("You try to load a new scene while the process is already runing!");
+            return;
+        }
+        
+        isLoadingScene = true;
+        sceneToLoad = levelName;
+        UnloadCurrentScene();
     }
 
     void UnloadCurrentScene()
     {
-        Utils.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadNewScene);
+        StartCoroutine(Utils.UnloadSceneAsync(currentSceneLoaded, LoadNewScene));
     }
 
     void LoadNewScene()
     {
-        Utils.LoadSceneAsync(levelToLoad, LoadSceneMode.Additive, OnSceneLoaded);
+        StartCoroutine(Utils.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, OnSceneLoaded));
     }
 
     void OnSceneLoaded()
     {
         isLoadingScene = false;
-        print($"Scene {levelToLoad} Loaded");
+        currentSceneLoaded = sceneToLoad;
+        print($"Scene {sceneToLoad} Loaded");
     }
 }

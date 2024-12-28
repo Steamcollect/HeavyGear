@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9184317772420023344
+--- !u!1 &6310696816046000528
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8434695073467985577}
-  - component: {fileID: 3452315031728734579}
+  - component: {fileID: 2872519034456929698}
+  - component: {fileID: 4932475174572568030}
   m_Layer: 0
-  m_Name: CoinManager
+  m_Name: FactoryStages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8434695073467985577
+--- !u!4 &2872519034456929698
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9184317772420023344}
+  m_GameObject: {fileID: 6310696816046000528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,20 +32,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3452315031728734579
+--- !u!114 &4932475174572568030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9184317772420023344}
+  m_GameObject: {fileID: 6310696816046000528}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb72f88717e9e44b9654ed663db841a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ec15ad7e129c334297bcbfdb686fa53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ssoFactoryStageData: {fileID: 11400000, guid: aba02230b24f723479b0242f9ac50df0, type: 2}
   rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
-  rseAddCoin: {fileID: 11400000, guid: 1ad6f9ab8ec749949a83cade4e0d5b91, type: 2}
-  rseRemoveCoin: {fileID: 11400000, guid: 1db3fe51761a48e4892f4f0acd2f8bd8, type: 2}
-  rseSaveData: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
+  rseLoadNewScene: {fileID: 11400000, guid: 061d61e548b14ea4d8598e40c381a694, type: 2}
+  rseNextFactoryReached: {fileID: 11400000, guid: f8a85f7a12c46f64cbabdd0f96638fd8, type: 2}
+  rseNextLevelReached: {fileID: 11400000, guid: fa1d8ec70d7e56140952def8eab22701, type: 2}

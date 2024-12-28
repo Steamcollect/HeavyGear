@@ -5,24 +5,24 @@ using Sirenix.OdinInspector;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "SSO_CoinLevel", menuName = "ScriptableObject/SSO_CoinLevel")]
-public class SSO_CoinLevel : ScriptableObject
+[CreateAssetMenu(fileName = "SSO_FactoryStageData", menuName = "ScriptableObject/SSO_FactoryStageData")]
+public class SSO_FactoryStageData : ScriptableObject
 {
     [Title("Levels")]
     [InfoBox("Value must be written in the next format:  X 'e' Y ,X and Y correspond to a number and the e for the exponant." +
              "\n Click on the button to apply modifications.")]
-    [SerializeField] string[] _rebirthLevelsEditor;
+    [SerializeField] string[] _rebirthStageEditor;
     [PropertySpace(5)]
-    [SerializeField] string _nextFactoryLevelEditor;
+    [SerializeField] string _nextFactoryStageEditor;
     
     [Title("Scene")]
     public string nextFactorySceneName;
     [Space(10)]
     
     [FoldoutGroup("Debug")]
-    [ReadOnly] public List<BigNumber> rebirthLevels = new();
+    [ReadOnly] public List<BigNumber> rebirthStage = new();
     [FoldoutGroup("Debug")]
-    [ReadOnly] public BigNumber nextFactoryLevel;
+    [ReadOnly] public BigNumber nextFactoryStage;
 
     private bool CheckValueCorrectFormat(string val)
     {
@@ -36,17 +36,17 @@ public class SSO_CoinLevel : ScriptableObject
     }
     
     [PropertySpace(10)]
-    [Button("Apply Levels Modification")]
+    [Button("Apply Stages Modification")]
     private void ValidateModification()
     {
-        rebirthLevels.Clear();
-        foreach (var item in _rebirthLevelsEditor)
+        rebirthStage.Clear();
+        foreach (var item in _rebirthStageEditor)
         {
             if (!CheckValueCorrectFormat(item)) continue;
-            rebirthLevels.Add(new BigNumber(item));
+            rebirthStage.Add(new BigNumber(item));
         }
         
-        if (!CheckValueCorrectFormat(_nextFactoryLevelEditor)) return;
-        nextFactoryLevel = new BigNumber(_nextFactoryLevelEditor);
+        if (!CheckValueCorrectFormat(_nextFactoryStageEditor)) return;
+        nextFactoryStage = new BigNumber(_nextFactoryStageEditor);
     }
 }

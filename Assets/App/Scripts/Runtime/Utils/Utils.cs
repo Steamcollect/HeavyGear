@@ -54,7 +54,7 @@ public static class Utils
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
 
-        yield return new WaitUntil(() => asyncLoad.isDone);
+        yield return new WaitUntil(() => asyncLoad is { isDone: true });
 
         action.Invoke();
     }
@@ -62,7 +62,7 @@ public static class Utils
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, loadMode);
 
-        yield return new WaitUntil(() => asyncLoad.isDone);
+        yield return new WaitUntil(() => asyncLoad is { isDone: true });
 
         action.Invoke();
     }
@@ -71,13 +71,17 @@ public static class Utils
     /// Unload Scene Asyncronely and call action at the end
     /// </summary>
     /// <param name="sceneIndex"></param>
+    /// <param name="sceneName"></param>
     /// <param name="action"></param>
     /// <returns></returns>
-    public static IEnumerator UnloadSceneAsync(int sceneIndex, Action action)
+    public static IEnumerator UnloadSceneAsync(string sceneName, Action action)
     {
-        AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(sceneIndex);
+        if (SceneManager.loadedSceneCount > 1)
+        {
+            AsyncOperation asyncLoad = SceneManager.UnloadSceneAsync(sceneName);
 
-        yield return new WaitUntil(() => asyncLoad.isDone);
+            yield return new WaitUntil(() => asyncLoad is { isDone: true });
+        }
 
         action.Invoke();
     }
