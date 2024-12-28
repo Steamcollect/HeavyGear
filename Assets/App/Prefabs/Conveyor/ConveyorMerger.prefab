@@ -44,8 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721d947a917835f41922d8d90bd30944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conveyorsEnter:
-  - {fileID: 0}
-  - {fileID: 0}
+  conveyorsEnter: []
   conveyorExit: {fileID: 0}
   rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}
