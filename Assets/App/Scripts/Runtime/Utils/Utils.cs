@@ -48,23 +48,22 @@ public static class Utils
     /// </summary>
     /// <param name="sceneIndex"></param>
     /// <param name="loadMode"></param>
-    /// <param name="action"></param>
+    /// <param name="callbackRealised"></param>
     /// <returns></returns>
-    public static IEnumerator LoadSceneAsync(int sceneIndex, LoadSceneMode loadMode, Action action)
+    public static IEnumerator LoadSceneAsync(int sceneIndex, LoadSceneMode loadMode, Action callbackRealised)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
 
         yield return new WaitUntil(() => asyncLoad is { isDone: true });
 
-        action.Invoke();
+        callbackRealised.Invoke();
     }
-    public static IEnumerator LoadSceneAsync(string sceneName, LoadSceneMode loadMode, Action action)
+    public static IEnumerator LoadSceneAsync(string sceneName, LoadSceneMode loadMode, Action callbackDone)
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, loadMode);
 
         yield return new WaitUntil(() => asyncLoad is { isDone: true });
-
-        action.Invoke();
+        callbackDone.Invoke();
     }
 
     /// <summary>

@@ -141,6 +141,7 @@ public class ConveyorBelt : MonoBehaviour
     public void AddItem(Ore ore)
     {
         ores.Add(new ConveyorBeltOre(ore));
+        ore.transform.position = pathPointsList[0].transform.position;
         haveSpaceToAddItem = false;
     }
 
@@ -159,12 +160,12 @@ public class ConveyorBelt : MonoBehaviour
 
     public Ore RemoveItem(ConveyorBeltOre conveyorOre)
     {
-        Ore _ore = conveyorOre.ore;
+        Ore ore = conveyorOre.ore;
 
         ores.Remove(conveyorOre);
         rsoOreManager.Value.DestroyOre(conveyorOre.ore);
 
-        return _ore;
+        return ore;
     }
 
     public ConveyorBeltOre GetFirstItem()

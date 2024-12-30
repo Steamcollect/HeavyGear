@@ -31,25 +31,25 @@ public class FactoryStages : MonoBehaviour
         if (rsoCoins.Value.CompareTo(0) == 0) return;
         
         //Check if it claim all goals
-        if (rsoContentSaved.Value.currentCoinLevel >= ssoFactoryStageData.rebirthStage.Count)
+        if (rsoContentSaved.Value.currentStageFactory >= ssoFactoryStageData.rebirthStage.Count)
         {
             CompareGoalValueReached(ssoFactoryStageData.nextFactoryStage,()=>
             {
                 Debug.Log("Next Factory reached");
                 allGoalsReached = true;
                 rseNextFactoryReached.Call();
-                rsoContentSaved.Value.currentCoinLevel = 0;
+                rsoContentSaved.Value.currentStageFactory = 0;
                 rsoCoins.Value = new(0);
                 rseLoadNewScene.Call(ssoFactoryStageData.nextFactorySceneName);
             });
         }
         else
         {
-            CompareGoalValueReached(ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentCoinLevel], () =>
+            CompareGoalValueReached(ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentStageFactory], () =>
             {
                 Debug.Log("Level reached");
                 allGoalsReached = true;
-                rsoContentSaved.Value.currentCoinLevel = Mathf.Clamp(rsoContentSaved.Value.currentCoinLevel + 1,0,ssoFactoryStageData.rebirthStage.Count);
+                rsoContentSaved.Value.currentStageFactory = Mathf.Clamp(rsoContentSaved.Value.currentStageFactory + 1,0,ssoFactoryStageData.rebirthStage.Count);
                 rseNextLevelReached.Call();
                 rsoCoins.Value = new(0);
                 rseLoadNewScene.Call(SceneManager.GetActiveScene().name);

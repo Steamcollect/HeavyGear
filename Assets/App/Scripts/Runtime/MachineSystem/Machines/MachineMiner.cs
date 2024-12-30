@@ -41,11 +41,9 @@ public class MachineMiner : InteractiveMachineTemplate
     public override void OnActionStart()
     {
         Ore ore = rsoOreManager.Value.InstantiateOre();
-        ore.gameObject.SetActive(true);
         ore.Initialize(oreType);
-
         conveyorBelt.AddItem(ore);
-
+        ore.gameObject.SetActive(true);
         EndAction();
     }
 

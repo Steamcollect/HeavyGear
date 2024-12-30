@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 
 public class OreManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField, Tooltip("Nombre d'objets à instantier au start")] int oreToInstantiateOnStart;
+    [SerializeField, Tooltip("Nombre d'objets ï¿½ instantier au start")] int oreToInstantiateOnStart;
 
     [Header("References")]
     [SerializeField] Ore orePrefab;
 
-    Queue<Ore> ores = new Queue<Ore>();
+    Queue<Ore> ores = new ();
 
     [Space(10)]
     // RSO

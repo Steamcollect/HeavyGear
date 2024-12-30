@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9507c0a89535fd2408327de80681a3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rsoUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
-  rseSaveData: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
+  rsoFactoryUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
+  rseSaveData: {fileID: 11400000, guid: 8f6ea18eb3f6fb14cbdc9ac7b883919a, type: 2}

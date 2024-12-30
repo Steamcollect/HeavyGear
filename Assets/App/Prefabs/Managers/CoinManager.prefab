@@ -48,4 +48,4 @@ MonoBehaviour:
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseAddCoin: {fileID: 11400000, guid: 1ad6f9ab8ec749949a83cade4e0d5b91, type: 2}
   rseRemoveCoin: {fileID: 11400000, guid: 1db3fe51761a48e4892f4f0acd2f8bd8, type: 2}
-  rseSaveData: {fileID: 11400000, guid: b9b98c83cb66fa24594ba5ee1df92141, type: 2}
+  rseSaveData: {fileID: 11400000, guid: 8f6ea18eb3f6fb14cbdc9ac7b883919a, type: 2}

@@ -15,7 +15,6 @@ public class AnalyticsManager : MonoBehaviour
     {
         if (UnityServices.State == ServicesInitializationState.Uninitialized)
         {
-            Debug.Log("Initializing Analytics Manager");
             UnityServices.Initialized += OnServiceInitialized;
             UnityServices.InitializeFailed += OnServiceInitializationFailed;
             AwaitServiceInit();
@@ -38,7 +37,6 @@ public class AnalyticsManager : MonoBehaviour
 
     private void OnServiceInitialized()
     {
-        Debug.Log("AnalyticsManager: Service initialized");
         AnalyticsService.Instance.StartDataCollection();
         isInitialized = true;
         PostServiceInitialization();

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class InteractiveMachineTemplate : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
 
     [HideInInspector] public MachineState currentState;
 
-    public RSO_UpgradeData rsoUpgradeData; 
+    [FormerlySerializedAs("rsoUpgradeData")] public RSO_FactoryUpgradeData rsoFactoryUpgradeData; 
 
     public void SetupParentRequirement(Clickable newClickable) // On Enable
     {

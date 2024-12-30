@@ -1,31 +1,30 @@
 using System;
 using UnityEngine;
 using System.IO;
-using UnityEngine.Serialization;
 
 namespace BT.Save
 {
     public class LoadSaveData : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private RSE_CommandEvent rseCommandLoad;
-        [SerializeField] private RSE_CommandEvent rseCommandSave;
-        [SerializeField] private RSE_CommandEvent rseCommandClear;
+        [SerializeField] private RSE_LoadData rseLoadData;
+        [SerializeField] private RSE_SaveData rseSaveData;
+        [SerializeField] private RSE_ClearData rseClearData;
         [SerializeField] private RSO_ContentSaved rsoContentSaved;
         
         private string filepath;
 
         private void OnEnable()
         {
-            rseCommandLoad.action += LoadFromJson;
-            rseCommandSave.action += SaveToJson;
-            rseCommandClear.action += ClearContent;
+            rseLoadData.action += LoadFromJson;
+            rseSaveData.action += SaveToJson;
+            rseClearData.action += ClearContent;
         }
 
         private void OnDisable()
         {
-            rseCommandLoad.action -= LoadFromJson;
-            rseCommandSave.action -= SaveToJson;
+            rseLoadData.action -= LoadFromJson;
+            rseSaveData.action -= SaveToJson;
         }
 
         private void Awake()
@@ -33,7 +32,10 @@ namespace BT.Save
             filepath = Application.persistentDataPath + "/Save.json";
 
             if (FileAlreadyExist()) LoadFromJson();
-            else SaveToJson();
+            else
+            {
+                rsoContentSaved.Value = new ContentSaved();
+            }
         }
 
         private void SaveToJson()
@@ -44,13 +46,14 @@ namespace BT.Save
 
         private void LoadFromJson()
         {
-            string infoData = System.IO.File.ReadAllText(filepath);
-            rsoContentSaved.Value = JsonUtility.FromJson<ContentSaved>(infoData);
+            string infoData = File.ReadAllText(filepath);
+            ContentSaved value = JsonUtility.FromJson<ContentSaved>(infoData);
+            rsoContentSaved.Value = value ?? new ContentSaved();
         }
 
         private void ClearContent()
         {
-            rsoContentSaved.Value = new();
+            rsoContentSaved.Value = new ContentSaved();
             SaveToJson();
         }
 

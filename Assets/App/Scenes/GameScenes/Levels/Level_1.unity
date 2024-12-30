@@ -924,7 +924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 752793472412738076, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.656
+      value: 0.625
       objectReference: {fileID: 0}
     - target: {fileID: 1980787420196267216, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
@@ -972,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3057628569435516323, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.33
+      value: -0.375
       objectReference: {fileID: 0}
     - target: {fileID: 4930978664704682682, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_Name
@@ -1098,11 +1098,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 752793472412738076, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.042
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 752793472412738076, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.604
+      value: -0.625
       objectReference: {fileID: 0}
     - target: {fileID: 1980787420196267216, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1146,7 +1146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3057628569435516323, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.967
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3057628569435516323, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1241,6 +1241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorMerger
       objectReference: {fileID: 0}
+    - target: {fileID: 8777184749761422716, guid: a995cc150e0981f4bb41b800de3d6240, type: 3}
+      propertyPath: conveyorExit
+      value: 
+      objectReference: {fileID: 481484564}
     - target: {fileID: 8777184749761422716, guid: a995cc150e0981f4bb41b800de3d6240, type: 3}
       propertyPath: conveyorsEnter.Array.size
       value: 2
@@ -1915,11 +1919,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 752793472412738076, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.98
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 752793472412738076, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.108
+      value: -0.125
       objectReference: {fileID: 0}
     - target: {fileID: 1980787420196267216, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1963,7 +1967,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3057628569435516323, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.513
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3057628569435516323, guid: 8ed654bea9db97443a3015b025058d93, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2031,7 +2035,7 @@ Transform:
   m_GameObject: {fileID: 1630704415}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.979, y: -0.103, z: 0}
+  m_LocalPosition: {x: 2, y: -0.625, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

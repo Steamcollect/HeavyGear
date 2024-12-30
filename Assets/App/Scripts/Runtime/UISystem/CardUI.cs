@@ -44,8 +44,8 @@ public class CardUI : MonoBehaviour
                 break;
         }
 
-        cardNumber.text = machine.amount + "/" + machine.maxAmount;
-        slider.value = (float)machine.amount / (float)machine.maxAmount;
+        cardNumber.text = machine.amountAquired + "/" + machine.maxAmount;
+        slider.value = (float)machine.amountAquired / (float)machine.maxAmount;
     }
 
     private void SetCardVisual(SSO_CardVisual cardVisual)

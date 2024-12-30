@@ -56,7 +56,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
     
     public void OnInitializationComplete()
     {
-        Debug.Log("Unity Ads initialization complete.");
         adsRewardExtension.LoadAds();
         adsEnable = true;
     }

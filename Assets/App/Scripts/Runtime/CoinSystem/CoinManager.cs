@@ -22,7 +22,7 @@ public class CoinManager : MonoBehaviour
     [SerializeField] RSE_RemoveCoin rseRemoveCoin;
 
     [Header("Output")]
-    [SerializeField] RSE_CommandEvent rseSaveData;
+    [SerializeField] RSE_SaveData rseSaveData;
 
     private void OnEnable()
     {
@@ -40,6 +40,7 @@ public class CoinManager : MonoBehaviour
         StartCoroutine(LateStart());
     }
     
+    //Please Explain ???
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(.1f);

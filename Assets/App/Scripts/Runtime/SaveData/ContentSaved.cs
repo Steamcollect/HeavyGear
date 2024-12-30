@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using BigFloatNumerics;
+using UnityEngine.Serialization;
 
 namespace BT.Save
 {
@@ -21,6 +22,6 @@ namespace BT.Save
 
         //Level Factory
         public string currentFactory;
-        public int currentCoinLevel;
+        public int currentStageFactory;
     }
 }

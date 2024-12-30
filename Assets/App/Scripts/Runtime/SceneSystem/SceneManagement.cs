@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,7 +7,7 @@ public class SceneManagement : MonoBehaviour
     //[Header("Settings")]
     private string sceneToLoad;
     private string currentSceneLoaded;
-    bool isLoadingScene = false;
+    private bool isLoadingScene;
 
     //[Header("References")]
 
@@ -22,19 +23,19 @@ public class SceneManagement : MonoBehaviour
 
     private void OnEnable()
     {
-        rseLoadNewScene.action += SetupNewLevel;
+        rseLoadNewScene.action += LoadAdditiveNewScene;
     }
 
     private void OnDisable()
     {
-        rseLoadNewScene.action -= SetupNewLevel;
+        rseLoadNewScene.action -= LoadAdditiveNewScene;
     }
 
-    void SetupNewLevel(string levelName)
+    void LoadAdditiveNewScene(string levelName)
     {
         if (isLoadingScene)
         {
-            Debug.LogError("You try to load a new scene while the process is already runing!");
+            Debug.LogWarning("You try to load a new scene while the process is already runing!");
             return;
         }
         
@@ -50,7 +51,27 @@ public class SceneManagement : MonoBehaviour
 
     void LoadNewScene()
     {
+        bool sceneFound = false;
+        
+        foreach (var scene in EditorBuildSettings.scenes)
+        {
+            if (sceneToLoad == System.IO.Path.GetFileNameWithoutExtension(scene.path)) sceneFound = true;
+        }
+
+        if (!sceneFound)
+        {
+            OnSceneLoadFailed();
+            return;
+        }
+        
         StartCoroutine(Utils.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, OnSceneLoaded));
+    }
+
+    void OnSceneLoadFailed()
+    {
+        isLoadingScene = false;
+        currentSceneLoaded = "";
+        Debug.LogWarning($"Scene {sceneToLoad} is not loaded cause not exist");
     }
 
     void OnSceneLoaded()

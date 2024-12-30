@@ -1,5 +1,6 @@
 using BT.Save;
 using UnityEngine;
+
 public class FactoryUpgradeManager : MonoBehaviour
 {
     //[Header("Settings")]
@@ -8,25 +9,27 @@ public class FactoryUpgradeManager : MonoBehaviour
 
     [Space(10)]
     // RSO
-    public RSO_UpgradeData rsoUpgradeData;
+    public RSO_FactoryUpgradeData rsoFactoryUpgradeData;
 
     // RSF
     // RSP
 
     //[Header("Input")]
     [Header("Output")]
-    [SerializeField] RSE_CommandEvent rseSaveData;
+    [SerializeField] RSE_SaveData rseSaveData;
 
     private void OnEnable()
     {
-        rsoUpgradeData.OnChanged += SaveData;
+        rsoFactoryUpgradeData.OnChanged += SaveDataChanged;
     }
     private void OnDisable()
     {
-        rsoUpgradeData.OnChanged -= SaveData;
+        rsoFactoryUpgradeData.OnChanged -= SaveDataChanged;
     }
 
-    void SaveData()
+    
+    //A changer pour éviter d'écrire souvent sur le téléphone
+    private void SaveDataChanged()
     {
         rseSaveData.Call();
     }
