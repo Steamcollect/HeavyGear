@@ -12,19 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451b3bbb2b2019440b3f536d2c7127c6, type: 3}
   m_Name: SSO_FactoryStageData_0
   m_EditorClassIdentifier: 
-  _rebirthLevelsEditor:
-  - 100e0
-  - 300e0
-  - 500e0
-  _nextFactoryLevelEditor: 900e0
+  _rebirthStageEditor:
+  - 1e1
+  - 1e2
+  - 5e2
+  _nextFactoryStageEditor: 1e3
+  lastLevel: 0
   nextFactorySceneName: FactoryLevel_1
-  rebirthLevels:
+  rebirthStage:
   - <m>k__BackingField: 1
-    <n>k__BackingField: 2
-  - <m>k__BackingField: 3
+    <n>k__BackingField: 1
+  - <m>k__BackingField: 1
     <n>k__BackingField: 2
   - <m>k__BackingField: 5
     <n>k__BackingField: 2
-  nextFactoryLevel:
-    <m>k__BackingField: 9
-    <n>k__BackingField: 2
+  nextFactoryStage:
+    <m>k__BackingField: 1
+    <n>k__BackingField: 3

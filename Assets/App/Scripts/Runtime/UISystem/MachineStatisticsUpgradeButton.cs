@@ -39,7 +39,7 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
     private void Start()
     {
         if (prices.Length < maxLevel)
-            Debug.LogError(gameObject.name + "have'nt enough prices compare to his max level");
+            Debug.LogWarning(gameObject.name + "have'nt enough prices compare to his max level");
     }
 
     public void OnClick()

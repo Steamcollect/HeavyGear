@@ -1,69 +1,117 @@
 using System;
 using BigFloatNumerics;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class FactoryStages : MonoBehaviour
 {
-
-    [Title("References")]
+    [Title("Settings")]
     [SerializeField] private SSO_FactoryStageData ssoFactoryStageData;
-    [Space(10)]
+    
+    [Title("References")]
+    [SerializeField] private RSO_CurrentStages rsoCurrentStages;
     [SerializeField] private RSO_Coins rsoCoins;
     [SerializeField] private RSO_ContentSaved rsoContentSaved;
     
-    private bool allGoalsReached = false;
+    private bool currentGoalReached;
     
     [Title("Output")]
-    [SerializeField] private RSE_LoadNewScene rseLoadNewScene;
+    [SerializeField] private RSE_LastFactoryReached rseLastFactoryReached;
     [SerializeField] private RSE_NextFactoryReached rseNextFactoryReached;
     [SerializeField] private RSE_NextLevelReached rseNextLevelReached;
 
-    public void OnEnable() => rsoCoins.OnChanged += CheckStageReached;
-    public void OnDisable() => rsoCoins.OnChanged -= CheckStageReached;
+    public void OnEnable()
+    {
+        rsoCoins.OnChanged += CheckStageReached;
+        rsoCurrentStages.Value = new StageData
+        {
+            factoryStageData = ssoFactoryStageData,
+            currentStage = rsoContentSaved.Value.currentStageFactory,
+            lastStageReached = rsoContentSaved.Value.lastStageReached
+        };
+    }
 
+    public void OnDisable()
+    {
+        rsoCoins.OnChanged -= CheckStageReached;
+        rsoCurrentStages.Value = null;
+    }
+
+    public void Start()
+    {
+        CheckStateStagesFromData();
+    }
+
+    private void CheckStateStagesFromData()
+    {
+        if (DoesCurrentStageReached()) currentGoalReached = true;
+    }
+    
     private void CheckStageReached()
     {
-        if (allGoalsReached) return;
+        if (currentGoalReached) return;
         if (rsoCoins.Value.CompareTo(0) == 0) return;
         
-        //Check if it claim all goals
-        if (rsoContentSaved.Value.currentStageFactory >= ssoFactoryStageData.rebirthStage.Count)
+        if (rsoCurrentStages.Value.currentStage >= ssoFactoryStageData.rebirthStage.Count)
         {
+            
             CompareGoalValueReached(ssoFactoryStageData.nextFactoryStage,()=>
             {
+                if (ssoFactoryStageData.lastLevel)
+                {
+                    currentGoalReached = true;
+                    rseLastFactoryReached.Call();
+                    return;
+                }
+                
                 Debug.Log("Next Factory reached");
-                allGoalsReached = true;
+                currentGoalReached = true;
+                rsoCurrentStages.Value.lastStageReached = true;
                 rseNextFactoryReached.Call();
-                rsoContentSaved.Value.currentStageFactory = 0;
-                rsoCoins.Value = new(0);
-                rseLoadNewScene.Call(ssoFactoryStageData.nextFactorySceneName);
+                
             });
         }
         else
         {
-            CompareGoalValueReached(ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentStageFactory], () =>
+            CompareGoalValueReached(ssoFactoryStageData.rebirthStage[rsoCurrentStages.Value.currentStage], () =>
             {
                 Debug.Log("Level reached");
-                allGoalsReached = true;
-                rsoContentSaved.Value.currentStageFactory = Mathf.Clamp(rsoContentSaved.Value.currentStageFactory + 1,0,ssoFactoryStageData.rebirthStage.Count);
+                currentGoalReached = true;
+                rsoCurrentStages.Value.currentStage = Mathf.Clamp(rsoCurrentStages.Value.currentStage + 1,0,ssoFactoryStageData.rebirthStage.Count);
                 rseNextLevelReached.Call();
-                rsoCoins.Value = new(0);
-                rseLoadNewScene.Call(SceneManager.GetActiveScene().name);
             });
         }
     }
 
 
-    private void CompareGoalValueReached(BigNumber aimValue, Action callback)
+    private void CompareGoalValueReached(BigNumber aimValue,Action callback = null)
     {
         int valueCompare = rsoCoins.Value.CompareTo(aimValue);
         if (valueCompare is 1 or 0)
         {
             callback?.Invoke();
         }
+    }
+
+    private bool CompareGoalValueReached(BigNumber aimValue, BigNumber currentValue)
+    {
+        int valueCompare = currentValue.CompareTo(aimValue);
+        return valueCompare is 1 or 0;
+    }
+
+    private bool DoesCurrentStageReached()
+    {
+        bool reached;
+        BigNumber currentValue = new BigNumber(rsoContentSaved.Value.coinAmount);
+        reached = CompareGoalValueReached(rsoContentSaved.Value.lastStageReached ?
+            ssoFactoryStageData.nextFactoryStage : ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentStageFactory], currentValue);
+        return reached;
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus) return;
+        rsoContentSaved.Value.lastStageReached = rsoCurrentStages.Value.lastStageReached;
+        rsoContentSaved.Value.currentStageFactory = rsoCurrentStages.Value.currentStage;
     }
 }

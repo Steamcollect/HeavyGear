@@ -14,8 +14,9 @@ public class SSO_FactoryStageData : ScriptableObject
     [SerializeField] string[] _rebirthStageEditor;
     [PropertySpace(5)]
     [SerializeField] string _nextFactoryStageEditor;
-    
+
     [Title("Scene")]
+    public bool lastLevel;
     public string nextFactorySceneName;
     [Space(10)]
     
@@ -26,7 +27,7 @@ public class SSO_FactoryStageData : ScriptableObject
 
     private bool CheckValueCorrectFormat(string val)
     {
-        if (val == "" || !val.Contains("e"))
+        if (string.IsNullOrEmpty(val) || !val.Contains("e"))
         {
             Debug.LogWarning($"{val} is not a valid rebirth level value");
             return false;

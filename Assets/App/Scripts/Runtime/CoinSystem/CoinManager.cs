@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Globalization;
 using BigFloatNumerics;
 using BT.Save;
 using UnityEngine;
@@ -40,21 +41,32 @@ public class CoinManager : MonoBehaviour
         StartCoroutine(LateStart());
     }
     
-    //Please Explain ???
+    
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(.1f);
 
-        AddCoin(new BigNumber(rsoContentSaved.Value.coinAmount));
+        CheckMoneyReceveidWhenAFK();
+    }
 
-        // Calculate idle delay
-        TimeSpan varTime = DateTime.Now - DateTime.Parse(rsoContentSaved.Value.lastDateTimeQuit);
-        double fractionalMinutes = varTime.TotalMinutes;
-        int totMin = (int)fractionalMinutes;
+    private void CheckMoneyReceveidWhenAFK()
+    {
+        if (rsoContentSaved.Value.coinAmount != "0e0")
+        {
+            AddCoin(new BigNumber(rsoContentSaved.Value.coinAmount));
+        }
 
-        if (totMin > rsoContentSaved.Value.idleDelay) totMin = rsoContentSaved.Value.idleDelay;
-        AddCoin(new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
-        // print("Show value : " + new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
+        if (DateTime.TryParse(rsoContentSaved.Value.lastDateTimeQuit, out var lastDateTimeQuit))
+        {
+            // Calculate idle delay
+            TimeSpan varTime = DateTime.Now - lastDateTimeQuit;
+            double fractionalMinutes = varTime.TotalMinutes;
+            int totMin = (int)fractionalMinutes;
+
+            if (totMin > rsoContentSaved.Value.idleDelay) totMin = rsoContentSaved.Value.idleDelay;
+            AddCoin(new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
+            // print("Show value : " + new BigNumber(rsoContentSaved.Value.coinPerMin) * totMin);
+        }
     }
 
     void AddCoin(BigNumber coinToAdd)
@@ -81,12 +93,13 @@ public class CoinManager : MonoBehaviour
         coinPerMin -= coin;
     }
 
-    private void OnApplicationQuit()
+    private void OnApplicationFocus(bool hasFocus)
     {
-        rsoContentSaved.Value.coinAmount = coins.ToString();
-        rsoContentSaved.Value.coinPerMin = coinPerMin.ToString();
-        rsoContentSaved.Value.lastDateTimeQuit = DateTime.Now.ToString();
-
-        rseSaveData.Call();
+        if (!hasFocus)
+        {
+            rsoContentSaved.Value.coinAmount = coins.ToString();
+            rsoContentSaved.Value.coinPerMin = coinPerMin.ToString();
+            rsoContentSaved.Value.lastDateTimeQuit = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+        }
     }
 }

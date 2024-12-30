@@ -29,7 +29,7 @@ namespace BT.Save
 
         private void Awake()
         {
-            filepath = Application.persistentDataPath + "/Save.json";
+            filepath = Application.persistentDataPath + $"/{Application.productName}_Save.json";
 
             if (FileAlreadyExist()) LoadFromJson();
             else
@@ -40,7 +40,7 @@ namespace BT.Save
 
         private void SaveToJson()
         {
-            string infoData = JsonUtility.ToJson(rsoContentSaved.Value);
+            string infoData = JsonUtility.ToJson(rsoContentSaved.Value,true);
             File.WriteAllText(filepath, infoData);
         }
 
