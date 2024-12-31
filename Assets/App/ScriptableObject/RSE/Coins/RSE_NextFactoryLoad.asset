@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d707e8dd10b5e343af15dd9da03649a, type: 3}
-  m_Name: RSE_NextFactoryReached
+  m_Name: RSE_NextFactoryLoad
   m_EditorClassIdentifier: 

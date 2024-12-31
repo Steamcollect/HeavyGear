@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace BT.Save
 {
@@ -60,6 +61,19 @@ namespace BT.Save
         private bool FileAlreadyExist()
         {
             return File.Exists(filepath);
+        }
+        
+        
+        private async void OnApplicationFocus(bool hasFocus)
+        {
+            if (hasFocus) return;
+            await Task.Delay(100);
+            rseSaveData.Call();
+        }
+
+        private void OnApplicationQuit()
+        {
+            rseSaveData.Call();
         }
         
     }   

@@ -23,6 +23,5 @@ namespace BT.Save
         //Level Factory
         public string currentFactory;
         public int currentStageFactory;
-        public bool lastStageReached;
     }
 }

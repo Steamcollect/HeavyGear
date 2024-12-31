@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class StageData
 {
-    [Header("Settings")]
-    public SSO_FactoryStageData factoryStageData;
+    public Tuple<string,bool>[] stagesState = Array.Empty<Tuple<string, bool>>();
+    public Tuple<string,bool> stageNextFactoryState = default;
+    
     public int currentStage;
-    public bool lastStageReached;
+    public string nextStageName;
 }

@@ -5,6 +5,7 @@ using BigFloatNumerics;
 using BT.Save;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using WebSocketSharp;
 
 public class CoinManager : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class CoinManager : MonoBehaviour
 
     private void CheckMoneyReceveidWhenAFK()
     {
-        if (rsoContentSaved.Value.coinAmount != "0e0")
+        if (rsoContentSaved.Value.coinAmount != "0e0" && !rsoContentSaved.Value.coinAmount.IsNullOrEmpty())
         {
             AddCoin(new BigNumber(rsoContentSaved.Value.coinAmount));
         }

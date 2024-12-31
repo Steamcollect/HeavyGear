@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,8 @@ public class SceneManagement : MonoBehaviour
     private string currentSceneLoaded;
     private bool isLoadingScene;
 
-    //[Header("References")]
+    [Header("References")]
+    [SerializeField] private RSO_ContentSaved rsoContentSaved;
 
     //[Space(10)]
     // RSO
@@ -79,5 +81,11 @@ public class SceneManagement : MonoBehaviour
         isLoadingScene = false;
         currentSceneLoaded = sceneToLoad;
         print($"Scene {sceneToLoad} Loaded");
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (hasFocus) return;
+        rsoContentSaved.Value.currentFactory = currentSceneLoaded;
     }
 }

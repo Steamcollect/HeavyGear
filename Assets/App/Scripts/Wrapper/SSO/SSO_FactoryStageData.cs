@@ -16,7 +16,6 @@ public class SSO_FactoryStageData : ScriptableObject
     [SerializeField] string _nextFactoryStageEditor;
 
     [Title("Scene")]
-    public bool lastLevel;
     public string nextFactorySceneName;
     [Space(10)]
     
