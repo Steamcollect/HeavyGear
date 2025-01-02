@@ -27,12 +27,14 @@ public class FactoryStages : MonoBehaviour
     
     private void OnEnable()
     {
+        rsoCoins.OnChanged += CheckCurrentStageIsComplete;
         rseNextFactoryLoad.action += OnNextFactoryLoad;
         rseNextStageLoad.action += OnNextStageLoad;
     }
 
     private void OnDisable()
     {
+        rsoCoins.OnChanged -= CheckCurrentStageIsComplete;
         rseNextFactoryLoad.action -= OnNextFactoryLoad;
         rseNextStageLoad.action -= OnNextStageLoad;
     }
@@ -47,24 +49,24 @@ public class FactoryStages : MonoBehaviour
     {
         if ( rsoContentSaved.Value.currentStageFactory >= ssoFactoryStageData.rebirthStage.Count)
         {
-            targetStage = ssoFactoryStageData.nextFactoryStage.ToHumanFriendlyString();
+            targetStage = ssoFactoryStageData.nextFactoryStage.ToStringData();
         }
         else
         {
-            targetStage = ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentStageFactory].ToHumanFriendlyString();
+            targetStage = ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentStageFactory].ToStringData();
         }
         
         var dataStage = new Tuple<string,bool>[ssoFactoryStageData.rebirthStage.Count];
         for (int i = 0; i < dataStage.Length; i++)
         {
-            dataStage[i] = new Tuple<string, bool>(ssoFactoryStageData.rebirthStage[i].ToHumanFriendlyString(),
+            dataStage[i] = new Tuple<string, bool>(ssoFactoryStageData.rebirthStage[i].ToStringData(),
                 i < rsoContentSaved.Value.currentStageFactory);
         }
 
         rsoStageData.Value = new StageData
         {
             stagesState = dataStage,
-            stageNextFactoryState = new Tuple<string, bool>(ssoFactoryStageData.nextFactoryStage.ToHumanFriendlyString(),false),
+            stageNextFactoryState = new Tuple<string, bool>(ssoFactoryStageData.nextFactoryStage.ToStringData(),false),
             currentStage = rsoContentSaved.Value.currentStageFactory,
             nextStageName = ssoFactoryStageData.nextFactorySceneName
         };

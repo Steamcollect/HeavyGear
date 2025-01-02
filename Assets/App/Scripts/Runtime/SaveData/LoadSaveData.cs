@@ -75,6 +75,11 @@ namespace BT.Save
         {
             rseSaveData.Call();
         }
-        
+
+        private async void OnDestroy()
+        {
+            await Task.Delay(100);
+            rsoContentSaved.Value = null;
+        }
     }   
 }

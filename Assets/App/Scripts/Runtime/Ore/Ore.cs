@@ -34,7 +34,7 @@ public class Ore : MonoBehaviour
         get => currentOreValue;
         set
         {
-            currentValue = value.ToString();
+            currentValue = value.ToStringData();
             currentOreValue = value;
             UpdateOre();
         }

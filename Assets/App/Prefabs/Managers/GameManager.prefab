@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8745712305686433782}
   - component: {fileID: 5409143295555707265}
+  - component: {fileID: 9028940760563315315}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,7 +49,17 @@ MonoBehaviour:
   endLevelName: 
   rsoCoins: {fileID: 11400000, guid: ee22174504567994b975702aecfb625c, type: 2}
   rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
-  rseNextStageReached: {fileID: 11400000, guid: fa1d8ec70d7e56140952def8eab22701, type: 2}
-  rseNextFactoryReached: {fileID: 11400000, guid: f8a85f7a12c46f64cbabdd0f96638fd8, type: 2}
-  rseSaveData: {fileID: 11400000, guid: 8f6ea18eb3f6fb14cbdc9ac7b883919a, type: 2}
   rseLoadNewScene: {fileID: 11400000, guid: 061d61e548b14ea4d8598e40c381a694, type: 2}
+--- !u!114 &9028940760563315315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4198831004623204191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b866966922ae6fa4bb1a9aa655fba519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fpsLock: 60

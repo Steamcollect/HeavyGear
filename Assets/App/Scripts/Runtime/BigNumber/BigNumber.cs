@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 namespace BigFloatNumerics
@@ -325,7 +327,13 @@ namespace BigFloatNumerics
             }
             return $"{value:F2}{digit}";
         }
-        public string ToHumanFriendlyString(int? maxLength = null)
+
+        public string ToStringData()
+        {
+            return m.ToString("R",CultureInfo.InvariantCulture) + "e" + n.ToString(); 
+        }
+        
+        public string ToStringScientific(int? maxLength = null)
         {
             if(maxLength == null)
                 return $"{m:F10}e{n}";
@@ -352,7 +360,7 @@ namespace BigFloatNumerics
             if (value == null)
                 throw new ArgumentNullException("value");
 
-            value.Trim();
+            value = value.Trim();
             value = value.Replace(",", "");
             int pos = value.IndexOf('e');
             value = value.Replace("e", "");
@@ -367,6 +375,7 @@ namespace BigFloatNumerics
                 }
                 else
                 {
+                    Debug.Log(value);
                     //just big integer
                     BigInteger nu = BigInteger.Parse(value);
                     return (new BigNumber(nu)).Arrange();
@@ -375,9 +384,9 @@ namespace BigFloatNumerics
             else
             {
                 //decimal point (length - pos - 1)
-                float Signifacand = float.Parse(value.Substring(0, pos));
+                float Signifacand = float.Parse(value.Substring(0, pos), CultureInfo.InvariantCulture);
 
-                int denominator = int.Parse(value.Substring(pos));
+                int denominator = int.Parse(value.Substring(pos),CultureInfo.InvariantCulture);
 
                 return (new BigNumber(Signifacand, denominator)).Arrange();
             }

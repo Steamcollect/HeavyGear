@@ -17,8 +17,7 @@ MonoBehaviour:
   - 1e2
   - 5e2
   _nextFactoryStageEditor: 1e3
-  lastLevel: 0
-  nextFactorySceneName: FactoryLevel_1
+  nextFactorySceneName: Level_1
   rebirthStage:
   - <m>k__BackingField: 1
     <n>k__BackingField: 1

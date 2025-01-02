@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Globalization;
+using System.Threading.Tasks;
 using BigFloatNumerics;
 using BT.Save;
 using UnityEngine;
@@ -52,7 +53,7 @@ public class CoinManager : MonoBehaviour
 
     private void CheckMoneyReceveidWhenAFK()
     {
-        if (rsoContentSaved.Value.coinAmount != "0e0" && !rsoContentSaved.Value.coinAmount.IsNullOrEmpty())
+        if (!rsoContentSaved.Value.coinAmount.IsNullOrEmpty())
         {
             AddCoin(new BigNumber(rsoContentSaved.Value.coinAmount));
         }
@@ -77,14 +78,14 @@ public class CoinManager : MonoBehaviour
         StartCoroutine(CoinPerMinDelay(coinToAdd));
 
         // Set save
-        rsoContentSaved.Value.coinAmount = coins.ToString();
+        rsoContentSaved.Value.coinAmount = coins.ToStringData();
     }
     
     void RemoveCoin(BigNumber coinToRemove)
     {
         coins -= coinToRemove;
         rsoCoins.Value = coins;
-        rsoContentSaved.Value.coinAmount = coins.ToString();
+        rsoContentSaved.Value.coinAmount = coins.ToStringData();
     }
 
     IEnumerator CoinPerMinDelay(BigNumber coin)
@@ -94,12 +95,18 @@ public class CoinManager : MonoBehaviour
         coinPerMin -= coin;
     }
 
+    private async void OnDestroy()
+    {
+        await Task.Delay(100);
+        rsoCoins.Value = null;
+    }
+
     private void OnApplicationFocus(bool hasFocus)
     {
         if (!hasFocus)
         {
-            rsoContentSaved.Value.coinAmount = coins.ToString();
-            rsoContentSaved.Value.coinPerMin = coinPerMin.ToString();
+            rsoContentSaved.Value.coinAmount = coins.ToStringData();
+            rsoContentSaved.Value.coinPerMin = coinPerMin.ToStringData();
             rsoContentSaved.Value.lastDateTimeQuit = DateTime.Now.ToString(CultureInfo.InvariantCulture);
         }
     }

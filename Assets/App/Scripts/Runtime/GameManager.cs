@@ -1,4 +1,6 @@
+using System.Globalization;
 using UnityEngine;
+using WebSocketSharp;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadLastLevel()
     {
-        if (rsoContentSaved.Value.currentFactory == "")
+        if (rsoContentSaved.Value.currentFactory.IsNullOrEmpty())
         {
             if (defaultLevelName != "")
             {

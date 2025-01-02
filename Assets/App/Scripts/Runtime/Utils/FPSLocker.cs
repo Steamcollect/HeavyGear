@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class FPSLocker : MonoBehaviour
 {
+    [SerializeField] private int fpsLock = 60;
+    
     private void Awake()
     {
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = fpsLock;
     }
 }
