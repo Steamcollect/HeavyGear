@@ -72,5 +72,4 @@ public class AnalyticsManager : MonoBehaviour
         AnalyticsService.Instance.RecordEvent(customEvent);
         AnalyticsService.Instance.Flush();
     }
-    
 }

@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class UiCheatCode : MonoBehaviour
+public class PanelSwapper : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private bool debugEnabled = false;
+    [SerializeField] private bool panelEnable = false;
     [SerializeField] private Vector2 startPosition = Vector2.zero;
     [SerializeField] private Vector2 endPosition = Vector2.zero;
     
@@ -15,7 +16,7 @@ public class UiCheatCode : MonoBehaviour
     
     private void Awake()
     {
-        if (!debugEnabled)
+        if (!panelEnable)
         {
             Destroy(gameObject);
         }

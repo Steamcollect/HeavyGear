@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class StageUiManager : MonoBehaviour
 {
-    [Header("References")] 
+    [Header("References")]
+    [SerializeField] private PanelSwapper panelSwapper;
     [SerializeField] private GameObject prefabStageUi;
     [SerializeField] private StageUI stageUiFactory;
     [SerializeField] private GridLayoutGroup container;
@@ -15,6 +16,29 @@ public class StageUiManager : MonoBehaviour
     [SerializeField] private RSO_StageData rsoStageData;
 
     private List<StageUI> stagesUI = new();
+
+
+    private void OnStageUiContentChanged()
+    {
+        if (rsoStageData.Value == null)
+        {
+            ClearUi();
+            panelSwapper.SwapPanel();
+        }
+        else
+        {
+            UpdateUI();
+        }
+    }
+
+    private void ClearUi()
+    {
+        for (int i = 0; i < stagesUI.Count; i++)
+        {
+            Destroy(stagesUI[i].gameObject);
+        }
+        stagesUI.Clear();
+    }
 
     private void InitContent()
     {
@@ -28,15 +52,13 @@ public class StageUiManager : MonoBehaviour
         stageUiFactory.SetStageUI(rsoStageData.Value.stageNextFactoryState, false);
     }
 
-    private void OnEnable() => rsoStageData.OnChanged += UpdateUI;
+    private void OnEnable() => rsoStageData.OnChanged += OnStageUiContentChanged;
 
-    private void OnDisable() => rsoStageData.OnChanged -= UpdateUI;
-
+    private void OnDisable() => rsoStageData.OnChanged -= OnStageUiContentChanged;
+    
     private void UpdateUI()
     {
-        print("pass");
-        if (stagesUI.Count == 0 && rsoStageData != null) InitContent();
-        if  (rsoStageData.Value == null) return;
+        if (stagesUI.Count == 0) InitContent();
         if (rsoStageData.Value.currentStage < rsoStageData.Value.stagesState.Length)
         {
             stagesUI[rsoStageData.Value.currentStage].UpdateStageUI(rsoStageData.Value.stagesState[rsoStageData.Value.currentStage].Item2);

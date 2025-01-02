@@ -1871,7 +1871,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291707c1cabfc024cbd82fc6adb22986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugEnabled: 1
+  panelEnable: 1
   startPosition: {x: -646, y: 939}
   endPosition: {x: 0, y: 939}
   panelCheatCode: {fileID: 104407035571648107}
