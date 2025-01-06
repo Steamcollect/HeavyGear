@@ -519,6 +519,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8214762957345075192, guid: 1e5b30ebdd5c39645a370384ab39d3f1, type: 3}
+      propertyPath: rsoContentSaved
+      value: 
+      objectReference: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1810,6 +1814,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5649509601715353208, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6119116299195414976, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6393433570235893510, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}

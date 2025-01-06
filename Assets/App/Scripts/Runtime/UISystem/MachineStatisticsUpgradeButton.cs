@@ -3,20 +3,21 @@ using BigFloatNumerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
+
 public class MachineStatisticsUpgradeButton : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] float valueGiven;
-    [SerializeField] string[] prices;
-
-    int currentLevel;
+    [SerializeField] float valueGivenEachLevel;
+    [SerializeField] private SSO_MathFormule ssoFormule;
     [SerializeField] int maxLevel;
-
+    int currentLevel;
+    
     int currentIndex;
     public Action<int, int> OnLevelChange;
 
     [Space(10)]
-    [SerializeField] UnityEvent<float> upgradeEvent;
+    [SerializeField] UnityEvent<float> upgradeBuy;
 
     [Header("References")]
     [SerializeField] TMP_Text levelTxt;
@@ -25,42 +26,48 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
     [SerializeField] MachineStatisticsUpgradeButton[] upgradesToShowOnComplete;
 
     [Space(10)]
-    // RSO
     [SerializeField] RSO_Coins rsoCoin;
-    // RSF
-    // RSP
+    
 
     [Header("Input")]
     [SerializeField] RSE_RemoveCoin rseRemoveCoin;
 
-
-    //[Header("Output")]
-
+    private BigNumber currentCost = new(0);
+    
     private void Start()
     {
-        if (prices.Length < maxLevel)
+        if (currentLevel <= maxLevel) 
             Debug.LogWarning(gameObject.name + "have'nt enough prices compare to his max level");
+
+        InitComponent();
+    }
+
+    private void InitComponent()
+    {
+        currentCost = ssoFormule.Compute(currentLevel, maxLevel);
+        SetupVisual();
     }
 
     public void OnClick()
     {
-        if (currentLevel < maxLevel && rsoCoin.Value >= new BigNumber(prices[currentLevel]))
+        if (currentLevel >= maxLevel) return;
+        if (rsoCoin.Value < currentCost) return;
+        
+        rseRemoveCoin.Call(currentCost);
+        currentLevel++;
+        
+        OnLevelChange(currentLevel, currentIndex); //???
+        
+        if (currentLevel < maxLevel) currentCost = ssoFormule.Compute(currentLevel, maxLevel);
+        
+        upgradeBuy.Invoke(valueGivenEachLevel);
+        SetupVisual();
+        
+        if(currentLevel >= maxLevel)
         {
-            rseRemoveCoin.Call(new BigNumber(prices[currentLevel]));
-            currentLevel++;
-            OnLevelChange(currentLevel, currentIndex);
-
-            upgradeEvent.Invoke(valueGiven);
-
-            SetupVisual();
-
-            // On max level reached
-            if(currentLevel >= maxLevel)
+            foreach (MachineStatisticsUpgradeButton upgrade in upgradesToShowOnComplete)
             {
-                foreach (MachineStatisticsUpgradeButton upgrade in upgradesToShowOnComplete)
-                {
-                    upgrade.Show();
-                }
+                upgrade.Show();
             }
         }
     }
@@ -68,7 +75,7 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
     void SetupVisual()
     {
         levelTxt.text = $"LVL {currentLevel}/{maxLevel}";
-        priceTxt.text = currentLevel >= maxLevel ? "MAX" : $"{prices[currentLevel]}$";
+        priceTxt.text = currentLevel >= maxLevel ? "MAX" : $"{currentCost}$";
     }
 
     public void Setup(int level, int index)
