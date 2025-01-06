@@ -8,8 +8,8 @@ public class MachineStatisticsUpgradeUI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] MachineStatisticsUpgradeButton[] upgradesButtons;
-    Dictionary<int, int> upgrades = new Dictionary<int, int>();
-
+    private List<int> upgradesLevels = new List<int>();
+    
     [Space(10)]
     // RSO
     [SerializeField] RSO_ContentSaved rsoContentSaved;
@@ -23,23 +23,30 @@ public class MachineStatisticsUpgradeUI : MonoBehaviour
     {
         StartCoroutine(LateStart());
     }
+    
+    
     IEnumerator LateStart()
     {
         yield return new WaitForSeconds(.1f);
         if(rsoContentSaved.Value.machineButtonsUpgrades.Count == 0)
         {
-            rsoContentSaved.Value.machineButtonsUpgrades = upgrades;
+            for (int i = 0; i < upgradesButtons.Length; i++) upgradesLevels.Add(1);
+            rsoContentSaved.Value.machineButtonsUpgrades = upgradesLevels;
         }
-
+        else
+        {
+            upgradesLevels = rsoContentSaved.Value.machineButtonsUpgrades;
+        }
+        
         for(int i = 0; i < upgradesButtons.Length; i++)
         {
-            upgradesButtons[i].Setup(upgrades[i], i);
+            upgradesButtons[i].Setup(upgradesLevels[i], i);
             upgradesButtons[i].OnLevelChange += OnButtonValueChanged;
         }
     }
 
     public void OnButtonValueChanged(int level, int index)
     {
-        upgrades[index] = level;
+        upgradesLevels[index] = level;
     }
 }
