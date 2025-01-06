@@ -88,9 +88,14 @@ public class InteractionManager : MonoBehaviour
 
     Clickable TryTouchDownInteraction()
     {
-        RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(lastTouch.position), Vector2.zero);
-
-        if (hit.collider != null && hit.transform.TryGetComponent(out Clickable obj)) return obj;
+        Debug.Log("qdqdqsdqs");
+        Ray ray = cam.ScreenPointToRay(lastTouch.position);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            Debug.Log("qsd");
+            if (hit.collider != null && hit.transform.TryGetComponent(out Clickable obj)) return obj;
+        }
         
         return null;
     }

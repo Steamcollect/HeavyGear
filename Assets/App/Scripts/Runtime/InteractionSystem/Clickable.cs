@@ -19,6 +19,7 @@ public class Clickable : MonoBehaviour
 
     public void OnClickUp()
     {
+        Debug.Log("Click");
         onClickUp?.Invoke();
     }
 
