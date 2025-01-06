@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,6 +8,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     [Header("References")]
     public SSO_MachineData SSO_statistics;
     [HideInInspector] public MachineData statistics;
+    [SerializeField] MachineType machineType;
 
     public RSO_MachinesStatisticsUpgrades rsoStatisticsUpgrades;
 
@@ -69,6 +71,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     public void EndAction()
     {
         StartCoroutine(ActionCooldown());
+        StartCoroutine(AutomationCooldown());
         currentState = MachineState.Cooldown;
     }
 
@@ -88,6 +91,32 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
         EndCooldown();
     }
     public abstract float CooldownMultiplier();
+    #endregion
+
+    #region Automation
+    IEnumerator AutomationCooldown()
+    {
+        float automationMultipier = 1;
+        switch (machineType)
+        {
+            case MachineType.Miner:
+                automationMultipier = rsoStatisticsUpgrades.Value.minerAutomation;
+                break;
+
+            case MachineType.Polisher:
+                automationMultipier = rsoStatisticsUpgrades.Value.polisherAutomation;
+                break;
+
+            case MachineType.Seller:
+                automationMultipier = rsoStatisticsUpgrades.Value.sellerAutomation;
+                break;
+        }
+
+        if (automationMultipier == 0) yield break;
+
+        yield return new WaitForSeconds((statistics.cooldown * CooldownMultiplier()) / automationMultipier);
+        Interact();
+    }
     #endregion
 
     public abstract void SetupChildRequirement(MachineSlotSettings settings);
