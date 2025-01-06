@@ -88,12 +88,11 @@ public class InteractionManager : MonoBehaviour
 
     Clickable TryTouchDownInteraction()
     {
-        Debug.Log("qdqdqsdqs");
+        Debug.Log("TouchDownInteraction");
         Ray ray = cam.ScreenPointToRay(lastTouch.position);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            Debug.Log("qsd");
             if (hit.collider != null && hit.transform.TryGetComponent(out Clickable obj)) return obj;
         }
         

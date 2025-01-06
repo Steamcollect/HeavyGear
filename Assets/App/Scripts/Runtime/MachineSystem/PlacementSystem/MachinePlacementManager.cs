@@ -47,7 +47,7 @@ public class MachinePlacementManager : MonoBehaviour
     {
         InteractiveMachineTemplate machine = Instantiate(machineSelected.machinePrefab, placementSettings.slot.transform);
         machine.transform.position = placementSettings.slot.transform.position;
-        machine.transform.position = machine.transform.position + new Vector3(0, -0.25f);
+        machine.transform.position = machine.transform.position + new Vector3(0, 0.5f);
         machine.transform.rotation = placementSettings.slot.transform.rotation;
 
         machine.SetupParentRequirement(placementSettings.clickable);

@@ -8,7 +8,7 @@ public class MachineCollider : MonoBehaviour
     public event Action<Ore> onItemEnter;
     public event Action<Ore> onItemExit;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.TryGetComponent(out Ore ore))
         {
@@ -17,7 +17,7 @@ public class MachineCollider : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.TryGetComponent(out Ore ore))
         {
