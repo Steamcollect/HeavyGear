@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33922d15359d9d64ab9d9e6cb4c9dd30, type: 3}
   m_Name: RareCardVisual
   m_EditorClassIdentifier: 
-  firstColor: {r: 0.735849, g: 0.6983352, b: 0, a: 1}
-  secondColor: {r: 1, g: 0.9363716, b: 0.5801887, a: 1}
+  firstColor: {r: 0.57254905, g: 0.2901961, b: 0.6784314, a: 1}
+  secondColor: {r: 0.7921569, g: 0.59607846, b: 1, a: 1}
