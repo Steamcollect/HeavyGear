@@ -3013,30 +3013,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2004098065912603245, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -625
-      objectReference: {fileID: 0}
-    - target: {fileID: 2949792477703242532, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00024414062
-      objectReference: {fileID: 0}
-    - target: {fileID: 2949792477703242532, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -424.99976
-      objectReference: {fileID: 0}
-    - target: {fileID: 2991949654603610773, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3427235713077042276, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3591110450124742869, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -625
-      objectReference: {fileID: 0}
     - target: {fileID: 4898609090976888983, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -3069,26 +3045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7268838625106544325, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.0091919545
-      objectReference: {fileID: 0}
     - target: {fileID: 8247780424305630740, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1221637487}
-    - target: {fileID: 8247780424305630740, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_RenderMode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8247780424305630740, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8247780424305630740, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 9053287400340339563, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
