@@ -22,8 +22,7 @@ public class WindowManager : MonoBehaviour
     public class WindowItem
     {
         [BoxGroup] public string windowName = "My Window";
-        [BoxGroup] public GameObject windowObject;
-        [BoxGroup] public WindowAnimator windowAnimator;
+        [BoxGroup] public Window window;
     }
 
     
@@ -52,7 +51,7 @@ public class WindowManager : MonoBehaviour
         {
             if (i != currentWindowIndex)
             {
-                windows[i].windowObject.SetActive(false);
+                windows[i].window.SetWindowActiveFalse();
             }
         }
     }
@@ -76,10 +75,10 @@ public class WindowManager : MonoBehaviour
 
             currentWindowIndex = newWindowIndex;
             nextWindow = windows[currentWindowIndex];
-            nextWindow.windowObject.SetActive(true);
+            nextWindow.window.SetWindowActiveTrue();
 
-            if (currentWindow.windowAnimator != null) currentWindow.windowAnimator.WindowFadeOut();
-            if (nextWindow.windowAnimator != null) nextWindow.windowAnimator.WindowFadeIn();
+            if (currentWindow.window != null) currentWindow.window.WindowFadeOut();
+            if (nextWindow.window != null) nextWindow.window.WindowFadeIn();
 
             StartCoroutine("DisablePreviousWindow");
         }
@@ -94,7 +93,7 @@ public class WindowManager : MonoBehaviour
             if (i == currentWindowIndex)
                 continue;
 
-            windows[i].windowObject.SetActive(false);
+            windows[i].window.SetWindowActiveFalse();
         }
     }
 }

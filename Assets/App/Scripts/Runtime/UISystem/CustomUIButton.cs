@@ -7,8 +7,6 @@ public class CustomUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
 {
     [Header("References")]
     [SerializeField] private Animator animator;
-    [SerializeField] private AnimationClip downClip;
-    [SerializeField] private AnimationClip upClip;
 
     [Header("Events")]
     [SerializeField] private UnityEvent onClick;
@@ -36,6 +34,6 @@ public class CustomUIButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
         isCursorHoverButton = false;
     }
 
-    private void PlayDownAnimation() { if (animator != null) animator.Play(downClip.name); }
-    private void PlayUpAnimation() { if (animator != null) animator.Play(upClip.name); }
+    private void PlayDownAnimation() { if (animator != null) animator.Play("Down"); }
+    private void PlayUpAnimation() { if (animator != null) animator.Play("Up"); }
 }

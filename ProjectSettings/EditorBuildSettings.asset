@@ -5,15 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/App/Scenes/GameScenes/Game.unity
     guid: 9bee177b4e2525640bb68b52a57d21f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/App/Scenes/GameScenes/Levels/Level_0.unity
     guid: 1084c5b6a83a63140a2967dfb2e59816
-  - enabled: 1
+  - enabled: 0
     path: Assets/App/Scenes/GameScenes/Levels/Level_1.unity
     guid: d6f4e7e6f9c65a442a0516968db8f112
+  - enabled: 1
+    path: Assets/App/Scenes/Personal/Tristan.unity
+    guid: 62985557ee2d94045aa41d3d591b4be5
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c136a0c6914b5ee4d8d16988d23e4ba5, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 272169955833a63438c5ae9e1d5fcacd, type: 2}

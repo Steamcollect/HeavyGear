@@ -55,10 +55,10 @@ public class SceneManagement : MonoBehaviour
     {
         bool sceneFound = false;
         
-        foreach (var scene in EditorBuildSettings.scenes)
+        /*foreach (var scene in EditorBuildSettings.scenes)
         {
             if (sceneToLoad == System.IO.Path.GetFileNameWithoutExtension(scene.path)) sceneFound = true;
-        }
+        }*/
 
         if (!sceneFound)
         {
