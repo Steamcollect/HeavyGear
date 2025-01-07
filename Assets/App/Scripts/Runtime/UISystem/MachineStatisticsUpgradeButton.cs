@@ -44,7 +44,7 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
 
     private void InitComponent()
     {
-        currentCost = ssoFormule.Compute(currentLevel, maxLevel);
+        currentCost = ssoFormule.Evaluate(currentLevel, maxLevel);
         SetupVisual();
     }
 
@@ -58,7 +58,7 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
         
         OnLevelChange(currentLevel, currentIndex); //???
         
-        if (currentLevel < maxLevel) currentCost = ssoFormule.Compute(currentLevel, maxLevel);
+        if (currentLevel < maxLevel) currentCost = ssoFormule.Evaluate(currentLevel, maxLevel);
         
         upgradeBuy.Invoke(valueGivenEachLevel);
         SetupVisual();

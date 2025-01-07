@@ -5,5 +5,5 @@ public abstract class SSO_MathFormule : ScriptableObject
 {
     public BigNumber costStart;
     
-    public abstract BigNumber Compute(int x, int maxX);
+    public abstract BigNumber Evaluate(int x, int maxX);
 }

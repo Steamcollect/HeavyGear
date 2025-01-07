@@ -1,5 +1,7 @@
 using BigFloatNumerics;
 using UnityEngine;
+using UnityEngine.Events;
+
 public class MachinePress : InteractiveMachineTemplate
 {
     [Header("Internal Settings")]
@@ -10,6 +12,10 @@ public class MachinePress : InteractiveMachineTemplate
 
     [Space(10)]
     [SerializeField] MachineCollider oreCollider;
+
+    [Header("Output")] 
+    [SerializeField] private UnityEvent onMachineAction;
+    [SerializeField] private UnityEvent onMachineEndAction;
 
     public override void OnObjEnable()
     {
@@ -28,24 +34,29 @@ public class MachinePress : InteractiveMachineTemplate
 
     public override void OnActionStart()
     {
-        foreach (Ore ore in oreCollider.oresInCollision)
+        onMachineAction.Invoke();
+        StartCoroutine(Utils.Delay(0.32f, () =>
         {
-            switch (calculType)
+            foreach (Ore ore in oreCollider.oresInCollision)
             {
-                case CalculType.Add:
-                    ore.AddValue(Value);
-                    break;
+                switch (calculType)
+                {
+                    case CalculType.Add:
+                        ore.AddValue(Value);
+                        break;
 
-                case CalculType.Remove:
-                    ore.RemoveValue(Value);
-                    break;
-                case CalculType.Multiply:
-                    ore.MultiplyValue((float)Value);
-                    break;
+                    case CalculType.Remove:
+                        ore.RemoveValue(Value);
+                        break;
+                    case CalculType.Multiply:
+                        ore.MultiplyValue((float)Value);
+                        break;
+                }
             }
-        }
-
-        EndAction();
+            onMachineEndAction.Invoke();
+            EndAction();
+            
+        }));
     }
 
     public override void OnCooldownEnd()
