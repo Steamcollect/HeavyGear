@@ -135,8 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  downClip: {fileID: 0}
-  upClip: {fileID: 0}
   onClick:
     m_PersistentCalls:
       m_Calls:
@@ -164,10 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c805107aa59acaa4b856150d5d7aadad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valueGiven: 0
-  prices: []
+  valueGivenEachLevel: 0
+  ssoFormule: {fileID: 0}
   maxLevel: 1
-  upgradeEvent:
+  upgradeBuy:
     m_PersistentCalls:
       m_Calls: []
   levelTxt: {fileID: 7806874901270783603}
@@ -414,8 +412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  downClip: {fileID: 0}
-  upClip: {fileID: 0}
   onClick:
     m_PersistentCalls:
       m_Calls: []
