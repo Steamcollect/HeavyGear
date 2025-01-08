@@ -35,7 +35,7 @@ public class MachinePress : InteractiveMachineTemplate
     public override void OnActionStart()
     {
         onMachineAction.Invoke();
-        StartCoroutine(Utils.Delay(0.32f, () =>
+        StartCoroutine(Utils.Delay(statistics.speed, () =>
         {
             foreach (Ore ore in oreCollider.oresInCollision)
             {
@@ -55,7 +55,6 @@ public class MachinePress : InteractiveMachineTemplate
             }
             onMachineEndAction.Invoke();
             EndAction();
-            
         }));
     }
 

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 509890fade36cf4408275877bd40544e, type: 3}
-  m_Name: SSO_Press
+  m_Name: SSO_FlameThrower
   m_EditorClassIdentifier: 
   data:
-    speed: 0.32
-    cooldown: 0.5
+    speed: 40
+    cooldown: 1
     power: 0
-    rarity: 0
+    duration: 1

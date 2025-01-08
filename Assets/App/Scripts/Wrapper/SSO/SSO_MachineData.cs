@@ -13,19 +13,18 @@ public class MachineData
     public float cooldown;
 
     public float power;
-
-    public int rarity;
+    public int duration;
 
     public MachineData(float speed, float cooldown, float power, int rarity)
     {
         this.speed = speed;
         this.cooldown = cooldown;
         this.power = power;
-        this.rarity = rarity;
+        this.duration = rarity;
     }
 
     public MachineData Copy()
     {
-        return new MachineData(speed, cooldown, power, rarity);
+        return new MachineData(speed, cooldown, power, duration);
     }
 }

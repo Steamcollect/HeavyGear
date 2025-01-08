@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f39b3616333a34984c4770913cbe2b, type: 3}
+  m_Name: SSO_FlameThrower
+  m_EditorClassIdentifier: 
+  machineName: Flame Thrower
+  machineDescription: A great FLAME THROWER TO BURN EVERYTHING
+  machineVisual: {fileID: 21300000, guid: 9c305c69fdc03784094b36565baf466a, type: 3}
+  machineType: 0
+  machineRarity: 1
+  machinePrefab: {fileID: 5830792868949067500, guid: da9ba71a6bfb7014d87929a0a8e55f9a, type: 3}
