@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,10 +55,11 @@ public class SceneManagement : MonoBehaviour
     void LoadNewScene()
     {
         bool sceneFound = false;
-        
-        foreach (var scene in EditorBuildSettings.scenes)
+
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        for (int i = 0; i < sceneCount; i++) 
         {
-            if (sceneToLoad == System.IO.Path.GetFileNameWithoutExtension(scene.path)) sceneFound = true;
+            if (sceneToLoad == Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i))) sceneFound = true;        
         }
 
         if (!sceneFound)
