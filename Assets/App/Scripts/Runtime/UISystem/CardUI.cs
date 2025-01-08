@@ -25,8 +25,12 @@ public class CardUI : MonoBehaviour
     [SerializeField] private SSO_CardVisual rareCard;
     [SerializeField] private SSO_CardVisual legendaryCard;
 
+    [HideInInspector] public InventoryMachineData machine;
+
     public void SetCard(InventoryMachineData machine)
     {
+        this.machine = machine;
+
         switch (machine.machine.machineRarity)
         {
             case MachineRarity.Common:
