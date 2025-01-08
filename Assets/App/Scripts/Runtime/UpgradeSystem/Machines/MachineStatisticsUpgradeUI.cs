@@ -8,16 +8,11 @@ public class MachineStatisticsUpgradeUI : MonoBehaviour
 
     [Header("References")]
     [SerializeField] MachineStatisticsUpgradeButton[] upgradesButtons;
-    private List<int> upgradesLevels = new List<int>();
+    private List<int> upgradesLevels = new();
     
     [Space(10)]
-    // RSO
     [SerializeField] RSO_ContentSaved rsoContentSaved;
-    // RSF
-    // RSP
-
-    //[Header("Input")]
-    //[Header("Output")]
+    
 
     private void Start()
     {

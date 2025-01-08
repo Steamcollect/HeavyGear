@@ -3,7 +3,6 @@ using BigFloatNumerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public class MachineStatisticsUpgradeButton : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
     public Action<int, int> OnLevelChange;
 
     [Space(10)]
-    [SerializeField] UnityEvent<float> upgradeBuy;
+    [SerializeField] UnityEvent<float> onUpgradeBuy;
 
     [Header("References")]
     [SerializeField] TMP_Text levelTxt;
@@ -28,18 +27,34 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
     [Space(10)]
     [SerializeField] RSO_Coins rsoCoin;
     
-
     [Header("Input")]
     [SerializeField] RSE_RemoveCoin rseRemoveCoin;
 
     private BigNumber currentCost = new(0);
+    public bool canBuy;
+
+
+    private void OnEnable()
+    {
+        rsoCoin.OnChanged += CheckCanBuy;
+    }
+
+    private void OnDisable()
+    {
+        rsoCoin.OnChanged -= CheckCanBuy;
+    }
+
+    private void CheckCanBuy()
+    {
+        canBuy = rsoCoin.Value.CompareTo(currentCost) is 0 or 1;
+    }
     
     private void Start()
     {
         if (currentLevel <= maxLevel) 
-            Debug.LogWarning(gameObject.name + "have'nt enough prices compare to his max level");
-
+            Debug.Log(gameObject.name + "have'nt enough prices compare to his max level");
         InitComponent();
+        CheckCanBuy();
     }
 
     private void InitComponent()
@@ -48,7 +63,7 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
         SetupVisual();
     }
 
-    public void OnClick()
+    public void UpgradeBuy()
     {
         if (currentLevel >= maxLevel) return;
         if (rsoCoin.Value < currentCost) return;
@@ -56,11 +71,11 @@ public class MachineStatisticsUpgradeButton : MonoBehaviour
         rseRemoveCoin.Call(currentCost);
         currentLevel++;
         
-        OnLevelChange(currentLevel, currentIndex); //???
+        OnLevelChange(currentLevel, currentIndex);
         
         if (currentLevel < maxLevel) currentCost = ssoFormule.Evaluate(currentLevel, maxLevel);
         
-        upgradeBuy.Invoke(valueGivenEachLevel);
+        onUpgradeBuy.Invoke(valueGivenEachLevel);
         SetupVisual();
         
         if(currentLevel >= maxLevel)
