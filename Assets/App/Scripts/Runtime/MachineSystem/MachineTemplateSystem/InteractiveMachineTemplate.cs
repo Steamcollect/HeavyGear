@@ -1,7 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public abstract class InteractiveMachineTemplate : MonoBehaviour
 {
@@ -45,6 +45,7 @@ public abstract class InteractiveMachineTemplate : MonoBehaviour
     {
         if(currentState == MachineState.Idle && CanDoAction())
         {
+            transform.BumpVisual();
             StartAction();
         }
     }

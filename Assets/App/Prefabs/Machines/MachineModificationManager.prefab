@@ -46,4 +46,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rseOpenModificationSettings: {fileID: 11400000, guid: c03e38f803941784db1675e4d281ae20, type: 2}
   rseDestroyMachine: {fileID: 11400000, guid: 4f3cfbd0b1bfd5f4baadc7f0ea2a2dc9, type: 2}
-  rseOpenModificationPanel: {fileID: 11400000, guid: 87e31e6ca3a8a174982bfaf75f8b97b0, type: 2}
+  openModificationPanel:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: be00a6e650f1eef4b85e7475f957c797, type: 2}
+        m_TargetAssemblyTypeName: BT.ScriptablesObject.RuntimeScriptableEvent`1[[System.String,
+          mscorlib
+        m_MethodName: Call
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Modification
+          m_BoolArgument: 0
+        m_CallState: 2

@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0251b68be8aff4a971f132f6a0520e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rsoContentSaved: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
   rseLoadNewScene: {fileID: 11400000, guid: 061d61e548b14ea4d8598e40c381a694, type: 2}
