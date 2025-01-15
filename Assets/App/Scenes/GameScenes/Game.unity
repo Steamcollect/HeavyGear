@@ -380,38 +380,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MachineModificationManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: be00a6e650f1eef4b85e7475f957c797, type: 2}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Call
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BT.ScriptablesObject.RuntimeScriptableEvent`1[[System.String, mscorlib
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Modification
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579611314998082461, guid: 38b7355464071774e9782d93896c6a06, type: 3}
-      propertyPath: openModificationPanel.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8579212221448691287, guid: 38b7355464071774e9782d93896c6a06, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -519,10 +487,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8214762957345075192, guid: 1e5b30ebdd5c39645a370384ab39d3f1, type: 3}
-      propertyPath: rsoContentSaved
-      value: 
-      objectReference: {fileID: 11400000, guid: bef094b0ffcd7854fa67df76b177dcc6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -977,7 +941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4462597549855203030, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00036621094
+      value: -0.00048828125
       objectReference: {fileID: 0}
     - target: {fileID: 4661172109413193409, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1093,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6851861425959040152, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00061035156
+      value: 0.00048828125
       objectReference: {fileID: 0}
     - target: {fileID: 7166621157323554150, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1161,7 +1125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8201468254193537730, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00036621094
+      value: -0.00048828125
       objectReference: {fileID: 0}
     - target: {fileID: 8247780424305630740, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_Camera
@@ -2166,6 +2130,18 @@ PrefabInstance:
     - target: {fileID: 1852275372654501988, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
       propertyPath: m_Name
       value: Canvas_Stages
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992449977640213911, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992449977640213911, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -600
+      objectReference: {fileID: 0}
+    - target: {fileID: 3629526596792376480, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5649509601715353208, guid: 67c64286ad2b7464fa9af9ac591cd41b, type: 3}
       propertyPath: m_Pivot.x
