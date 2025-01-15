@@ -80,7 +80,6 @@ public class MachineSeller : InteractiveMachineTemplate
 
     public override bool CanDoAction()
     {
-        // Cant interact if there is no item inside
         return currentStorage.Count > 0;
     }
 

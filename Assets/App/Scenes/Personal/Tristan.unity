@@ -2175,17 +2175,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b922763dca27bc742bdb6b6f2fe76815, type: 3}
---- !u!114 &1534508655 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3935712693265345975, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
-  m_PrefabInstance: {fileID: 370168067352502789}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1551749939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2866,10 +2855,18 @@ PrefabInstance:
     - target: {fileID: 789385448763628954, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: cardDescription
       value: 
-      objectReference: {fileID: 1534508655}
+      objectReference: {fileID: 0}
     - target: {fileID: 3023956295374922518, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_Name
       value: DescriptionText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462597549855203030, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462597549855203030, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00048828125
       objectReference: {fileID: 0}
     - target: {fileID: 4551581007912883749, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_Pivot.x
@@ -2951,12 +2948,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6851861425959040152, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00048828125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201468254193537730, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.00048828125
+      objectReference: {fileID: 0}
     - target: {fileID: 9153956655742562112, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 219441840268114838, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6324b73beaa25b84f896739c3b8c92c7, type: 3}
