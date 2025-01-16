@@ -460,6 +460,14 @@ namespace BigFloatNumerics
         }
         public static bool operator ==(BigNumber left, BigNumber right)
         {
+            if (ReferenceEquals(left, null) && ReferenceEquals(right, null))
+            {
+                return true;
+            }
+            if (ReferenceEquals(left, null) || ReferenceEquals(right, null))
+            {
+                return false;
+            }
             return Compare(left, right) == 0;
         }
         public static bool operator <(BigNumber left, BigNumber right)

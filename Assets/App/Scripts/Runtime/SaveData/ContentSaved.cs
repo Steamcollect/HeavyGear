@@ -15,8 +15,8 @@ namespace BT.Save
         public List<int> machineButtonsUpgrades = new ();
 
         // Coins
-        public string coinAmount = "0e0";
-        public string coinPerMin = "0e0";
+        public string coinAmount = "0";
+        public string coinPerMin = "0";
         public string lastDateTimeQuit;
         public int idleDelay = 300; // In minutes
 
