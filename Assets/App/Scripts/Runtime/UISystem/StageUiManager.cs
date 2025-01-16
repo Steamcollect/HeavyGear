@@ -17,7 +17,7 @@ public class StageUiManager : MonoBehaviour
 
     private void InitContent()
     {
-        
+        if (rsoStageData.Value == null) return;
         stageUiFactory.SetStageUI(rsoStageData.Value.stageNextFactoryState, false);
     }
 
@@ -34,6 +34,7 @@ public class StageUiManager : MonoBehaviour
         }
         else
         {
+            if (rsoStageData.Value == null) return; 
             stageUiFactory.UpdateStageUI(rsoStageData.Value.stageNextFactoryState.Item2);
         }
     }
