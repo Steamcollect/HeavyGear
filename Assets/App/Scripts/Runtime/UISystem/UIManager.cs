@@ -4,15 +4,14 @@ public class UIManager : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private TMP_Text _coinText;
+    [SerializeField] private TMP_Text _gemText;
 
     [Header("References")]
     [Space(10)]
     [SerializeField] private RSO_Coins _rsoCoin;
-    // RSF
-    // RSP
+    [SerializeField] private RSE_GiveGem _rseGem;
 
-    //[Header("Input")]
-    //[Header("Output")]
+    private int gem;
 
     private void Awake()
     {
@@ -22,15 +21,23 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         _rsoCoin.OnChanged += UpdateCoinUI;
+        _rseGem.action += UpdateGemUI;
     }
 
     private void OnDisable()
     {
         _rsoCoin.OnChanged -= UpdateCoinUI;
+        _rseGem.action -= UpdateGemUI;
     }
 
     private void UpdateCoinUI()
     {
         _coinText.text = _rsoCoin.Value.ToString();
+    }
+
+    private void UpdateGemUI(int quantity)
+    {
+        gem += quantity;
+        _gemText.text = gem.ToString();
     }
 }
