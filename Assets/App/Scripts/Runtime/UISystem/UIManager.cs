@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 public class UIManager : MonoBehaviour
@@ -13,9 +14,13 @@ public class UIManager : MonoBehaviour
 
     private int gem;
 
-    private void Awake()
+    private void Start()
     {
-        UpdateCoinUI();
+        StartCoroutine(Utils.Delay(0.15f, ()=>
+        {
+            UpdateCoinUI();
+            UpdateGemUI(0);
+        }));
     }
 
     private void OnEnable()
@@ -32,7 +37,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateCoinUI()
     {
-        Debug.LogWarning(_rsoCoin.Value.ToString());
+        if (_rsoCoin.Value == null) return;
         _coinText.text = _rsoCoin.Value.ToString();
     }
 
