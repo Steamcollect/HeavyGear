@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SSO_FactoryStageData_0
   m_EditorClassIdentifier: 
   _rebirthStageEditor: []
-  _nextFactoryStageEditor: 1e3
+  _nextFactoryStageEditor: 50e0
   nextFactorySceneName: Level_1
   rebirthStage: []
   nextFactoryStage:
-    <m>k__BackingField: 1
-    <n>k__BackingField: 3
+    <m>k__BackingField: 5
+    <n>k__BackingField: 1

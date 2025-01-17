@@ -18,7 +18,6 @@ public class OreManager : MonoBehaviour
     // RSF
     // RSP
 
-    //[Header("Input")]
     //[Header("Output")]
 
     private void OnEnable()

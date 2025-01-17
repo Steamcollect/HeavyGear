@@ -1,3 +1,5 @@
+using BigFloatNumerics;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class StageUiManager : MonoBehaviour
@@ -8,8 +10,11 @@ public class StageUiManager : MonoBehaviour
     [Space(10)]
     [SerializeField] private RSO_StageData rsoStageData;
 
+    [Header("Input")]
+    [SerializeField] private RSE_NextFactoryLoad rseNextFactoryLoad;
+    
     private bool isInited;
-
+    
     private void OnStageUiContentChanged()
     {
         UpdateUI();
@@ -18,18 +23,29 @@ public class StageUiManager : MonoBehaviour
     private void InitContent()
     {
         if (rsoStageData.Value == null) return;
-        stageUiFactory.SetStageUI(rsoStageData.Value.stageNextFactoryState, false);
+        {
+            isInited = true;
+            stageUiFactory.SetStageUI(rsoStageData.Value.stageNextFactoryState, false);
+        }
+        
     }
 
-    private void OnEnable() => rsoStageData.OnChanged += OnStageUiContentChanged;
+    private void OnEnable()
+    {
+        rsoStageData.OnChanged += OnStageUiContentChanged;
+        rseNextFactoryLoad.action += ResetUi;
+    }
 
-    private void OnDisable() => rsoStageData.OnChanged -= OnStageUiContentChanged;
-    
+    private void OnDisable()
+    {
+        rsoStageData.OnChanged -= OnStageUiContentChanged;
+        rseNextFactoryLoad.action -= ResetUi;
+    }
+
     private void UpdateUI()
     {
         if (!isInited)
         {
-            isInited = true;
             InitContent();
         }
         else
@@ -37,5 +53,10 @@ public class StageUiManager : MonoBehaviour
             if (rsoStageData.Value == null) return; 
             stageUiFactory.UpdateStageUI(rsoStageData.Value.stageNextFactoryState.Item2);
         }
+    }
+
+    private void ResetUi()
+    {
+        isInited = false;
     }
 }

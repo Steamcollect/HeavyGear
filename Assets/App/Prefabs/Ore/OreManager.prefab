@@ -47,3 +47,4 @@ MonoBehaviour:
   oreToInstantiateOnStart: 50
   orePrefab: {fileID: 7540014640451865297, guid: d9fddda0eb0f2f34390c6ebd84bd2f5e, type: 3}
   rsoOreManager: {fileID: 11400000, guid: 7e42db0532f69cf44b7e8c39a279430c, type: 2}
+  rseNextFactoryLoad: {fileID: 11400000, guid: f8a85f7a12c46f64cbabdd0f96638fd8, type: 2}

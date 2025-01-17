@@ -22,6 +22,9 @@ public class ConveyorBelt : MonoBehaviour
 
     [Space(10)]
     [SerializeField] RSO_OreManager rsoOreManager;
+    
+    [Header("Input")]
+    [SerializeField] private RSE_NextFactoryLoad rseNextFactoryLoad;
 
     private void Awake()
     {
@@ -39,6 +42,9 @@ public class ConveyorBelt : MonoBehaviour
             pathPointsList[index].threasholdLerp = AC.magnitude/AB.magnitude;
         }
     }
+
+    private void OnEnable() => rseNextFactoryLoad.action += ClearConveyor;
+    private void OnDisable() => rseNextFactoryLoad.action -= ClearConveyor;
 
 
     public void ChangePathPointAvailable(int indexPath, bool blocked)
@@ -189,6 +195,15 @@ public class ConveyorBelt : MonoBehaviour
             }
         }        
     }
+
+    private void ClearConveyor()
+    {
+        for (var i = ores.Count - 1; i >= 0; i--)
+        {
+            RemoveItem(ores[i]);
+        }
+    }
+    
 }
 
 [System.Serializable]

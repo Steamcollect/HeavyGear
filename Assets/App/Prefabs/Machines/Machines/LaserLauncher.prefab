@@ -287,7 +287,7 @@ MonoBehaviour:
   currentState: 0
   rsoFactoryUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
   calculType: 0
-  value: 10e3
+  value: 30
   oreCollider: {fileID: 7705743748596913283}
   onMachineAction:
     m_PersistentCalls:

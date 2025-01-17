@@ -33,12 +33,13 @@ public class MachineSeller : InteractiveMachineTemplate
     
     public override void OnActionStart()
     {
+        coinValue = new BigNumber(0);
         foreach (Ore data in currentStorage)
         {
             coinValue += data.CurrentOreValue;
-            rseAddCoin.Call(data.CurrentOreValue);
         }
-
+        rseAddCoin.Call(coinValue);
+        
         currentStorage.Clear();
         EndAction();
     }

@@ -1,4 +1,5 @@
 using System;
+using BigFloatNumerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,13 @@ public class StageUI : MonoBehaviour
     [SerializeField] private GameObject checkImage;
     [SerializeField] private TMP_Text tmpText;
 
+    private BigNumber valueNextStage;
+    
     public void SetStageUI(Tuple<string,bool> stageData, bool completed)
     {
-        tmpText.text = "Cost:" + stageData.Item1;
+        valueNextStage = new BigNumber(stageData.Item1);
+        
+        tmpText.text = "Cost:" + valueNextStage.ToString();
         if (completed) button.gameObject.SetActive(false);
         else
         {

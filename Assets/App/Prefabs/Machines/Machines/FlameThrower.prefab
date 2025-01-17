@@ -5117,7 +5117,7 @@ MonoBehaviour:
   currentState: 0
   rsoFactoryUpgradeData: {fileID: 11400000, guid: 42fa5f3859d03944fba196f7ca47a8a9, type: 2}
   calculType: 0
-  value: 1e10
+  value: 20
   flameParticle: {fileID: 4337542936368169955}
   oreCollider: {fileID: 7705743748596913283}
   rotationPivot: {fileID: 5802691983838446243}

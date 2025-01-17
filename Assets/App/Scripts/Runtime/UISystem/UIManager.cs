@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdateCoinUI()
     {
+        Debug.LogWarning(_rsoCoin.Value.ToString());
         _coinText.text = _rsoCoin.Value.ToString();
     }
 

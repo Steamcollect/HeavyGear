@@ -375,7 +375,6 @@ namespace BigFloatNumerics
                 }
                 else
                 {
-                    Debug.Log(value);
                     //just big integer
                     BigInteger nu = BigInteger.Parse(value);
                     return (new BigNumber(nu)).Arrange();
