@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_Seller
   m_EditorClassIdentifier: 
   machineName: Seller
-  machineDescription: A Great seller
+  machineDescription: A great seller
   machineVisual: {fileID: 21300000, guid: d1a57bc6950c83d48a877fa220a6c8fa, type: 3}
   machineType: 2
   machineRarity: 0

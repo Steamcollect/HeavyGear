@@ -98,6 +98,7 @@ public class FactoryStages : MonoBehaviour
     private void OnNextFactoryLoad()
     {
         rsoStageData.Value.currentStage = 0;
+        rsoContentSaved.Value.currentFactory = ssoFactoryStageData.nextFactorySceneName;
         rseRemoveCoin.Call(new BigNumber(rsoCoins.Value));
         rseLoadNewScene.Call(rsoStageData.Value.nextStageName);
     }

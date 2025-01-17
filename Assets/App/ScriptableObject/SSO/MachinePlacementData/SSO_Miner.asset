@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SSO_Miner
   m_EditorClassIdentifier: 
   machineName: Miner
-  machineDescription: A Great miner
+  machineDescription: A great miner
   machineVisual: {fileID: 21300000, guid: d1a57bc6950c83d48a877fa220a6c8fa, type: 3}
   machineType: 1
   machineRarity: 2

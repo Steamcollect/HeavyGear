@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   machineName: Flame Thrower
   machineDescription: A great FLAME THROWER TO BURN EVERYTHING
-  machineVisual: {fileID: 21300000, guid: 9c305c69fdc03784094b36565baf466a, type: 3}
+  machineVisual: {fileID: 21300000, guid: d1a57bc6950c83d48a877fa220a6c8fa, type: 3}
   machineType: 0
   machineRarity: 1
   machinePrefab: {fileID: 5830792868949067500, guid: da9ba71a6bfb7014d87929a0a8e55f9a, type: 3}

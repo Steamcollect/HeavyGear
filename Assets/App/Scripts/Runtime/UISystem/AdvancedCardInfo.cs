@@ -70,7 +70,10 @@ public class AdvancedCardInfo : MonoBehaviour
         cardName.text = machine.machine.machineName.ToString();
         cardNumber.text = machine.amountAquired + "/" + machine.maxAmount;
         slider.value = (float)machine.amountAquired / (float)machine.maxAmount;
-        cardDescription.text = machine.machine.machineDescription.ToString();
+        if (cardDescription != null)
+        {
+            cardDescription.text = machine.machine.machineDescription.ToString();
+        }
 
         cardIcon.sprite = machine.machine.machineVisual;
     }
