@@ -49,22 +49,22 @@ MonoBehaviour:
   rseUpdateMachineInventory: {fileID: 11400000, guid: fb3da20a594b7f54bbea2b2ba42bb3d5, type: 2}
   content:
   - machine: {fileID: 11400000, guid: b63199b61f62d494eaa93430fba955e4, type: 2}
-    amountAquired: 0
-    maxAmount: 50
+    amountAquired: 100
+    maxAmount: 100
     machineLevel: 10
   - machine: {fileID: 11400000, guid: 1c16593047620cf41816e19b4cefc373, type: 2}
-    amountAquired: 0
+    amountAquired: 100
     maxAmount: 100
     machineLevel: 10
   - machine: {fileID: 11400000, guid: c83b0505e36aff54aba89a252e74dacf, type: 2}
-    amountAquired: 0
-    maxAmount: 3
-    machineLevel: 12
+    amountAquired: 100
+    maxAmount: 100
+    machineLevel: 10
   - machine: {fileID: 11400000, guid: d87d64c017a7efd4292c7b3e3806dbb9, type: 2}
-    amountAquired: 0
-    maxAmount: 10
-    machineLevel: 3
+    amountAquired: 100
+    maxAmount: 100
+    machineLevel: 10
   - machine: {fileID: 11400000, guid: c83b0505e36aff54aba89a252e74dacf, type: 2}
-    amountAquired: 0
-    maxAmount: 50
-    machineLevel: 8
+    amountAquired: 100
+    maxAmount: 100
+    machineLevel: 10
