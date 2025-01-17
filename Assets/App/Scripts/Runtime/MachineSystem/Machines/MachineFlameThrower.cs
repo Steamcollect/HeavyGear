@@ -8,6 +8,8 @@ public class MachineFlameThrower : InteractiveMachineTemplate
     [SerializeField] CalculType calculType;
     [SerializeField] string value;
 
+    [SerializeField] ParticleSystem flameParticle;
+
     BigNumber Value => new BigNumber(value);
 
     [Space(10)]
@@ -70,8 +72,10 @@ public class MachineFlameThrower : InteractiveMachineTemplate
     IEnumerator ActionDelay()
     {
         isActive = true;
+        flameParticle.Play();
         yield return new WaitForSeconds(statistics.duration);
         isActive = false;
+        flameParticle.Stop();
 
         onMachineEndAction.Invoke();
         EndAction();
