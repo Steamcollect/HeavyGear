@@ -11,8 +11,8 @@ using WebSocketSharp;
 public class CoinManager : MonoBehaviour
 {
     [Header("References")]
-    BigNumber coins = new (0);
-    BigNumber coinPerMin = new (0);
+    BigNumber coins = new ("0");
+    BigNumber coinPerMin = new ("0");
 
     [Space(10)]
     [SerializeField] RSO_Coins rsoCoins;
@@ -53,6 +53,7 @@ public class CoinManager : MonoBehaviour
 
     private void CheckMoneyReceveidWhenAFK()
     {
+        
         if (!rsoContentSaved.Value.coinAmount.IsNullOrEmpty())
         {
             AddCoin(new BigNumber(rsoContentSaved.Value.coinAmount));

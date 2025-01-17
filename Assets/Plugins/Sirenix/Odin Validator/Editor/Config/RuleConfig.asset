@@ -13,8 +13,57 @@ MonoBehaviour:
   m_Name: RuleConfig
   m_EditorClassIdentifier: 
   projectRules:
-  - Enabled: 1
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.UnityObjectScriptMatchValidator,
+      Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.UICanvasChildElementValidator,
+      Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.ShaderCompilerErrorsValidator,
+      Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.SerializeReferenceValidator, Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.MissingUnityObjectReferenceValidator,
+      Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.MissingScriptValidator, Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.MeshRendererValidator, Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.MaterialValidator, Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
     EnabledOverridden: 1
     Type: Sirenix.OdinValidator.Editor.Validators.ListNullElementValidator, Sirenix.OdinValidator.Editor
     Override: "{\r\n    \"$id\": 0,\r\n    \"$type\": \"0|Sirenix.OdinValidator.Editor.Validators.ListNullElementValidator,
       Sirenix.OdinValidator.Editor\",\r\n    \"ValidatorSeverity\": 1\r\n}"
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.InvalidLayerValidator, Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.HugeTransformPositionsValidator,
+      Sirenix.OdinValidator.Editor
+    Override: 
+  - Enabled: 0
+    EnabledOverridden: 1
+    Type: Sirenix.OdinValidator.Editor.Validators.DuplicateComponentsValidator, Sirenix.OdinValidator.Editor
+    Override: 

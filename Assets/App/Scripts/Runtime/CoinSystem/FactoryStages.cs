@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using BigFloatNumerics;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -39,33 +40,19 @@ public class FactoryStages : MonoBehaviour
         rseNextStageLoad.action -= OnNextStageLoad;
     }
 
-    private void Start()
+    private async void Start()
     {
+        await Task.Delay(10);
         InitFactoryStage();
         CheckCurrentStageIsComplete();
     }
 
     private void InitFactoryStage()
     {
-        if ( rsoContentSaved.Value.currentStageFactory >= ssoFactoryStageData.rebirthStage.Count)
-        {
-            targetStage = ssoFactoryStageData.nextFactoryStage.ToStringData();
-        }
-        else
-        {
-            targetStage = ssoFactoryStageData.rebirthStage[rsoContentSaved.Value.currentStageFactory].ToStringData();
-        }
-        
-        var dataStage = new Tuple<string,bool>[ssoFactoryStageData.rebirthStage.Count];
-        for (int i = 0; i < dataStage.Length; i++)
-        {
-            dataStage[i] = new Tuple<string, bool>(ssoFactoryStageData.rebirthStage[i].ToStringData(),
-                i < rsoContentSaved.Value.currentStageFactory);
-        }
-
+        targetStage = ssoFactoryStageData.nextFactoryStage.ToStringData();
+        if (targetStage == "") Debug.LogWarning("No target stage found");
         rsoStageData.Value = new StageData
         {
-            stagesState = dataStage,
             stageNextFactoryState = new Tuple<string, bool>(ssoFactoryStageData.nextFactoryStage.ToStringData(),false),
             currentStage = rsoContentSaved.Value.currentStageFactory,
             nextStageName = ssoFactoryStageData.nextFactorySceneName
@@ -74,20 +61,14 @@ public class FactoryStages : MonoBehaviour
 
     private void CheckCurrentStageIsComplete()
     {
+        if (rsoCoins.Value == null || string.IsNullOrEmpty(targetStage)) return;
+        
         if (currentStageComplete)
         {
             if (!DoesValueReachedGoalValue(rsoCoins.Value, new BigNumber(targetStage)))
             {
                 currentStageComplete = false;
-                if (rsoStageData.Value.currentStage >= ssoFactoryStageData.rebirthStage.Count)
-                {
-                    rsoStageData.Value.stageNextFactoryState = new Tuple<string, bool>(rsoStageData.Value.stageNextFactoryState.Item1, false);
-                }
-                else
-                {
-                    rsoStageData.Value.stagesState[rsoStageData.Value.currentStage] =new Tuple<string, bool>(rsoStageData.Value.stagesState[rsoStageData.Value.currentStage].Item1, false);
-                }
-
+                rsoStageData.Value.stageNextFactoryState = new Tuple<string, bool>(rsoStageData.Value.stageNextFactoryState.Item1, false);
                 rsoStageData.Value = rsoStageData.Value;
             }
         }
@@ -96,14 +77,7 @@ public class FactoryStages : MonoBehaviour
             if (DoesValueReachedGoalValue(rsoCoins.Value, new BigNumber(targetStage)))
             {
                 currentStageComplete = true;
-                if (rsoStageData.Value.currentStage >= ssoFactoryStageData.rebirthStage.Count)
-                {
-                    rsoStageData.Value.stageNextFactoryState = new Tuple<string, bool>(rsoStageData.Value.stageNextFactoryState.Item1, true);
-                }
-                else
-                {
-                    rsoStageData.Value.stagesState[rsoStageData.Value.currentStage] = new Tuple<string, bool>(rsoStageData.Value.stagesState[rsoStageData.Value.currentStage].Item1, true);
-                }
+                rsoStageData.Value.stageNextFactoryState = new Tuple<string, bool>(rsoStageData.Value.stageNextFactoryState.Item1, true);
                 rsoStageData.Value = rsoStageData.Value;
             }
         }
